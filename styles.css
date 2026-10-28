@@ -589,3 +589,7 @@ main { overflow-x: clip; }
   .site[aria-pressed="true"] .site__text strong { font-size: 1.45rem; }
 }
 @media (prefers-reduced-motion: reduce) { .site, .site[aria-pressed="true"] .site__text { transition: none; animation: none; } }
+
+/* Botón flotante de Helenita: solo el círculo responde al toque (el globo y el espacio no) */
+.guide-fab, .guide-fab.is-on, .guide-fab__tip { pointer-events: none; }
+.guide-fab.is-on .guide-fab__face { pointer-events: auto; cursor: pointer; -webkit-tap-highlight-color: transparent; }

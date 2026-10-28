@@ -77,6 +77,8 @@ prompts que funcionaron, los costos y el recorte del fondo verde. Puntos clave:
 ## Convenciones
 
 - Sin dependencias ni paso de build: los archivos se sirven tal cual.
+- **Caché:** `index.html` carga `styles.css`, `script.js` y el reproductor con `?v=AAAAMMDDx`. Al cambiar
+  cualquiera de ellos, subir esa versión en los tres (si no, los celulares siguen mostrando la versión vieja).
 - Para probar videos/reproductor, servir por HTTP: `python3 -m http.server` (no abrir con `file://`).
 - **Rama oficial: `main`.** Todos los cambios del sitio se hacen, se confirman (commit) y se suben (push) en `main`.
 - **Vista en vivo (artefacto):** https://claude.ai/artifact/2poqmHYxwFxYengX7qBsuA. Después de cada
