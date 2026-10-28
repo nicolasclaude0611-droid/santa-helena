@@ -298,6 +298,13 @@
     const y = b.top - barH - Math.max(12, (avail - (b.bottom - b.top)) / 2);
     scrollTo({ top: Math.max(0, y), behavior: reduce ? 'auto' : 'smooth' });
   };
+  // Mientras la página baja sola hacia otra sección, Helenita no habla al pasar por Agendar
+  let autoScroll = false, autoT = 0;
+  const markAutoScroll = () => {
+    autoScroll = true;
+    const end = () => { clearTimeout(autoT); autoT = setTimeout(() => { autoScroll = false; removeEventListener('scroll', end); }, 200); };
+    addEventListener('scroll', end, { passive: true }); end();
+  };
   // Resto de secciones: centra el contenido (sin el margen interno de la sección); si no cabe, lo deja justo bajo la barra
   const scrollToSection = (sec) => {
     if (sec.id === 'inicio') { scrollTo({ top: 0, behavior: reduce ? 'auto' : 'smooth' }); return; }
@@ -318,6 +325,7 @@
     if (!sec) return;
     e.preventDefault();
     if (history.replaceState) history.replaceState(null, '', '#' + id);
+    if (id !== 'agendar') markAutoScroll();
     requestAnimationFrame(() => (id === 'agendar' ? scrollToBook() : scrollToSection(sec)));
   });
 
@@ -329,7 +337,7 @@
       sound.voice('paso1').then((ok) => { pending = !ok; if (!ok) sound.said.paso1 = false; else io1.disconnect(); });
     };
     // suena cuando el título de "Agende su cita" entra a la parte alta de la pantalla
-    const io1 = new IntersectionObserver((en) => { if (en[0].isIntersecting) say1(); }, { rootMargin: '0px 0px -35% 0px' });
+    const io1 = new IntersectionObserver((en) => { if (en[0].isIntersecting && !autoScroll) say1(); }, { rootMargin: '0px 0px -35% 0px' });
     io1.observe($('#book-title'));
     // si el navegador aún no permitía el audio, la frase suena con el siguiente toque
     ['touchend', 'click'].forEach((t) => addEventListener(t, () => { if (pending) say1(); }, { capture: true, passive: true }));
