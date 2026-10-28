@@ -53,25 +53,15 @@
     requestAnimationFrame(startHero);
   }
 
-  /* ---------- Helenita (videos) ---------- */
+  /* ---------- Burbuja de la portada ---------- */
   const typeInto = (p, text) => {
     if (reduce) { p.textContent = text; return; }
-    p.textContent = "";
+    p.textContent = '';
     let i = 0;
     const tick = () => { p.textContent = text.slice(0, ++i); if (i < text.length) setTimeout(tick, 22); };
     tick();
   };
-  setTimeout(() => { const p = $(".bubble--hero p"); p && typeInto(p, p.dataset.type); }, seen || reduce ? 500 : 1300);
-  // Reduced motion: keep Helenita still. Otherwise play only while on screen.
-  const vids = $$("video").filter((v) => !v.closest("[data-helenita]"));
-  vids.forEach((v) => { v.muted = true; if (reduce) { v.removeAttribute("autoplay"); v.pause(); } });
-  if (!reduce && "IntersectionObserver" in window) {
-    const vio = new IntersectionObserver((es) => es.forEach((e) => {
-      e.target.dataset.onScreen = e.isIntersecting ? "1" : "0";
-      e.isIntersecting ? e.target.play().catch(() => {}) : e.target.pause();
-    }));
-    vids.forEach((v) => vio.observe(v));
-  }
+  setTimeout(() => { const p = $('.bubble--hero p'); p && typeInto(p, p.dataset.type); }, seen || reduce ? 500 : 1300);
 
   /* ---------- Helenita en el formulario ----------
      Todas las animaciones empiezan y terminan en la misma pose, así que un gesto
@@ -81,6 +71,8 @@
   let guideNow = guideStage && $('.hl', guideStage);
   let guideNext = null;
   let guideOnScreen = true;
+  // En pantallas anchas el formulario queda a la derecha, hacia donde ella señala.
+  const wide = () => matchMedia('(min-width: 1081px)').matches;
   const act = (name) => {
     if (!guideStage || !window.Helenita || reduce) return;
     if (guideNext) { guideNext.remove(); guideNext = null; }
@@ -112,8 +104,6 @@
       else if (v && !reduce) v.play().catch(() => {});
     }, { threshold: [0, 0.6] }).observe(guideStage);
   }
-  // On wide screens the form sits to the right, where "senalar" points.
-  const wide = () => matchMedia('(min-width: 1081px)').matches;
 
   const say = (text, gesture = 'hablar') => {
     const bubble = $('.bubble--guide');
@@ -261,24 +251,24 @@
 
   /* ---------- Mapa de sedes (Google Maps) ---------- */
   const SITES = [
-    { name: "Valledupar", q: "Santa Helena del Valle IPS, Cra. 11 #14-34, Valledupar, Cesar", dest: "10.4756282,-73.2495789" },
-    { name: "La Jagua de Ibirico", q: "9.561919694521654,-73.33216731853685 (Santa Helena del Valle IPS - La Jagua)", z: 17, dest: "9.561919694521654,-73.33216731853685" },
-    { name: "San Juan del Cesar", q: "Santa Helena del Valle IPS, Cl. 7 #9-73, San Juan del Cesar, La Guajira", dest: "10.7741577,-73.0027359" },
+    { name: 'Valledupar', q: 'Santa Helena del Valle IPS, Cra. 11 #14-34, Valledupar, Cesar', dest: '10.4756282,-73.2495789' },
+    { name: 'La Jagua de Ibirico', q: '9.561919694521654,-73.33216731853685 (Santa Helena del Valle IPS - La Jagua)', z: 17, dest: '9.561919694521654,-73.33216731853685' },
+    { name: 'San Juan del Cesar', q: 'Santa Helena del Valle IPS, Cl. 7 #9-73, San Juan del Cesar, La Guajira', dest: '10.7741577,-73.0027359' },
   ];
-  const mapEl = $("#map");
-  const frame = $("#map-frame");
-  const go2 = $("#map-go");
-  const siteBtns = $$(".site");
+  const mapEl = $('#map');
+  const frame = $('#map-frame');
+  const mapGo = $('#map-go');
+  const siteBtns = $$('.site');
   const selectSite = (i) => {
     const s = SITES[i];
-    siteBtns.forEach((b, j) => b.setAttribute("aria-pressed", j === i));
-    mapEl.classList.add("is-loading");
+    siteBtns.forEach((b, j) => b.setAttribute('aria-pressed', j === i));
+    mapEl.classList.add('is-loading');
     frame.src = `https://maps.google.com/maps?q=${encodeURIComponent(s.q)}&z=${s.z || 16}&hl=es&output=embed`;
-    go2.href = `https://www.google.com/maps/dir/?api=1&destination=${encodeURIComponent(s.dest)}`;
-    go2.textContent = `Cómo llegar a la sede ${s.name}`;
+    mapGo.href = `https://www.google.com/maps/dir/?api=1&destination=${encodeURIComponent(s.dest)}`;
+    mapGo.textContent = `Cómo llegar a la sede ${s.name}`;
   };
-  frame.addEventListener("load", () => mapEl.classList.remove("is-loading"));
-  siteBtns.forEach((b, i) => b.addEventListener("click", () => selectSite(i)));
+  frame.addEventListener('load', () => mapEl.classList.remove('is-loading'));
+  siteBtns.forEach((b, i) => b.addEventListener('click', () => selectSite(i)));
 
   /* ---------- Contadores ---------- */
   const fmt = new Intl.NumberFormat('es-CO');
@@ -286,8 +276,8 @@
     const to = +el.dataset.count;
     if (reduce) { el.textContent = fmt.format(to); return; }
     const t0 = performance.now(), dur = 1600;
-    const step2 = (t) => { const k = Math.min(1, (t - t0) / dur); const e = 1 - Math.pow(1 - k, 4); el.textContent = fmt.format(Math.round(to * e)); if (k < 1) requestAnimationFrame(step2); };
-    requestAnimationFrame(step2);
+    const tick = (t) => { const k = Math.min(1, (t - t0) / dur); const e = 1 - Math.pow(1 - k, 4); el.textContent = fmt.format(Math.round(to * e)); if (k < 1) requestAnimationFrame(tick); };
+    requestAnimationFrame(tick);
   };
 
   /* ---------- Entradas al hacer scroll ---------- */

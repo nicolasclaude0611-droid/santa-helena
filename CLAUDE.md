@@ -20,7 +20,7 @@ baja y mediana complejidad con 20 años en el Cesar y La Guajira (Colombia). Lem
 |---|---|
 | `index.html`, `styles.css`, `script.js` | El sitio |
 | `img/` | Logo (`logo.png`), sol de la marca (`sol.png`), imágenes de Helenita |
-| `media/` | Videos actuales de Helenita (con fondo) |
+| `media/` | Video antiguo de referencia (`helenita-saludando.mp4`) |
 | `media/helenita/` | **Animaciones de Helenita sin fondo** (WebM transparente, MP4 para Safari, PNG) |
 | `helenita/` | Todo lo de Helenita: reproductor, demo, recortador, versión vectorial |
 | `fotos/` | Fotos de las sedes (ver `fotos/LEEME.txt`) |
@@ -50,8 +50,8 @@ Detalles en `helenita/README.md`.
 
 Uso actual en el sitio: `saludar` en la portada, `pensar` en preguntas frecuentes y, en "Agende su cita",
 `reposo` de base con gestos de una sola vez (`senalar` al llegar, `hablar` con cada mensaje, `pulgar` al
-enviar por WhatsApp). La lógica está en `script.js` (función `act`). Los videos antiguos con fondo
-(`media/helenita-saludando.mp4`, `media/helenita-respirando.mp4`) ya no se usan.
+enviar por WhatsApp). La lógica está en `script.js` (función `act`). `media/helenita-saludando.mp4`
+(video antiguo con fondo) ya no lo usa el sitio; se conserva como referencia del estudio vectorial.
 
 ### Generar nuevas animaciones con ElevenLabs
 
@@ -68,3 +68,5 @@ prompts que funcionaron, los costos y el recorte del fondo verde. Puntos clave:
 - Sin dependencias ni paso de build: los archivos se sirven tal cual.
 - Para probar videos/reproductor, servir por HTTP: `python3 -m http.server` (no abrir con `file://`).
 - Rama de trabajo de Helenita: `claude/helenita-motion-graphics-h3pdro`.
+- Versión de un solo archivo (abre con doble clic, sin servidor): `python3 tools/empaquetar.py`
+  genera `santa-helena.html` con CSS, JS, imágenes y videos incrustados.

@@ -25,11 +25,27 @@
   const scriptBase = document.currentScript && document.currentScript.dataset.src;
   const reduceMotion = matchMedia('(prefers-reduced-motion: reduce)').matches;
 
+  // Versión de un solo archivo: los videos vienen incrustados en window.HELENITA_MEDIA
+  // (ruta -> base64) y se convierten en URLs blob la primera vez que se piden.
+  const blobs = {};
+  function resolve(path) {
+    const bundle = window.HELENITA_MEDIA;
+    if (!bundle || !bundle[path]) return path;
+    if (!blobs[path]) {
+      const bin = atob(bundle[path]);
+      const bytes = new Uint8Array(bin.length);
+      for (let i = 0; i < bin.length; i++) bytes[i] = bin.charCodeAt(i);
+      const type = path.endsWith('.webm') ? 'video/webm' : path.endsWith('.mp4') ? 'video/mp4' : 'image/webp';
+      blobs[path] = URL.createObjectURL(new Blob([bytes], { type }));
+    }
+    return blobs[path];
+  }
+
   function makeVideo(src, loop) {
     const v = document.createElement('video');
     v.muted = true; v.playsInline = true; v.loop = loop; v.autoplay = !reduceMotion;
     v.setAttribute('muted', ''); v.setAttribute('playsinline', '');
-    v.preload = 'auto'; v.src = src;
+    v.preload = 'auto'; v.src = resolve(src);
     return v;
   }
 
@@ -81,7 +97,7 @@
     if (isApple || el.dataset.format === 'stack') p = stackedPlayer(el, `${base}${name}-stack.mp4`, loop);
     if (!p) {
       const video = makeVideo(`${base}${name}.webm`, loop);
-      video.poster = `${base}${name}.png`;
+      video.poster = resolve(`${base}${name}.png`);
       el.append(video);
       p = { video, media: video };
     }
