@@ -63,3 +63,7 @@ prompts que funcionaron, los costos y el recorte del fondo verde. Puntos clave:
 - Sin dependencias ni paso de build: los archivos se sirven tal cual.
 - Para probar videos/reproductor, servir por HTTP: `python3 -m http.server` (no abrir con `file://`).
 - **Rama oficial: `main`.** Todos los cambios del sitio se hacen, se confirman (commit) y se suben (push) en `main`.
+- **Vista en vivo (artefacto):** https://claude.ai/artifact/2poqmHYxwFxYengX7qBsuA. Después de cada
+  cambio, volver a publicarlo con la herramienta Artifact usando ese `url` (o el mismo `index.html`
+  desde esta sesión) e incluir en `files` todos los archivos que use la página (CSS, JS, `img/`, `media/`).
+  El mapa de Google (iframe) no se ve dentro del artefacto; en el sitio real sí.
