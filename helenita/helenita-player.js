@@ -98,10 +98,24 @@
   // Solo reproduce cuando está en pantalla (ahorra batería y datos)
   const io = 'IntersectionObserver' in window ? new IntersectionObserver(entries => {
     entries.forEach(e => {
+      e.target._onScreen = e.isIntersecting;
       const p = e.target._helenita; if (!p || reduceMotion) return;
       e.isIntersecting ? p.video.play().catch(() => {}) : p.video.pause();
     });
   }, { rootMargin: '120px' }) : null;
+
+  // iPhone/Safari pausa los videos al minimizar la app o cambiar de pestaña y no los reanuda solo.
+  // Al volver a la página, reanuda los que están en pantalla.
+  function resume() {
+    if (document.hidden || reduceMotion) return;
+    document.querySelectorAll('[data-helenita]').forEach(el => {
+      const p = el._helenita;
+      if (p && p.video.paused && el._onScreen !== false) p.video.play().catch(() => {});
+    });
+  }
+  document.addEventListener('visibilitychange', resume);
+  window.addEventListener('pageshow', resume);
+  window.addEventListener('focus', resume);
 
   function init() {
     document.querySelectorAll('[data-helenita]').forEach(el => { mount(el); io && io.observe(el); });
