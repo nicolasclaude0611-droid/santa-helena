@@ -348,7 +348,6 @@ main { overflow-x: clip; }
 .guide-fab.is-on { opacity: 1; transform: none; pointer-events: auto; }
 .guide-fab__face { width: 76px; height: 76px; border-radius: 50%; overflow: hidden; background: #fff; border: 3px solid var(--gold); box-shadow: 0 10px 28px rgb(10 34 51 / 0.22); /* taste-skill-ignore: floating action */ transition: transform 160ms var(--ease-out); }
 .guide-fab__face img { width: 100%; height: 100%; object-fit: cover; object-position: 55% 18%; transform: scale(1.5); transform-origin: 55% 28%; }
-.guide-fab:active .guide-fab__face { transform: scale(0.95); }
 @media (hover: hover) and (pointer: fine) { .guide-fab:hover .guide-fab__face { transform: scale(1.06); } }
 .guide-fab__tip { padding: 12px 16px; border-radius: 16px; background: var(--paper); color: var(--ink); font-size: var(--step-small); font-weight: 600; box-shadow: 0 10px 28px rgb(10 34 51 / 0.14); /* taste-skill-ignore: floating tip */ opacity: 0; transform: translateX(8px); transition: opacity 260ms var(--ease-out), transform 260ms var(--ease-out); }
 .guide-fab.show-tip .guide-fab__tip { opacity: 1; transform: none; }
@@ -590,6 +589,17 @@ main { overflow-x: clip; }
 }
 @media (prefers-reduced-motion: reduce) { .site, .site[aria-pressed="true"] .site__text { transition: none; animation: none; } }
 
-/* Botón flotante de Helenita: solo el círculo responde al toque (el globo y el espacio no) */
+/* Botón flotante de Helenita: solo el círculo (enlace) responde al toque; el globo nunca */
 .guide-fab, .guide-fab.is-on, .guide-fab__tip { pointer-events: none; }
-.guide-fab.is-on .guide-fab__face { pointer-events: auto; cursor: pointer; -webkit-tap-highlight-color: transparent; }
+.guide-fab__face { display: block; flex: none; }
+.guide-fab.is-on .guide-fab__face { pointer-events: auto; -webkit-tap-highlight-color: transparent; }
+.guide-fab__face:active { transform: scale(0.95); }
+
+/* Celular: sin agrandamiento de sedes, todas las tarjetas iguales */
+@media (max-width: 760px) {
+  .site[aria-pressed] { grid-template-columns: 96px 1fr; gap: 18px; padding: 12px; transition: background-color 240ms ease, color 240ms ease; }
+  .site[aria-pressed] .site__photo { aspect-ratio: 4 / 3; }
+  .site[aria-pressed] .site__text { padding: 0; font-size: var(--step-small); gap: 2px; animation: none; }
+  .sites__list .site[aria-pressed] .site__text > span:nth-of-type(n) { display: block; }
+  .site[aria-pressed] .site__text strong { font-size: 1.45rem; margin-bottom: 4px; }
+}
