@@ -31,6 +31,8 @@ no con doble clic).
 
 ### Volver a recortar o agregar animaciones
 
+Receta completa (flujo de ElevenLabs, prompts, costos y pasos): **[ELEVENLABS.md](ELEVENLABS.md)**.
+
 Los originales en verde están en `helenita/fuentes/`. Para procesar uno nuevo:
 
 ```bash
