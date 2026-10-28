@@ -9,6 +9,7 @@
  *   data-helenita="nombre"   animación: saludar, reposo, hablar, senalar, pulgar, pensar
  *   data-loop="false"        reproducir una sola vez (por defecto se repite)
  *   data-src="ruta/"         carpeta de los videos (por defecto media/helenita/)
+ *   data-format="stack"      forzar el modo Safari (solo para pruebas)
  *
  * Cambiar de animación desde JS:  Helenita.play(elemento, 'pulgar')
  *
@@ -21,13 +22,14 @@
 
   const isApple = /AppleWebKit/.test(navigator.userAgent) && !/Chrome|Chromium|Edg|Firefox|FxiOS|CriOS|EdgiOS/.test(navigator.userAgent)
     || /iPad|iPhone|iPod/.test(navigator.userAgent);
+  const scriptBase = document.currentScript && document.currentScript.dataset.src;
   const reduceMotion = matchMedia('(prefers-reduced-motion: reduce)').matches;
 
   function makeVideo(src, loop) {
     const v = document.createElement('video');
     v.muted = true; v.playsInline = true; v.loop = loop; v.autoplay = !reduceMotion;
     v.setAttribute('muted', ''); v.setAttribute('playsinline', '');
-    v.preload = 'auto'; v.src = src; v.crossOrigin = 'anonymous';
+    v.preload = 'auto'; v.src = src;
     return v;
   }
 
@@ -71,12 +73,12 @@
 
   function mount(el, name) {
     name = name || el.dataset.helenita;
-    const base = el.dataset.src || (document.currentScript && document.currentScript.dataset.src) || 'media/helenita/';
+    const base = el.dataset.src || scriptBase || 'media/helenita/';
     const loop = el.dataset.loop !== 'false';
     if (el._helenita) { el._helenita.stop && el._helenita.stop(); el.replaceChildren(); }
 
     let p = null;
-    if (isApple) p = stackedPlayer(el, `${base}${name}-stack.mp4`, loop);
+    if (isApple || el.dataset.format === 'stack') p = stackedPlayer(el, `${base}${name}-stack.mp4`, loop);
     if (!p) {
       const video = makeVideo(`${base}${name}.webm`, loop);
       video.poster = `${base}${name}.png`;

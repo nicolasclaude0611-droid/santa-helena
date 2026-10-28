@@ -1,0 +1,62 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Helenita · animaciones sin fondo</title>
+  <link rel="icon" type="image/png" href="../img/logo.png">
+  <style>
+    :root { --ink:#0A2233; --muted:#4A6171; --line:#CAD7E0; --mist:#EFF4F7; --blue:#0596C8; --gold:#FFE81A; }
+    * { box-sizing:border-box; }
+    body { margin:0; font-family: Figtree, system-ui, sans-serif; color:var(--ink); background:#fff; }
+    .wrap { max-width:1200px; margin:0 auto; padding:24px 16px 48px; }
+    h1 { font-size:1.4rem; margin:0 0 4px; }
+    p.lead { color:var(--muted); margin:0 0 20px; }
+    .grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(250px,1fr)); gap:16px; }
+    .card { border:1px solid var(--line); border-radius:18px; overflow:hidden; }
+    .card .stage { aspect-ratio:1; }
+    .card h2 { font-size:1rem; margin:0; }
+    .card p { margin:2px 0 0; color:var(--muted); font-size:.9rem; }
+    .card .meta { padding:12px 14px; border-top:1px solid var(--line); }
+    .bg-white { background:#fff; }
+    .bg-navy { background:#0A2233; }
+    .bg-gold { background:linear-gradient(135deg,#FFE81A,#FFF6A8); }
+    .bg-photo { background:linear-gradient(160deg,#0596C8,#06709A 60%,#0A2233); }
+    .bg-check { background: repeating-conic-gradient(#e8eef2 0 25%, #fff 0 50%) 0 0/22px 22px; }
+    code { background:var(--mist); padding:1px 6px; border-radius:6px; }
+    .row { display:flex; gap:8px; flex-wrap:wrap; margin:18px 0; }
+    .row button { font:inherit; font-weight:600; border:1px solid var(--line); background:#fff; padding:8px 14px; border-radius:999px; cursor:pointer; }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <h1>Helenita · animaciones sin fondo</h1>
+    <p class="lead">Generadas con ElevenLabs (Kling 2.5 Turbo) y recortadas a transparencia. Cada una se repite sin corte.</p>
+
+    <div class="grid">
+      <article class="card"><div class="stage bg-white" data-helenita="saludar" aria-label="Helenita saludando"></div>
+        <div class="meta"><h2>saludar</h2><p>Hero: "Hola, soy Helenita".</p></div></article>
+      <article class="card"><div class="stage bg-navy" data-helenita="reposo" aria-label="Helenita"></div>
+        <div class="meta"><h2>reposo</h2><p>Respira y parpadea. Para cualquier sección.</p></div></article>
+      <article class="card"><div class="stage bg-gold" data-helenita="hablar" aria-label="Helenita explicando"></div>
+        <div class="meta"><h2>hablar</h2><p>Guía del formulario de citas y burbujas de texto.</p></div></article>
+      <article class="card"><div class="stage bg-photo" data-helenita="pensar" aria-label="Helenita pensando"></div>
+        <div class="meta"><h2>pensar</h2><p>Preguntas frecuentes.</p></div></article>
+    </div>
+
+    <h1 style="margin-top:36px">Cambiar de animación en vivo</h1>
+    <div class="row" id="btns">
+      <button data-a="saludar">saludar</button><button data-a="reposo">reposo</button>
+      <button data-a="hablar">hablar</button><button data-a="pensar">pensar</button>
+    </div>
+    <div class="card" style="max-width:420px"><div class="stage bg-check" id="live" data-helenita="saludar" aria-label="Helenita"></div></div>
+  </div>
+
+  <script src="helenita-player.js" data-src="../media/helenita/"></script>
+  <script>
+    document.getElementById('btns').addEventListener('click', e => {
+      const a = e.target.dataset.a; if (a) Helenita.play(document.getElementById('live'), a);
+    });
+  </script>
+</body>
+</html>

@@ -1,4 +1,49 @@
-# Helenita · motion graphics
+# Helenita · animaciones sin fondo (ElevenLabs)
+
+Animaciones generadas con **ElevenLabs** (imagen base con Nano Banana 2, videos con Kling 2.5 Turbo)
+sobre fondo verde y recortadas a transparencia. Están en `media/helenita/` y cada una se repite sin corte
+(empieza y termina en la misma pose).
+
+| Animación | Uso sugerido en la página |
+|---|---|
+| `saludar` | Hero: "Hola, soy Helenita" |
+| `reposo` | Cualquier sección; estado de espera |
+| `hablar` | Guía del formulario "Agende su cita" y burbujas de texto |
+| `pensar` | Preguntas frecuentes |
+
+Por cada animación hay tres archivos:
+
+- `nombre.webm`: video con transparencia (Chrome, Edge, Firefox, Android). ~0,3–0,5 MB.
+- `nombre-stack.mp4`: versión para Safari y iPhone (no muestran la transparencia de WebM).
+- `nombre.png`: primer cuadro transparente, como imagen de respaldo.
+
+### Usarla en la página
+
+```html
+<div class="helenita" data-helenita="saludar" aria-label="Helenita saludando"></div>
+<script src="helenita/helenita-player.js" defer></script>
+```
+
+El reproductor elige solo el formato correcto según el navegador, pausa el video cuando no está
+en pantalla y respeta "reducir movimiento". Para cambiar de animación desde JS:
+`Helenita.play(elemento, 'hablar')`. Demostración: `helenita/demo.html` (abrir con un servidor web,
+no con doble clic).
+
+### Volver a recortar o agregar animaciones
+
+Los originales en verde están en `helenita/fuentes/`. Para procesar uno nuevo:
+
+```bash
+python3 helenita/tools/keyer.py video-verde.mp4 nombre
+```
+
+El flujo de ElevenLabs se llama **"Helenita · animaciones web"**: ahí está la imagen base y cada
+animación como nodo; para crear una nueva, duplique un nodo de video, cambie el texto y ejecútelo
+(cada clip de 5 s cuesta ~2.100 créditos con Kling 2.5 Turbo).
+
+---
+
+# Helenita · versión vectorial (motion graphics en código)
 
 Helenita recreada como **personaje vectorial articulado (SVG)**, basada en la ilustración oficial
 (`img/helenita-closeup.jpg`) y el video de saludo (`media/helenita-saludando.mp4`).
