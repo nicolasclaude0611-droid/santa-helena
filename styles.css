@@ -253,6 +253,7 @@ main { overflow-x: clip; }
 .tabs__panel > p { margin-top: 18px; color: var(--muted); max-width: 58ch; }
 .tabs__items { display: grid; grid-template-columns: 1fr 1fr; gap: 12px 32px; margin: 32px 0 36px; list-style: none; padding: 0; }
 .tabs__items li { display: flex; gap: 12px; align-items: baseline; }
+.tabs__items small { display: block; font-size: var(--step-small); color: var(--muted); }
 .tabs__items li::before { content: ""; flex: none; width: 7px; height: 7px; border-radius: 50%; background: var(--blue); transform: translateY(-2px); }
 
 /* Community */

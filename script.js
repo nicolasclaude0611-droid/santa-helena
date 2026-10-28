@@ -8,34 +8,22 @@
   const AREAS = [
     { id: 'general', name: 'Medicina general y enfermería',
       text: 'Consulta médica general y de enfermería para la atención, el seguimiento y la remisión oportuna, con el apoyo de un equipo interdisciplinario.',
-      items: ['Consulta de medicina general', 'Consulta de enfermería', 'Nutrición y dietética', 'Psicología', 'Trabajo social', 'Optometría'] },
+      items: ['Medicina general', 'Enfermería'] },
     { id: 'especialidades', name: 'Especialidades médicas',
       text: 'Consulta externa especializada que garantiza la continuidad y la integralidad de su atención.',
-      items: ['Ginecología', 'Pediatría', 'Medicina interna', 'Cirugía general', 'Psiquiatría', 'Ortopedia y traumatología', 'Medicina del trabajo', 'Infectología', 'Fisiatría', 'Neumología pediátrica', 'Alergología', 'Reumatología pediátrica', 'Endocrinología pediátrica', 'Toxicología'] },
-    { id: 'materno', name: 'Salud materno-infantil',
-      text: 'Acompañamiento a la madre y al recién nacido desde los primeros días de vida. El control posparto se prioriza dentro de los cinco días posteriores al egreso hospitalario.',
-      items: ['Consulta del recién nacido', 'Control de crecimiento y desarrollo', 'Asesoría en lactancia materna', 'Control posparto con ginecología', 'Tamizaje auditivo neonatal'] },
-    { id: 'cronicos', name: 'Enfermedades crónicas',
-      text: 'Programas de prevención y atención integral para el control de enfermedades crónicas, con seguimiento periódico por un equipo interdisciplinario.',
-      items: ['Control de hipertensión arterial', 'Control de diabetes mellitus', 'Control de dislipidemia y obesidad', 'Programa de nefroprotección', 'Control de EPOC', 'Atención de desnutrición aguda'] },
-    { id: 'cancer', name: 'Detección temprana de cáncer',
-      text: 'Rutas de tamizaje para la detección oportuna de los cánceres de mayor impacto: cuello uterino, mama, próstata, y colon y recto.',
-      items: ['Citología cervicouterina', 'Prueba de VPH', 'Colposcopia', 'Examen clínico de mama', 'Mamografía de tamizaje', 'Ecografía mamaria', 'Antígeno prostático (PSA)', 'Consulta de urología', 'Sangre oculta en heces', 'Colonoscopia'] },
+      items: ['Ginecobstetricia', 'Pediatría', 'Medicina interna', 'Cardiología', 'Cirugía general', 'Ortopedia y/o traumatología', 'Otorrinolaringología', 'Psiquiatría', 'Reumatología', 'Infectología', 'Medicina física y rehabilitación', 'Medicina física y del deporte', 'Dolor y cuidados paliativos', 'Toxicología', 'Medicina del trabajo y medicina laboral'] },
+    { id: 'apoyo', name: 'Nutrición, psicología y terapias',
+      text: 'Nutrición, psicología y una unidad de terapia integral para la recuperación funcional de niños y adultos.',
+      items: ['Nutrición y dietética', 'Psicología', 'Fisioterapia', 'Terapia respiratoria', 'Terapia ocupacional', 'Fonoaudiología y/o terapia del lenguaje'] },
+    { id: 'oral', name: 'Odontología y optometría',
+      text: 'Consulta de odontología general y de optometría para el cuidado de la salud oral y visual.',
+      items: ['Odontología general', 'Optometría'] },
     { id: 'vacunacion', name: 'Vacunación',
-      text: 'Centro de referencia del Programa Ampliado de Inmunizaciones (PAI) y portafolio de vacunas no incluidas en el plan de beneficios, en modalidad intramural, domiciliaria y extramural.',
-      items: ['Vacunación del esquema nacional (PAI)', 'Vacunas no incluidas en el PBS', 'Vacunación domiciliaria', 'Vacuna contra el VPH'] },
-    { id: 'diagnostico', name: 'Apoyo diagnóstico',
-      text: 'Laboratorio clínico procesado por el Laboratorio Cristiam Gram e imágenes diagnósticas con Radiología e Imágenes Diagnósticas, mediante contratos de interdependencia.',
-      items: ['Toma de muestras de laboratorio', 'Ecografía', 'Rayos X', 'Electrocardiograma'] },
-    { id: 'terapias', name: 'Terapias y rehabilitación',
-      text: 'Unidad de terapia integral para la recuperación funcional de niños y adultos.',
-      items: ['Fisioterapia', 'Fonoaudiología', 'Terapia respiratoria', 'Terapia ocupacional'] },
-    { id: 'domicilio', name: 'Atención domiciliaria y telesalud',
-      text: 'Teleconsulta sincrónica y asincrónica, entrega digital de resultados y atención en el hogar para pacientes con dificultad de desplazamiento.',
-      items: ['Atención domiciliaria', 'Teleconsulta'] },
-    { id: 'laboral', name: 'Salud ocupacional',
-      text: 'Exámenes médicos ocupacionales reglamentarios y asesoría en seguridad y salud en el trabajo para empresas.',
-      items: ['Examen ocupacional de ingreso', 'Examen ocupacional periódico', 'Examen ocupacional de egreso'] },
+      text: 'Centro de referencia del Programa Ampliado de Inmunizaciones (PAI), en modalidad intramural, domiciliaria y extramural.',
+      items: ['Vacunación'] },
+    { id: 'muestras', name: 'Toma de muestras y diagnóstico',
+      text: 'Toma de muestras de laboratorio clínico, procesadas por el Laboratorio Cristiam Gram mediante contrato de interdependencia; toma de muestras de cuello uterino y ginecológicas, y diagnóstico vascular.',
+      items: ['Toma de muestras de laboratorio clínico', 'Toma de muestras de cuello uterino y ginecológicas', 'Diagnóstico vascular'] },
   ];
 
   /* ---------- Intro (una vez por sesión) ---------- */
@@ -91,14 +79,7 @@
   let step = 1;
 
   /* Servicios habilitados (REPS) y convenios por sede. Fuente: registro de habilitación de cada sede. */
-  const BOOK_AREAS = [
-    { id: 'general', name: 'Medicina general y enfermería', items: ['Medicina general', 'Enfermería'] },
-    { id: 'especialidades', name: 'Especialidades médicas', items: ['Ginecobstetricia', 'Pediatría', 'Medicina interna', 'Cardiología', 'Cirugía general', 'Ortopedia y/o traumatología', 'Otorrinolaringología', 'Psiquiatría', 'Reumatología', 'Infectología', 'Medicina física y rehabilitación', 'Medicina física y del deporte', 'Dolor y cuidados paliativos', 'Toxicología', 'Medicina del trabajo y medicina laboral'] },
-    { id: 'apoyo', name: 'Nutrición, psicología y terapias', items: ['Nutrición y dietética', 'Psicología', 'Fisioterapia', 'Terapia respiratoria', 'Terapia ocupacional', 'Fonoaudiología y/o terapia del lenguaje'] },
-    { id: 'oral', name: 'Odontología y optometría', items: ['Odontología general', 'Optometría'] },
-    { id: 'vacunacion', name: 'Vacunación', items: ['Vacunación'] },
-    { id: 'muestras', name: 'Toma de muestras y diagnóstico', items: ['Toma de muestras de laboratorio clínico', 'Toma de muestras de cuello uterino y ginecológicas', 'Diagnóstico vascular'] },
-  ];
+  const BOOK_AREAS = AREAS; // una sola lista para la sección de servicios y el formulario
   const SEDES = {
     'Valledupar': { services: ['Medicina general', 'Enfermería', 'Ginecobstetricia', 'Pediatría', 'Medicina interna', 'Cardiología', 'Cirugía general', 'Ortopedia y/o traumatología', 'Otorrinolaringología', 'Psiquiatría', 'Reumatología', 'Infectología', 'Medicina física y rehabilitación', 'Medicina física y del deporte', 'Dolor y cuidados paliativos', 'Toxicología', 'Medicina del trabajo y medicina laboral', 'Nutrición y dietética', 'Psicología', 'Fisioterapia', 'Terapia respiratoria', 'Terapia ocupacional', 'Fonoaudiología y/o terapia del lenguaje', 'Odontología general', 'Optometría', 'Vacunación', 'Toma de muestras de laboratorio clínico', 'Toma de muestras de cuello uterino y ginecológicas', 'Diagnóstico vascular'],
       eps: ['EPS Sanitas', 'Salud Total', 'Unisalud', 'Suramericana (SURA)', 'FOMAG', 'Ecopetrol', 'AXA Colpatria', 'Colsanitas', 'Particular'] },
@@ -106,8 +87,6 @@
     'La Jagua de Ibirico': { services: ['Medicina general', 'Enfermería', 'Ginecobstetricia', 'Pediatría', 'Medicina interna', 'Medicina del trabajo y medicina laboral', 'Nutrición y dietética', 'Psicología', 'Fisioterapia', 'Terapia respiratoria', 'Terapia ocupacional', 'Fonoaudiología y/o terapia del lenguaje', 'Odontología general', 'Toma de muestras de laboratorio clínico', 'Toma de muestras de cuello uterino y ginecológicas'], eps: null },
     'San Juan del Cesar': { services: ['Medicina general', 'Enfermería', 'Ginecobstetricia', 'Pediatría', 'Medicina interna', 'Nutrición y dietética', 'Psicología', 'Vacunación', 'Toma de muestras de laboratorio clínico', 'Toma de muestras de cuello uterino y ginecológicas'], eps: ['EPS Sanitas', 'Particular'] },
   };
-  // Las pestañas de "Nuestros servicios" llevan al área equivalente del formulario.
-  const TAB_TO_BOOK = { general: 'general', especialidades: 'especialidades', materno: 'especialidades', cronicos: 'general', cancer: 'muestras', vacunacion: 'vacunacion', diagnostico: 'muestras', terapias: 'apoyo', domicilio: 'general', laboral: 'especialidades' };
 
   const value = (n) => { const el = form.elements[n]; if (!el) return ''; if (el instanceof RadioNodeList) return el.value; return (el.type === 'checkbox' ? el.checked : el.value.trim()); };
   const areasFor = (sede) => {
@@ -224,8 +203,7 @@
 
   // Preseleccionar un servicio desde la sección de servicios
   const preselect = (areaId, service) => {
-    const bookId = TAB_TO_BOOK[areaId] || areaId;
-    fillAreas(bookId); renderServices(catSel.value, service);
+    fillAreas(areaId); renderServices(catSel.value, service);
     const book = $('#agendar');
     book.scrollIntoView({ behavior: reduce ? 'auto' : 'smooth', block: 'start' });
     go(value('sede') ? 3 : 1);
@@ -236,11 +214,18 @@
   const tabsList = $('#tabs-list');
   const tabsPanel = $('#tabs-panel');
   tabsList.innerHTML = AREAS.map((a, i) => `<button type="button" class="tab" role="tab" id="tab-${a.id}" aria-controls="tabs-panel" aria-selected="${i === 0}" tabindex="${i === 0 ? 0 : -1}" data-area="${a.id}">${a.name}</button>`).join('');
+  // Sedes donde se presta un servicio (no se indica si está en las tres).
+  const SHORT = { 'Valledupar': 'Valledupar', 'La Jagua de Ibirico': 'La Jagua', 'San Juan del Cesar': 'San Juan' };
+  const where = (svc) => {
+    const at = Object.keys(SEDES).filter((k) => SEDES[k].services.includes(svc));
+    if (at.length === Object.keys(SEDES).length) return '';
+    return `<small>${at.length === 1 ? 'Solo en ' : 'En '}${at.map((k) => SHORT[k]).join(' y ')}</small>`;
+  };
   const showArea = (id, animate) => {
     const a = AREAS.find((x) => x.id === id);
     $$('.tab', tabsList).forEach((t) => { const on = t.dataset.area === id; t.setAttribute('aria-selected', on); t.tabIndex = on ? 0 : -1; });
     tabsPanel.setAttribute('aria-labelledby', `tab-${id}`);
-    tabsPanel.innerHTML = `<h3>${a.name}</h3><p>${a.text}</p><ul class="tabs__items">${a.items.map((s) => `<li>${s}</li>`).join('')}</ul><button type="button" class="btn btn--ink" data-book="${a.id}">Agendar en esta área</button>`;
+    tabsPanel.innerHTML = `<h3>${a.name}</h3><p>${a.text}</p><ul class="tabs__items">${a.items.map((s) => `<li><span>${s}${where(s)}</span></li>`).join('')}</ul><button type="button" class="btn btn--ink" data-book="${a.id}">Agendar en esta área</button>`;
     if (animate && !reduce) { tabsPanel.classList.remove('is-swapping'); void tabsPanel.offsetWidth; tabsPanel.classList.add('is-swapping'); }
   };
   showArea(AREAS[0].id, false);

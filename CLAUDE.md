@@ -14,6 +14,14 @@ baja y mediana complejidad con 20 años en el Cesar y La Guajira (Colombia). Lem
 - Contacto: WhatsApp 311 339 8988 (`https://wa.me/573113398988`), línea (605) 588 5690 ext. 201 a 301,
   móviles 314 535 6846 y 318 768 9174.
 
+### Servicios y EPS por sede
+
+- Fuente única en `script.js`: `AREAS` (áreas y servicios, usada en "Nuestros servicios" y en el formulario)
+  y `SEDES` (servicios habilitados en el REPS y EPS/convenios de cada sede). Solo se publican servicios
+  habilitados; la franja de especialidades de `index.html` debe coincidir con ellos.
+- Habilitados: Valledupar 29, La Jagua de Ibirico 15, San Juan del Cesar 10.
+- **Pendiente:** EPS de La Jagua de Ibirico (`eps: null` → el campo queda de texto libre).
+
 ## Archivos
 
 | Ruta | Contenido |
