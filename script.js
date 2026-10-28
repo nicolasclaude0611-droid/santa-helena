@@ -68,8 +68,8 @@
   const startHero = () => hero.classList.add('is-ready');
   if (intro && !seen && !reduce) {
     intro.classList.add('is-on');
-    setTimeout(startHero, 1450);
-    setTimeout(() => intro.remove(), 1900);
+    setTimeout(startHero, 2300);
+    setTimeout(() => intro.remove(), 2750);
   } else {
     intro && intro.remove();
     requestAnimationFrame(startHero);

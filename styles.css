@@ -90,9 +90,10 @@ p { text-wrap: pretty; }
 
 /* Intro */
 .intro { position: fixed; inset: 0; z-index: 90; display: none; place-items: center; background: var(--navy); color: var(--on-navy); }
-.js .intro.is-on { display: grid; animation: intro-out 560ms var(--ease-in-out) 1250ms forwards; }
+.js .intro.is-on { display: grid; animation: intro-out 560ms var(--ease-in-out) 2100ms forwards; }
 .intro__inner { display: grid; justify-items: center; gap: 28px; }
-.intro__logo { width: min(78vw, 460px); height: auto; animation: intro-logo 700ms var(--ease-out) both; }
+.intro__logo { width: min(78vw, 460px); height: auto; animation: intro-logo 700ms var(--ease-out) both, intro-pulse 1600ms ease-in-out 700ms infinite; }
+@keyframes intro-pulse { 0%, 100% { transform: scale(1); } 50% { transform: scale(1.06); } }
 @keyframes intro-logo { from { opacity: 0; transform: scale(0.92); } to { opacity: 1; transform: none; } }
 @keyframes intro-out { to { clip-path: inset(0 0 100% 0); visibility: hidden; } }
 
