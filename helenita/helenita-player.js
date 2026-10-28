@@ -6,7 +6,7 @@
  *   <script src="helenita/helenita-player.js" defer></script>
  *
  * Opciones (atributos):
- *   data-helenita="nombre"   animación: saludar, reposo, hablar, senalar, pulgar, pensar
+ *   data-helenita="nombre"   animación: saludar, reposo, hablar, pensar, senalar, pulgar
  *   data-loop="false"        reproducir una sola vez (por defecto se repite)
  *   data-src="ruta/"         carpeta de los videos (por defecto media/helenita/)
  *   data-format="stack"      forzar el modo Safari (solo para pruebas)

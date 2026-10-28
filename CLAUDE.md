@@ -39,7 +39,7 @@ y cola de caballo ondulada sobre el hombro derecho; ojos cafés grandes; scrub a
 escote en V y el logo bordado en el pecho; pantalón azul rey. Referencias:
 `img/helenita-referencia.jpg` (cuerpo) e `img/helenita-closeup.jpg` (rostro).
 
-Animaciones sin fondo disponibles: `saludar`, `reposo`, `hablar`, `pensar`. Se insertan con:
+Animaciones sin fondo disponibles: `saludar`, `reposo`, `hablar`, `pensar`, `senalar`, `pulgar`. Se insertan con:
 
 ```html
 <div data-helenita="saludar" aria-label="Helenita saludando"></div>
@@ -57,7 +57,6 @@ prompts que funcionaron, los costos y el recorte del fondo verde. Puntos clave:
   con la imagen base como cuadro inicial **y** final para que haga loop.
 - Estimar con `estimate_only` antes de generar; nunca repetir una generación para reintentar.
 - Generar sobre verde y quitar el fondo con `python3 helenita/tools/keyer.py` (gratis).
-- Pendientes de generar cuando haya créditos: **señalar** y **pulgar arriba** (nodos ya listos).
 
 ## Convenciones
 

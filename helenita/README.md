@@ -10,6 +10,8 @@ sobre fondo verde y recortadas a transparencia. Están en `media/helenita/` y ca
 | `reposo` | Cualquier sección; estado de espera |
 | `hablar` | Guía del formulario "Agende su cita" y burbujas de texto |
 | `pensar` | Preguntas frecuentes |
+| `senalar` | Señala a la derecha de la pantalla: formulario o botón de agendar |
+| `pulgar` | Confirmación al enviar la solicitud por WhatsApp |
 
 Por cada animación hay tres archivos:
 

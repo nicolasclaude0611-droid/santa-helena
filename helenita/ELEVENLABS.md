@@ -20,8 +20,8 @@ Flujo **"Helenita · animaciones web"** en la cuenta actual, id `AJAfEJsy6Qq6KRP
 | Nodo | id |
 |---|---|
 | Imagen base · verde (subida desde `helenita/fuentes/helenita-base-verde.png`) | `IOkSMzBv4r5HiNtu8gKG` |
-| 04 · Señalar (Kling 2.5 Turbo) | `SzIPZkfp3TyOXdbDyIdG` |
-| 05 · Pulgar arriba (Kling 2.5 Turbo) | `woGMbA09k0y79ssVUctX` |
+| 04 · Señalar (Kling 2.5 Turbo) | `SzIPZkfp3TyOXdbDyIdG` · hecho |
+| 05 · Pulgar arriba (Kling 2.5 Turbo) | `woGMbA09k0y79ssVUctX` · hecho |
 
 Para una animación nueva se reutiliza `IOkSMzBv4r5HiNtu8gKG` como `start_frame` y `end_frame`.
 
