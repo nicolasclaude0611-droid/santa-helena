@@ -442,24 +442,39 @@
       const tipo = pv('tipo_pqrs');
       const subject = `PQRS · ${tipo} · ${pv('asunto')}`;
       const body = [
-        'Señores SIAU, Santa Helena del Valle IPS:', '',
-        `Tipo de solicitud: ${tipo}`,
-        `Nombre: ${pv('nombre')}`,
-        `Documento: ${pv('tipo_doc')} ${pv('documento')}`,
-        `Celular: ${pv('celular')}`,
-        `Correo: ${pv('correo')}`,
-        `Sede: ${pv('sede')}`,
-        `Asunto: ${pv('asunto')}`, '',
-        ...(adj ? ['Adjunto a este correo el documento con mi PQRS.'] : ['Descripción:', pv('mensaje')]), '',
-        'Autorizo el tratamiento de mis datos personales para la gestión de esta solicitud (Ley 1581 de 2012).',
-      ].join('\n');
+        'Señores',
+        'Sistema de Información y Atención al Usuario (SIAU)',
+        'Santa Helena del Valle IPS',
+        '',
+        `Cordial saludo. Por medio de este correo presento ${tipo === 'Reclamo' ? 'un' : 'una'} ${tipo.toLowerCase()} con los siguientes datos:`,
+        '',
+        'DATOS DEL SOLICITANTE',
+        `- Nombre: ${pv('nombre')}`,
+        `- Documento: ${pv('tipo_doc')} N.° ${pv('documento')}`,
+        `- Celular: ${pv('celular')}`,
+        `- Correo electrónico: ${pv('correo')}`,
+        `- Sede: ${pv('sede')}`,
+        '',
+        'SOLICITUD',
+        `- Tipo: ${tipo}`,
+        `- Asunto: ${pv('asunto')}`,
+        '',
+        ...(adj ? ['Adjunto a este correo el documento con el detalle de mi solicitud.'] : ['DESCRIPCIÓN', pv('mensaje')]),
+        '',
+        'Autorizo el tratamiento de mis datos personales para la gestión de esta solicitud, de acuerdo con la Ley 1581 de 2012.',
+        '',
+        'Quedo atento(a) a su respuesta.',
+        '',
+        'Atentamente,',
+        pv('nombre'),
+      ].join('\r\n'); // salto de línea estándar de correo (Outlook y Gmail ignoran el \n solo)
       const url = `mailto:${SIAU}?cc=${CALIDAD}&subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
       done.innerHTML = `<strong>Su correo está listo.</strong>Revise el mensaje en su aplicación de correo y presione enviar.`
         + (adj ? ' <b>Antes de enviar, adjunte el documento con su PQRS.</b>' : '')
         + `<br>Si no se abrió su correo, escriba a <a href="mailto:${SIAU}">${SIAU}</a> con copia a <a href="mailto:${CALIDAD}">${CALIDAD}</a>. <br><button type="button" class="btn btn--ghost" id="pqrs-copy">Copiar el mensaje</button>`;
       done.hidden = false;
       $('#pqrs-copy').addEventListener('click', (ev) => {
-        const t = `Para: ${SIAU}\nCC: ${CALIDAD}\nAsunto: ${subject}\n\n${body}`;
+        const t = `Para: ${SIAU}\r\nCC: ${CALIDAD}\r\nAsunto: ${subject}\r\n\r\n${body}`;
         (navigator.clipboard ? navigator.clipboard.writeText(t) : Promise.reject()).then(() => { ev.target.textContent = 'Mensaje copiado'; }, () => { ev.target.textContent = 'No se pudo copiar'; });
       });
       location.href = url;
