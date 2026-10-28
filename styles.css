@@ -565,3 +565,27 @@ main { overflow-x: clip; }
 /* Encuadre de las fotos de las sedes (que se vea el letrero) */
 .site__photo img[src*="san-juan"] { object-position: 50% 22%; }
 .site__photo img[src*="valledupar"] { object-position: 50% 30%; }
+
+/* Sede seleccionada: se agranda (foto grande + datos); las demás quedan compactas */
+.site { transition: grid-template-columns 420ms var(--ease-out), background-color 240ms ease, color 240ms ease, transform 160ms var(--ease-out), padding 420ms var(--ease-out); }
+.site[aria-pressed="false"] { grid-template-columns: 84px 1fr; }
+.site[aria-pressed="false"] .site__text > span:nth-of-type(n+2) { display: none; }
+.site[aria-pressed="false"] .site__text strong { font-size: 1.2rem; margin-bottom: 0; }
+.site[aria-pressed="true"] { grid-template-columns: 1fr; gap: 16px; padding: 14px 14px 22px; }
+.site[aria-pressed="true"] .site__photo { aspect-ratio: 16 / 10; border-radius: 12px; }
+.site[aria-pressed="true"] .site__text { padding: 0 8px; font-size: var(--step-body); gap: 4px; animation: fade-up 420ms var(--ease-out) both; }
+.site[aria-pressed="true"] .site__text strong { font-size: 1.7rem; }
+@media (max-width: 1080px) {
+  .sites__list { grid-template-columns: 1fr 1fr; grid-auto-flow: dense; }
+  .sites__list > li:has(.site[aria-pressed="true"]) { grid-column: 1 / -1; order: -1; }
+  .sites__list .site { height: 100%; }
+  .site[aria-pressed="true"] { grid-template-columns: minmax(0, 1.2fr) 1fr; align-items: center; padding: 14px; }
+}
+@media (max-width: 760px) {
+  .sites__list { grid-template-columns: 1fr; }
+  .sites__list > li:has(.site[aria-pressed="true"]) { grid-column: auto; order: 0; }
+  .site[aria-pressed="false"] { grid-template-columns: 72px 1fr; }
+  .site[aria-pressed="true"] { grid-template-columns: 1fr; padding: 12px 12px 18px; }
+  .site[aria-pressed="true"] .site__text strong { font-size: 1.45rem; }
+}
+@media (prefers-reduced-motion: reduce) { .site, .site[aria-pressed="true"] .site__text { transition: none; animation: none; } }
