@@ -18,8 +18,9 @@ baja y mediana complejidad con 20 años en el Cesar y La Guajira (Colombia). Lem
   calidad@santahelenadelvalleips.com. El usuario elige entre escribir la PQRS en el formulario o adjuntar su
   propio documento en el correo (sin servidor el navegador no puede adjuntar archivos; no hay campo de archivo).
 - Sonidos del formulario de citas: sintetizados con Web Audio en `script.js` (`sound(...)`), con botón para silenciarlos.
-- **Voz de Helenita** (`media/voz/*.mp3`, `sound.voice(nombre)` en `script.js`): `saludo` (al abrir; si el navegador
-  bloquea el audio, suena con el primer toque), `paso1`, `paso2`, `paso3` (formulario) y `listo` (al enviar).
+- **Voz de Helenita** (`media/voz/*.mp3`, `sound.voice(nombre)` en `script.js`, un solo `Audio` reutilizado para que
+  el iPhone lo habilite con el primer toque): `saludo` «¡Hola! Soy Helenita.» (en el mismo toque, sin esperas),
+  `paso1` (al llegar a la sección Agendar), `paso2`, `paso3` (formulario) y `listo` (al enviar).
   El mismo botón de parlante del formulario la silencia. Se generó con ElevenLabs (ver `helenita/ELEVENLABS.md`).
 - Todos los enlaces internos (`#seccion`) centran la sección bajo la barra (`scrollToBook` para agendar,
   `scrollToSection` para el resto, en `script.js`). Desde "Nuestros servicios" el formulario siempre pide la sede primero.

@@ -48,16 +48,16 @@
         });
       } catch (e) {}
     };
-    // Voz de Helenita (ElevenLabs, media/voz/). Solo suena tras un toque o clic: los navegadores lo exigen.
-    let voiceEl = null;
-    play.voiced = false;
+    // Voz de Helenita (ElevenLabs, media/voz/). Un solo reproductor: el primer toque lo habilita (iPhone)
+    // y después puede hablar sin más toques (por ejemplo, al llegar a Agendar).
+    const voiceEl = new Audio(); voiceEl.preload = 'auto';
+    play.said = {};
     play.voice = (name) => {
-      play.voiced = true;
+      play.said[name] = true;
       if (!on) return Promise.resolve(true);
       try {
-        if (voiceEl) voiceEl.pause();
-        voiceEl = new Audio(`media/voz/${name}.mp3`);
-        return voiceEl.play().then(() => true, () => false);
+        voiceEl.pause(); voiceEl.src = `media/voz/${name}.mp3`; voiceEl.currentTime = 0;
+        return voiceEl.play().then(() => true, (e) => e && e.name === 'AbortError');
       } catch (e) { return Promise.resolve(false); }
     };
     const btn = document.getElementById('sound-toggle');
@@ -65,7 +65,7 @@
       btn.setAttribute('aria-pressed', on);
       btn.addEventListener('click', () => {
         on = !on; btn.setAttribute('aria-pressed', on);
-        if (!on && voiceEl) voiceEl.pause();
+        if (!on) voiceEl.pause();
         try { localStorage.setItem('shv-sound', on ? 'on' : 'off'); } catch (e) {}
         play('tick');
       });
@@ -73,10 +73,17 @@
     return play;
   })();
 
-  /* ---------- Saludo de Helenita ---------- */
-  const greet = () => { if (!sound.voiced && scrollY < innerHeight) sound.voice('saludo'); };
-  const firstTouch = () => { ['click', 'touchend', 'keydown'].forEach((t) => removeEventListener(t, firstTouch, true)); setTimeout(greet, 0); };
-  ['click', 'touchend', 'keydown'].forEach((t) => addEventListener(t, firstTouch, true));
+  /* ---------- Saludo de Helenita: apenas se toca la pantalla ---------- */
+  const GESTURES = ['touchstart', 'pointerdown', 'touchend', 'click', 'keydown'];
+  let greeting = false;
+  const stopGreet = () => GESTURES.forEach((t) => removeEventListener(t, greet, true));
+  function greet() {
+    if (Object.entries(sound.said).some(([k, v]) => v && k !== 'saludo')) { stopGreet(); return; } // ya habló en otro momento
+    if (greeting) return;
+    greeting = true;
+    sound.voice('saludo').then((ok) => { greeting = false; if (ok) stopGreet(); });
+  }
+  GESTURES.forEach((t) => addEventListener(t, greet, { capture: true, passive: true }));
 
   /* ---------- Intro (una vez por sesión) ---------- */
   const intro = $('.intro');
@@ -86,7 +93,7 @@
   const startHero = () => {
     hero.classList.add('is-ready');
     // Intenta saludar al abrir; si el navegador lo bloquea, saluda con el primer toque
-    setTimeout(() => { if (!sound.voiced) sound.voice('saludo').then((ok) => { if (!ok) sound.voiced = false; }); }, 400);
+    setTimeout(() => { if (!sound.said.saludo) sound.voice('saludo').then((ok) => { if (ok) stopGreet(); else sound.said.saludo = false; }); }, 400);
   };
   if (intro && !seen && !reduce) {
     intro.classList.add('is-on');
@@ -292,9 +299,22 @@
     if (!sec) return;
     e.preventDefault();
     if (history.replaceState) history.replaceState(null, '', '#' + id);
-    if (id === 'agendar' && step === 1 && !value('sede')) sound.voice('paso1');
     requestAnimationFrame(() => (id === 'agendar' ? scrollToBook() : scrollToSection(sec)));
   });
+
+  // Primera frase (elegir sede): apenas se llega a la sección de Agendar
+  if ('IntersectionObserver' in window) {
+    let pending = false;
+    const say1 = () => {
+      if (sound.said.paso1 || step !== 1 || value('sede')) { pending = false; return; }
+      sound.voice('paso1').then((ok) => { pending = !ok; if (!ok) sound.said.paso1 = false; else io1.disconnect(); });
+    };
+    // suena cuando el título de "Agende su cita" entra a la parte alta de la pantalla
+    const io1 = new IntersectionObserver((en) => { if (en[0].isIntersecting) say1(); }, { rootMargin: '0px 0px -35% 0px' });
+    io1.observe($('#book-title'));
+    // si el navegador aún no permitía el audio, la frase suena con el siguiente toque
+    ['touchend', 'click'].forEach((t) => addEventListener(t, () => { if (pending) say1(); }, { capture: true, passive: true }));
+  }
 
   // Preseleccionar un servicio desde la sección de servicios
   const preselect = (areaId, service) => {
@@ -302,7 +322,6 @@
     $$('input[name="sede"]', form).forEach((r) => { r.checked = false; });
     fillAreas(areaId); fillEps(); renderServices(catSel.value, service);
     go(1, true);
-    sound.voice('paso1');
     requestAnimationFrame(scrollToBook);
     const area = BOOK_AREAS.find((a) => a.id === areaId);
     say(`Con gusto le ayudo con ${service ? service.toLowerCase() : area ? area.name.toLowerCase() : 'su cita'}. Primero, seleccione la sede.`);

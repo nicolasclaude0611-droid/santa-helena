@@ -185,7 +185,7 @@ llevarse la mano al corazón (gracias), sostener una tabla de citas.
 - Voz: **Valeria - Friendly Woman** (`JddqVF50ZSIR7SRbJE6u`, colección «santa helena»), modelo `eleven_v4`.
 - `creative_generate_speech` con `generations_count: 1` (una toma por frase). Cuesta ~1 crédito por carácter.
 - Flujo: `zRkRwkVPQEaFglX6gKux`. Las 5 frases actuales costaron 261 créditos.
-- Frases (`media/voz/`): `saludo` «¡Hola! Soy Helenita. Con gusto le ayudo a agendar su cita.» · `paso1` «Para comenzar,
+- Frases (`media/voz/`): `saludo` «¡Hola! Soy Helenita.» (recortado de «¡Hola! Soy Helenita. Con gusto le ayudo a agendar su cita.») · `paso1` «Para comenzar,
   elija la sede donde desea ser atendido.» · `paso2` «Muy bien. Ahora, elija el servicio que necesita.» · `paso3`
   «Por último, escriba los datos del paciente.» · `listo` «¡Listo! Su mensaje ya está en WhatsApp. Solo debe enviarlo.»
 - Procesado (gratis): recortar silencios, normalizar volumen y comprimir:
