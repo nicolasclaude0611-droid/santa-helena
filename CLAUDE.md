@@ -18,7 +18,8 @@ baja y mediana complejidad con 20 años en el Cesar y La Guajira (Colombia). Lem
   calidad@santahelenadelvalleips.com. El usuario elige entre escribir la PQRS en el formulario o adjuntar su
   propio documento en el correo (sin servidor el navegador no puede adjuntar archivos; no hay campo de archivo).
 - Sonidos del formulario de citas: sintetizados con Web Audio en `script.js` (`sound(...)`), con botón para silenciarlos.
-- Los enlaces a `#agendar` centran la sección en pantalla (`scrollToBook` en `script.js`).
+- Todos los enlaces internos (`#seccion`) centran la sección bajo la barra (`scrollToBook` para agendar,
+  `scrollToSection` para el resto, en `script.js`). Desde "Nuestros servicios" el formulario siempre pide la sede primero.
 - Contacto: WhatsApp 311 339 8988 (`https://wa.me/573113398988`), línea (605) 588 5690 ext. 201 a 301,
   móviles 314 535 6846 y 318 768 9174.
 

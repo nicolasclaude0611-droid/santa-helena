@@ -249,20 +249,38 @@
     const y = b.top - barH - Math.max(12, (avail - (b.bottom - b.top)) / 2);
     scrollTo({ top: Math.max(0, y), behavior: reduce ? 'auto' : 'smooth' });
   };
+  // Resto de secciones: centra el contenido (sin el margen interno de la sección); si no cabe, lo deja justo bajo la barra
+  const scrollToSection = (sec) => {
+    if (sec.id === 'inicio') { scrollTo({ top: 0, behavior: reduce ? 'auto' : 'smooth' }); return; }
+    const barH = $('.bar').getBoundingClientRect().height;
+    const avail = innerHeight - barH;
+    const docTop = (el) => { let t = 0; for (; el; el = el.offsetParent) t += el.offsetTop; return t; };
+    const cs = getComputedStyle(sec);
+    const top = docTop(sec) + parseFloat(cs.paddingTop);
+    const h = sec.offsetHeight - parseFloat(cs.paddingTop) - parseFloat(cs.paddingBottom);
+    const y = top - barH - (h <= avail - 32 ? (avail - h) / 2 : 16);
+    scrollTo({ top: Math.max(0, y), behavior: reduce ? 'auto' : 'smooth' });
+  };
   document.addEventListener('click', (e) => {
-    const a = e.target.closest('a[href="#agendar"]');
+    const a = e.target.closest('a[href^="#"]');
     if (!a || e.defaultPrevented) return;
+    const id = a.getAttribute('href').slice(1);
+    const sec = id && id !== 'contenido' && document.getElementById(id);
+    if (!sec) return;
     e.preventDefault();
-    if (history.replaceState) history.replaceState(null, '', '#agendar');
-    requestAnimationFrame(scrollToBook);
+    if (history.replaceState) history.replaceState(null, '', '#' + id);
+    requestAnimationFrame(() => (id === 'agendar' ? scrollToBook() : scrollToSection(sec)));
   });
 
   // Preseleccionar un servicio desde la sección de servicios
   const preselect = (areaId, service) => {
-    fillAreas(areaId); renderServices(catSel.value, service);
-    go(value('sede') ? 3 : 1);
+    // Siempre pregunta la sede primero (sin heredar una sede marcada antes)
+    $$('input[name="sede"]', form).forEach((r) => { r.checked = false; });
+    fillAreas(areaId); fillEps(); renderServices(catSel.value, service);
+    go(1);
     scrollToBook();
-    if (!value('sede')) say(`Con gusto le ayudo con ${service ? service.toLowerCase() : 'su cita'}. Primero, seleccione la sede.`);
+    const area = BOOK_AREAS.find((a) => a.id === areaId);
+    say(`Con gusto le ayudo con ${service ? service.toLowerCase() : area ? area.name.toLowerCase() : 'su cita'}. Primero, seleccione la sede.`);
   };
 
   /* ---------- Pestañas de servicios ---------- */
