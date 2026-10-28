@@ -153,7 +153,7 @@
   };
   catSel.addEventListener('change', () => renderServices(catSel.value));
 
-  const go = (n) => {
+  const go = (n, quiet) => {
     const back = n < step;
     step = n;
     panels.forEach((p) => {
@@ -169,6 +169,7 @@
     act(STEP_ANIM[n - 1]);
     if (n === 3) renderSummary();
     const top = form.getBoundingClientRect().top;
+    if (quiet) return; // quien llama se encarga del desplazamiento (Safari cancela dos desplazamientos seguidos)
     if (top < 80) form.scrollIntoView({ behavior: reduce ? 'auto' : 'smooth', block: 'start' });
     const first = $('.panel.is-active input, .panel.is-active select', form);
     first && first.focus({ preventScroll: true });
@@ -277,8 +278,8 @@
     // Siempre pregunta la sede primero (sin heredar una sede marcada antes)
     $$('input[name="sede"]', form).forEach((r) => { r.checked = false; });
     fillAreas(areaId); fillEps(); renderServices(catSel.value, service);
-    go(1);
-    scrollToBook();
+    go(1, true);
+    requestAnimationFrame(scrollToBook);
     const area = BOOK_AREAS.find((a) => a.id === areaId);
     say(`Con gusto le ayudo con ${service ? service.toLowerCase() : area ? area.name.toLowerCase() : 'su cita'}. Primero, seleccione la sede.`);
   };
