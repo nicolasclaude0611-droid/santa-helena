@@ -19,7 +19,7 @@ baja y mediana complejidad con 20 años en el Cesar y La Guajira (Colombia). Lem
   propio documento en el correo (sin servidor el navegador no puede adjuntar archivos; no hay campo de archivo).
 - Sonidos del formulario de citas: sintetizados con Web Audio en `script.js` (`sound(...)`), con botón para silenciarlos.
 - **Voz de Helenita** (`media/voz/*.mp3`, `sound.voice(nombre)` en `script.js`, un solo `Audio` reutilizado para que
-  el iPhone lo habilite con el primer toque): `saludo` «¡Hola! Soy Helenita.» (en el mismo toque, sin esperas),
+  el iPhone lo habilite con el primer toque): `saludo` «¡Hola! Soy Helenita. Con gusto le acompaño a agendar su cita.» (en el mismo toque, sin esperas),
   `paso1` (al llegar a la sección Agendar), `paso2`, `paso3` (formulario) y `listo` (al enviar). En PC también se
   intenta al pasar el cursor por el inicio, pero los navegadores solo lo permiten si ya autorizan audio en el sitio.
   En PC, si el navegador bloquea el saludo, aparece el aviso «Haz clic para escucharme» (`#voice-hint`) en la burbuja.
