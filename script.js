@@ -26,6 +26,40 @@
       items: ['Toma de muestras de laboratorio clínico', 'Toma de muestras de cuello uterino y ginecológicas', 'Diagnóstico vascular'] },
   ];
 
+  /* ---------- Sonidos del formulario (sintetizados, sin archivos) ---------- */
+  const sound = (() => {
+    let ctx = null, on = true;
+    try { on = localStorage.getItem('shv-sound') !== 'off'; } catch (e) {}
+    const NOTES = { tick: [[880, 0, 0.05]], next: [[660, 0, 0.07], [990, 0.07, 0.09]], back: [[740, 0, 0.07], [520, 0.07, 0.08]],
+      error: [[220, 0, 0.12], [196, 0.1, 0.14]], done: [[660, 0, 0.1], [830, 0.09, 0.1], [990, 0.18, 0.22]] };
+    const play = (name) => {
+      if (!on) return;
+      try {
+        ctx = ctx || new (window.AudioContext || window.webkitAudioContext)();
+        if (ctx.state === 'suspended') ctx.resume();
+        const t0 = ctx.currentTime + 0.01;
+        NOTES[name].forEach(([f, at, len]) => {
+          const o = ctx.createOscillator(), g = ctx.createGain();
+          o.type = name === 'error' ? 'triangle' : 'sine'; o.frequency.value = f;
+          g.gain.setValueAtTime(0.0001, t0 + at);
+          g.gain.exponentialRampToValueAtTime(0.12, t0 + at + 0.008);
+          g.gain.exponentialRampToValueAtTime(0.0001, t0 + at + len);
+          o.connect(g).connect(ctx.destination); o.start(t0 + at); o.stop(t0 + at + len + 0.02);
+        });
+      } catch (e) {}
+    };
+    const btn = document.getElementById('sound-toggle');
+    if (btn) {
+      btn.setAttribute('aria-pressed', on);
+      btn.addEventListener('click', () => {
+        on = !on; btn.setAttribute('aria-pressed', on);
+        try { localStorage.setItem('shv-sound', on ? 'on' : 'off'); } catch (e) {}
+        play('tick');
+      });
+    }
+    return play;
+  })();
+
   /* ---------- Intro (una vez por sesión) ---------- */
   const intro = $('.intro');
   const hero = $('.hero');
@@ -34,8 +68,8 @@
   const startHero = () => hero.classList.add('is-ready');
   if (intro && !seen && !reduce) {
     intro.classList.add('is-on');
-    setTimeout(startHero, 820);
-    setTimeout(() => intro.remove(), 1300);
+    setTimeout(startHero, 1450);
+    setTimeout(() => intro.remove(), 1900);
   } else {
     intro && intro.remove();
     requestAnimationFrame(startHero);
@@ -167,10 +201,11 @@
   };
 
   form.addEventListener('click', (e) => {
-    if (e.target.closest('[data-next]')) { if (validate(step)) go(step + 1); }
-    if (e.target.closest('[data-prev]')) go(step - 1);
+    if (e.target.closest('[data-next]')) { if (validate(step)) { sound('next'); go(step + 1); } else sound('error'); }
+    if (e.target.closest('[data-prev]')) { sound('back'); go(step - 1); }
   });
   form.addEventListener('change', (e) => {
+    if (e.target.matches('input[type=radio], input[type=checkbox], select')) sound('tick');
     if (e.target.name === 'sede') { fillAreas(catSel.value); renderServices(catSel.value, value('servicio')); fillEps(); showErr('sede', false); say(`Excelente. Sede ${e.target.value} seleccionada. Continúe para elegir el servicio.`); }
     if (e.target.name === 'servicio') { showErr('servicio', false); say(`${e.target.value}: entendido. Continúe para registrar los datos del paciente.`); }
     const f = e.target.closest('.field, .check'); if (f && f.classList.contains('is-invalid') && (e.target.value || e.target.checked)) f.classList.remove('is-invalid');
@@ -179,7 +214,8 @@
   const fmtDate = (v) => { if (!v) return ''; const [y, m, d] = v.split('-'); return `${d}/${m}/${y}`; };
   form.addEventListener('submit', (e) => {
     e.preventDefault();
-    if (!validate(3)) return;
+    if (!validate(3)) { sound('error'); return; }
+    sound('done');
     const area = BOOK_AREAS.find((a) => a.id === catSel.value);
     const lines = [
       'Cordial saludo. Deseo solicitar una cita en Santa Helena del Valle IPS.',
@@ -201,12 +237,31 @@
     window.open(url, '_blank', 'noopener');
   });
 
+  // Ir a "Agendar": deja el contenido centrado bajo la barra; si no cabe (celular), muestra el formulario completo
+  const scrollToBook = () => {
+    const barH = $('.bar').getBoundingClientRect().height;
+    const avail = innerHeight - barH;
+    // posición en la página sin contar las animaciones de entrada (transform)
+    const docTop = (el) => { let t = 0; for (; el; el = el.offsetParent) t += el.offsetTop; return t; };
+    const box = (els) => ({ top: Math.min(...els.map(docTop)), bottom: Math.max(...els.map((el) => docTop(el) + el.offsetHeight)) });
+    let b = box([$('.book__aside'), form]);
+    if (b.bottom - b.top > avail - 24) b = box([form]);
+    const y = b.top - barH - Math.max(12, (avail - (b.bottom - b.top)) / 2);
+    scrollTo({ top: Math.max(0, y), behavior: reduce ? 'auto' : 'smooth' });
+  };
+  document.addEventListener('click', (e) => {
+    const a = e.target.closest('a[href="#agendar"]');
+    if (!a || e.defaultPrevented) return;
+    e.preventDefault();
+    if (history.replaceState) history.replaceState(null, '', '#agendar');
+    requestAnimationFrame(scrollToBook);
+  });
+
   // Preseleccionar un servicio desde la sección de servicios
   const preselect = (areaId, service) => {
     fillAreas(areaId); renderServices(catSel.value, service);
-    const book = $('#agendar');
-    book.scrollIntoView({ behavior: reduce ? 'auto' : 'smooth', block: 'start' });
     go(value('sede') ? 3 : 1);
+    scrollToBook();
     if (!value('sede')) say(`Con gusto le ayudo con ${service ? service.toLowerCase() : 'su cita'}. Primero, seleccione la sede.`);
   };
 
@@ -268,11 +323,13 @@
     ['.trust', '.trust__item'],
     ['.book', '.book__aside > *, .wizard'],
     ['.services', '.services__head > *, .tab, .tabs__panel'],
+    ['.news', '.news__head > *, .post'],
     ['.community', '.community__head > *, .community__grid article'],
     ['.support', '.h3-title, .support__grid article'],
     ['.sites', '.sites__head > *, .site'],
     ['.about', '.about__intro > *, .about__rows > div'],
     ['.faq', '.faq__head > *, .q, .faq__foot > *'],
+    ['.pqrs', '.pqrs__aside > *, .pqrs__form'],
     ['.partners', '.h3-title, .partners__grid > div'],
     ['.foot', '.foot__slogan, .foot__cols > div'],
   ];
@@ -329,4 +386,74 @@
     });
   };
   addEventListener('scroll', onScroll, { passive: true }); onScroll();
+
+  /* ---------- Carrusel de noticias ---------- */
+  const track = $('#news-track');
+  if (track) {
+    const btns = $$('.news__btn');
+    const sync = () => {
+      const max = track.scrollWidth - track.clientWidth - 2;
+      btns.forEach((b) => { b.disabled = b.dataset.dir < 0 ? track.scrollLeft <= 2 : track.scrollLeft >= max; });
+    };
+    btns.forEach((b) => b.addEventListener('click', () => {
+      const card = $('.post', track);
+      const stepW = card.getBoundingClientRect().width + parseFloat(getComputedStyle(track).columnGap || 0);
+      track.scrollBy({ left: stepW * b.dataset.dir, behavior: reduce ? 'auto' : 'smooth' });
+    }));
+    track.addEventListener('scroll', () => requestAnimationFrame(sync), { passive: true });
+    addEventListener('resize', sync); sync();
+  }
+
+  /* ---------- PQRS: abre el correo con el mensaje listo ---------- */
+  const pq = $('#pqrs-form');
+  if (pq) {
+    const SIAU = 'siau@santahelenadelvalleips.com', CALIDAD = 'calidad@santahelenadelvalleips.com';
+    const done = $('#pqrs-done');
+    const pv = (n) => { const el = pq.elements[n]; if (!el) return ''; if (el instanceof RadioNodeList) return el.value; return el.type === 'checkbox' ? el.checked : el.value.trim(); };
+    const checkPq = () => {
+      let ok = true;
+      $$('[required]', pq).forEach((el) => {
+        if (el.type === 'radio') return;
+        const bad = el.type === 'checkbox' ? !el.checked : !el.value.trim() || (el.type === 'email' && !el.checkValidity());
+        el.closest('.field, .check').classList.toggle('is-invalid', bad); if (bad) ok = false;
+      });
+      const noType = !pv('tipo_pqrs');
+      $('[data-perr="tipo_pqrs"]', pq).hidden = !noType; if (noType) ok = false;
+      $('[data-perr="form"]', pq).hidden = ok;
+      if (!ok) { const first = $('.is-invalid input, .is-invalid select, .is-invalid textarea', pq) || $('.pill input', pq); first && first.focus(); }
+      return ok;
+    };
+    pq.addEventListener('input', (e) => { const f = e.target.closest('.field, .check'); if (f) f.classList.remove('is-invalid'); });
+    pq.addEventListener('change', (e) => { if (e.target.name === 'tipo_pqrs') $('[data-perr="tipo_pqrs"]', pq).hidden = true; });
+    pq.addEventListener('submit', (e) => {
+      e.preventDefault();
+      if (!checkPq()) return;
+      const file = pq.elements.archivo.files[0];
+      const tipo = pv('tipo_pqrs');
+      const subject = `PQRS · ${tipo} · ${pv('asunto')}`;
+      const body = [
+        'Señores SIAU, Santa Helena del Valle IPS:', '',
+        `Tipo de solicitud: ${tipo}`,
+        `Nombre: ${pv('nombre')}`,
+        `Documento: ${pv('tipo_doc')} ${pv('documento')}`,
+        `Celular: ${pv('celular')}`,
+        `Correo: ${pv('correo')}`,
+        `Sede: ${pv('sede')}`,
+        `Asunto: ${pv('asunto')}`, '',
+        'Descripción:', pv('mensaje'), '',
+        file ? `Archivo de soporte adjunto: ${file.name}` : 'Sin archivos adjuntos.', '',
+        'Autorizo el tratamiento de mis datos personales para la gestión de esta solicitud (Ley 1581 de 2012).',
+      ].join('\n');
+      const url = `mailto:${SIAU}?cc=${CALIDAD}&subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+      done.innerHTML = `<strong>Su correo está listo.</strong>Revise el mensaje en su aplicación de correo y presione enviar.`
+        + (file ? ` <b>Antes de enviar, adjunte el archivo «${file.name.replace(/[<>&"]/g, '')}»</b>: por seguridad, los navegadores no permiten adjuntarlo automáticamente.` : '')
+        + `<br>Si no se abrió su correo, escriba a <a href="mailto:${SIAU}">${SIAU}</a> con copia a <a href="mailto:${CALIDAD}">${CALIDAD}</a>. <br><button type="button" class="btn btn--ghost" id="pqrs-copy">Copiar el mensaje</button>`;
+      done.hidden = false;
+      $('#pqrs-copy').addEventListener('click', (ev) => {
+        const t = `Para: ${SIAU}\nCC: ${CALIDAD}\nAsunto: ${subject}\n\n${body}`;
+        (navigator.clipboard ? navigator.clipboard.writeText(t) : Promise.reject()).then(() => { ev.target.textContent = 'Mensaje copiado'; }, () => { ev.target.textContent = 'No se pudo copiar'; });
+      });
+      location.href = url;
+    });
+  }
 })();

@@ -9,8 +9,16 @@ baja y mediana complejidad con 20 años en el Cesar y La Guajira (Colombia). Lem
 - **Agendar cita**: formulario por pasos (sede → servicio → datos del paciente) que abre WhatsApp
   con el mensaje listo. La página no guarda datos.
 - Sedes: **Valledupar**, **La Jagua de Ibirico** y **San Juan del Cesar**.
-- Secciones: inicio (hero), respaldo institucional, agendar, servicios, atención primaria,
-  servicios de apoyo, sedes, nosotros, preguntas frecuentes, para EPS y empresas.
+- Secciones: inicio (hero), respaldo institucional, agendar, servicios, noticias (carrusel),
+  atención primaria, servicios de apoyo, sedes, nosotros, preguntas frecuentes, PQRS, para EPS y empresas.
+- Pantalla de carga (una vez por sesión): logo con lema sobre fondo navy (`.intro`).
+- **Noticias**: tarjetas `.post` en `index.html` (sección `#noticias`). Las actuales son **ejemplos**; reemplazar
+  por noticias reales (la portada puede ser una foto `<img>` dentro de `.post__cover`).
+- **PQRS** (`#pqrs`): formulario que abre el correo (`mailto:`) a siau@santahelenadelvalleips.com con copia a
+  calidad@santahelenadelvalleips.com. Sin servidor, el navegador no puede adjuntar el archivo: se le pide al
+  usuario adjuntarlo antes de enviar. Para adjuntos automáticos haría falta un servicio de formularios o un backend.
+- Sonidos del formulario de citas: sintetizados con Web Audio en `script.js` (`sound(...)`), con botón para silenciarlos.
+- Los enlaces a `#agendar` centran la sección en pantalla (`scrollToBook` en `script.js`).
 - Contacto: WhatsApp 311 339 8988 (`https://wa.me/573113398988`), línea (605) 588 5690 ext. 201 a 301,
   móviles 314 535 6846 y 318 768 9174.
 
@@ -27,7 +35,7 @@ baja y mediana complejidad con 20 años en el Cesar y La Guajira (Colombia). Lem
 | Ruta | Contenido |
 |---|---|
 | `index.html`, `styles.css`, `script.js` | El sitio |
-| `img/` | Logo (`logo.png`), sol de la marca (`sol.png`), imágenes de Helenita |
+| `img/` | Logo sin fondo (`logo.png` sin lema, `logo-lema.png` con lema blanco para fondos oscuros), sol de la marca (`sol.png` marca de agua, `sol-solido.png`), imágenes de Helenita. Original vectorial: `img/fuentes/logo.pdf` |
 | `media/` | Videos actuales de Helenita (con fondo) |
 | `media/helenita/` | **Animaciones de Helenita sin fondo** (WebM transparente, MP4 para Safari, PNG) |
 | `helenita/` | Todo lo de Helenita: reproductor, demo, recortador, versión vectorial |

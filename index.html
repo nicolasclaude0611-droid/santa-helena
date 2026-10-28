@@ -7,6 +7,7 @@
   <meta name="description" content="Atención integral en salud de baja y mediana complejidad en Valledupar, La Jagua de Ibirico y San Juan del Cesar. Agende su cita en línea y envíe su solicitud por WhatsApp.">
   <meta name="theme-color" content="#0A2233">
   <link rel="icon" type="image/png" href="img/logo.png">
+  <link rel="preload" as="image" href="img/logo-lema.png">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500..700&family=Figtree:wght@400;500;600;700&display=swap" rel="stylesheet">
@@ -18,8 +19,7 @@
 
   <div class="intro" aria-hidden="true">
     <div class="intro__inner">
-      <span class="intro__sun"></span>
-      <p class="intro__line"><span>¡La salud, nuestro compromiso!</span></p>
+      <img class="intro__logo" src="img/logo-lema.png" alt="" width="1000" height="566">
     </div>
   </div>
 
@@ -27,7 +27,7 @@
 
   <header class="bar">
     <a class="bar__brand" href="#inicio" aria-label="Santa Helena del Valle IPS, inicio">
-      <img src="img/logo.png" alt="" width="419" height="229">
+      <img src="img/logo.png" alt="" width="840" height="476">
     </a>
     <button class="bar__menu" type="button" aria-expanded="false" aria-controls="menu-principal"><span class="bar__menu-icon" aria-hidden="true"></span><span class="bar__menu-label">Menú</span></button>
     <nav class="bar__nav" id="menu-principal" aria-label="Principal">
@@ -35,6 +35,7 @@
       <a href="#sedes">Sedes</a>
       <a href="#nosotros">Nosotros</a>
       <a href="#preguntas">Preguntas frecuentes</a>
+      <a href="#pqrs">PQRS</a>
     </nav>
     <a class="btn btn--ink bar__cta" href="#agendar">Agendar cita</a>
   </header>
@@ -98,6 +99,7 @@
       </div>
 
       <form class="wizard" id="wizard" novalidate>
+        <button class="sound-toggle" type="button" id="sound-toggle" aria-pressed="true" aria-label="Sonidos del formulario"><svg viewBox="0 0 24 24" aria-hidden="true"><path class="spk" d="M4 9h4l5-4v14l-5-4H4z"/><path class="on" d="M16 9a4 4 0 0 1 0 6M18.5 6.5a7.5 7.5 0 0 1 0 11"/><path class="off" d="M16 9l5 6M21 9l-5 6"/></svg></button>
         <ol class="wizard__steps" aria-label="Pasos de la solicitud">
           <li class="is-current" data-step-label="1">Sede</li>
           <li data-step-label="2">Servicio</li>
@@ -213,6 +215,74 @@
       </div>
     </section>
 
+    <!-- Noticias (ejemplos: reemplazar por noticias reales) -->
+    <section class="news" id="noticias" aria-labelledby="news-title">
+      <div class="news__head">
+        <h2 class="h2" id="news-title">Noticias</h2>
+        <p>Jornadas, campañas y consejos de salud para usted y su familia.</p>
+        <div class="news__nav">
+          <button class="news__btn" type="button" data-dir="-1" aria-label="Noticia anterior" aria-controls="news-track"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M15 5l-7 7 7 7"/></svg></button>
+          <button class="news__btn" type="button" data-dir="1" aria-label="Noticia siguiente" aria-controls="news-track"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 5l7 7-7 7"/></svg></button>
+        </div>
+      </div>
+      <div class="news__track" id="news-track" tabindex="0" role="region" aria-label="Noticias recientes">
+        <article class="post">
+          <div class="post__cover post__cover--blue" aria-hidden="true"><span class="sun-mark"></span></div>
+          <div class="post__body">
+            <p class="post__meta"><span class="post__tag">Vacunación</span><time datetime="2026-10-24">24 oct 2026</time></p>
+            <h3>Jornada de vacunación en San Juan del Cesar</h3>
+            <p>Acérquese con el carné de vacunación de toda la familia. Aplicamos las vacunas del esquema nacional para niños, adultos y gestantes.</p>
+            <a class="link-arrow" href="#agendar">Agendar vacunación</a>
+          </div>
+        </article>
+        <article class="post">
+          <div class="post__cover post__cover--rose" aria-hidden="true"><span class="sun-mark"></span></div>
+          <div class="post__body">
+            <p class="post__meta"><span class="post__tag">Prevención</span><time datetime="2026-10-15">15 oct 2026</time></p>
+            <h3>Octubre, mes de la prevención del cáncer de mama</h3>
+            <p>La detección temprana salva vidas. Conozca cómo hacer el autoexamen y solicite su valoración en ginecobstetricia.</p>
+            <a class="link-arrow" href="#servicios">Ver servicios</a>
+          </div>
+        </article>
+        <article class="post">
+          <div class="post__cover post__cover--mist" aria-hidden="true"><img src="media/helenita/pensar.png" alt="" width="720" height="720" loading="lazy"></div>
+          <div class="post__body">
+            <p class="post__meta"><span class="post__tag">Consejos de Helenita</span><time datetime="2026-10-08">8 oct 2026</time></p>
+            <h3>Cómo prepararse para la toma de muestras</h3>
+            <p>Para la mayoría de exámenes de sangre debe estar en ayunas de 8 a 12 horas. Traiga la orden médica y su documento de identidad.</p>
+            <a class="link-arrow" href="#preguntas">Preguntas frecuentes</a>
+          </div>
+        </article>
+        <article class="post">
+          <div class="post__cover post__cover--navy" aria-hidden="true"><span class="sun-mark"></span></div>
+          <div class="post__body">
+            <p class="post__meta"><span class="post__tag">Atención territorial</span><time datetime="2026-09-29">29 sep 2026</time></p>
+            <h3>Nuestros equipos llegan a las veredas de La Jagua</h3>
+            <p>Los Equipos de Salud Territorial visitan los hogares para caracterizar a las familias y programar sus controles.</p>
+            <a class="link-arrow" href="#sedes">Conocer las sedes</a>
+          </div>
+        </article>
+        <article class="post">
+          <div class="post__cover post__cover--gold" aria-hidden="true"><span class="sun-mark"></span></div>
+          <div class="post__body">
+            <p class="post__meta"><span class="post__tag">Salud oral</span><time datetime="2026-09-18">18 sep 2026</time></p>
+            <h3>Semana de la salud oral en Valledupar</h3>
+            <p>Valoración y educación en higiene oral para niños y adultos. Agende su consulta de odontología general.</p>
+            <a class="link-arrow" href="#agendar">Agendar odontología</a>
+          </div>
+        </article>
+        <article class="post">
+          <div class="post__cover post__cover--sky" aria-hidden="true"><img src="media/helenita/hablar.png" alt="" width="720" height="720" loading="lazy"></div>
+          <div class="post__body">
+            <p class="post__meta"><span class="post__tag">Consejos de Helenita</span><time datetime="2026-09-05">5 sep 2026</time></p>
+            <h3>Qué llevar el día de su cita</h3>
+            <p>Su documento de identidad, la orden médica si la tiene y los resultados de exámenes anteriores. Llegue 15 minutos antes.</p>
+            <a class="link-arrow" href="#agendar">Agendar cita</a>
+          </div>
+        </article>
+      </div>
+    </section>
+
     <!-- Comunidad -->
     <section class="community" aria-labelledby="community-title">
       <span class="sun-mark community__sun" aria-hidden="true"></span>
@@ -319,6 +389,61 @@
       </div>
     </section>
 
+    <!-- PQRS -->
+    <section class="pqrs" id="pqrs" aria-labelledby="pqrs-title">
+      <div class="pqrs__aside">
+        <h2 class="h2" id="pqrs-title">PQRS</h2>
+        <p>Peticiones, quejas, reclamos, sugerencias y felicitaciones. Su opinión nos ayuda a mejorar la atención.</p>
+        <p class="pqrs__note">Al enviar, se abre su correo con el mensaje listo para el Sistema de Información y Atención al Usuario (SIAU), con copia al área de Calidad. Respondemos dentro de los términos de ley: hasta 15 días hábiles.</p>
+        <div class="pqrs__helenita" data-helenita="hablar" aria-label="Helenita explicando"></div>
+      </div>
+      <form class="pqrs__form" id="pqrs-form" novalidate>
+        <fieldset class="pqrs__types">
+          <legend>Tipo de solicitud</legend>
+          <div class="pills">
+            <label class="pill"><input type="radio" name="tipo_pqrs" value="Petición" required><span>Petición</span></label>
+            <label class="pill"><input type="radio" name="tipo_pqrs" value="Queja"><span>Queja</span></label>
+            <label class="pill"><input type="radio" name="tipo_pqrs" value="Reclamo"><span>Reclamo</span></label>
+            <label class="pill"><input type="radio" name="tipo_pqrs" value="Sugerencia"><span>Sugerencia</span></label>
+            <label class="pill"><input type="radio" name="tipo_pqrs" value="Felicitación"><span>Felicitación</span></label>
+          </div>
+          <p class="panel__error" data-perr="tipo_pqrs" hidden>Seleccione el tipo de solicitud.</p>
+        </fieldset>
+        <div class="form-grid">
+          <div class="field field--wide"><label for="p-nombre">Nombres y apellidos</label><input id="p-nombre" name="nombre" autocomplete="name" required></div>
+          <div class="field">
+            <label for="p-tipo">Tipo de documento</label>
+            <select id="p-tipo" name="tipo_doc" required>
+              <option value="">Seleccione</option><option>Cédula de ciudadanía</option><option>Tarjeta de identidad</option><option>Registro civil</option><option>Cédula de extranjería</option><option>Permiso por protección temporal</option><option>Pasaporte</option>
+            </select>
+          </div>
+          <div class="field"><label for="p-doc">Número de documento</label><input id="p-doc" name="documento" inputmode="numeric" required></div>
+          <div class="field"><label for="p-cel">Celular</label><input id="p-cel" name="celular" type="tel" inputmode="tel" autocomplete="tel" required></div>
+          <div class="field"><label for="p-mail">Correo electrónico</label><input id="p-mail" name="correo" type="email" autocomplete="email" required></div>
+          <div class="field">
+            <label for="p-sede">Sede</label>
+            <select id="p-sede" name="sede">
+              <option>Valledupar</option><option>La Jagua de Ibirico</option><option>San Juan del Cesar</option><option>No aplica</option>
+            </select>
+          </div>
+          <div class="field"><label for="p-asunto">Motivo o asunto</label><input id="p-asunto" name="asunto" required maxlength="120"></div>
+          <div class="field field--wide"><label for="p-msg">Descripción</label><textarea id="p-msg" name="mensaje" rows="5" required maxlength="1500" placeholder="Cuéntenos qué ocurrió o qué desea solicitar: fecha, sede, servicio y personas involucradas."></textarea></div>
+          <div class="field field--wide">
+            <label for="p-file">Archivo de soporte (opcional)</label>
+            <input id="p-file" name="archivo" type="file" accept=".pdf,.jpg,.jpeg,.png,.doc,.docx">
+            <span class="field__hint">PDF, imagen o Word. Lo adjuntará en el correo antes de enviarlo.</span>
+          </div>
+          <label class="check field--wide">
+            <input type="checkbox" name="consentimiento" required>
+            <span>Autorizo el tratamiento de mis datos personales para la gestión de esta solicitud, de acuerdo con la Ley 1581 de 2012.</span>
+          </label>
+        </div>
+        <p class="panel__error" data-perr="form" hidden>Revise los campos marcados.</p>
+        <div class="pqrs__actions"><button type="submit" class="btn btn--ink btn--lg">Preparar correo</button></div>
+        <div class="pqrs__done" id="pqrs-done" role="status" aria-live="polite" hidden></div>
+      </form>
+    </section>
+
     <!-- EPS y empresas -->
     <section class="partners" aria-labelledby="partners-title">
       <h2 class="h3-title" id="partners-title">Para EPS, aseguradoras y empresas</h2>
@@ -340,7 +465,7 @@
   <footer class="foot">
     <span class="sun-mark foot__sun" aria-hidden="true"></span>
     <div class="foot__top">
-      <img class="foot__logo" src="img/logo.png" alt="Santa Helena del Valle IPS" width="419" height="229" loading="lazy">
+      <img class="foot__logo" src="img/logo-lema.png" alt="Santa Helena del Valle IPS" width="1000" height="566" loading="lazy">
       <a class="foot__up" href="#inicio">Volver al inicio</a>
     </div>
     <p class="foot__slogan">¡La salud, nuestro compromiso!</p>
