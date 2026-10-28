@@ -304,12 +304,13 @@ main { overflow-x: clip; }
 /* FAQ */
 .faq { display: grid; grid-template-columns: repeat(12, 1fr); column-gap: var(--gap); padding: var(--section) var(--m); }
 .faq__head { grid-column: 1 / 5; }
-.faq__head > p { margin-top: 20px; color: var(--muted); }
-.faq__contact { margin-top: 32px; display: grid; gap: 14px; }
+.faq__foot { grid-column: 1 / -1; margin-top: clamp(48px, 5vw, 72px); text-align: center; }
+.faq__foot > p { color: var(--muted); }
+.faq__contact { margin-top: 24px; display: flex; flex-wrap: wrap; justify-content: center; gap: 18px 48px; }
 .faq__contact li { display: grid; gap: 2px; }
 .faq__contact span { font-size: var(--step-small); color: var(--muted); }
-.faq__contact a { font-weight: 600; text-decoration: none; }
-.faq__helenita { width: min(100%, 240px); aspect-ratio: 1; margin-top: 32px; }
+.faq__contact a { font-weight: 600; text-decoration: none; overflow-wrap: anywhere; }
+.faq__helenita { width: min(100%, 380px); aspect-ratio: 1; margin-top: 16px; }
 .faq__list { grid-column: 6 / 13; display: grid; gap: 8px; align-content: start; }
 .q { border-radius: 16px; background: var(--mist); transition: background-color 240ms ease; }
 .q[open] { background: var(--mist-2); }

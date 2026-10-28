@@ -253,7 +253,7 @@
     ['.support', '.h3-title, .support__grid article'],
     ['.sites', '.sites__head > *, .site'],
     ['.about', '.about__intro > *, .about__rows > div'],
-    ['.faq', '.faq__head > *, .q'],
+    ['.faq', '.faq__head > *, .q, .faq__foot > *'],
     ['.partners', '.h3-title, .partners__grid > div'],
     ['.foot', '.foot__slogan, .foot__cols > div'],
   ];
