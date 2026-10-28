@@ -561,3 +561,7 @@ main { overflow-x: clip; }
   .news__track { grid-auto-columns: 84%; margin-right: calc(-1 * var(--m)); padding-right: var(--m); scroll-padding-left: 0; }
   .pqrs__actions .btn { width: 100%; }
 }
+
+/* Encuadre de las fotos de las sedes (que se vea el letrero) */
+.site__photo img[src*="san-juan"] { object-position: 50% 22%; }
+.site__photo img[src*="valledupar"] { object-position: 50% 30%; }
