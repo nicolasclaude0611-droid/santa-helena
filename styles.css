@@ -595,11 +595,3 @@ main { overflow-x: clip; }
 .guide-fab.is-on .guide-fab__face { pointer-events: auto; -webkit-tap-highlight-color: transparent; }
 .guide-fab__face:active { transform: scale(0.95); }
 
-/* Celular: sin agrandamiento de sedes, todas las tarjetas iguales */
-@media (max-width: 760px) {
-  .site[aria-pressed] { grid-template-columns: 96px 1fr; gap: 18px; padding: 12px; transition: background-color 240ms ease, color 240ms ease; }
-  .site[aria-pressed] .site__photo { aspect-ratio: 4 / 3; }
-  .site[aria-pressed] .site__text { padding: 0; font-size: var(--step-small); gap: 2px; animation: none; }
-  .sites__list .site[aria-pressed] .site__text > span:nth-of-type(n) { display: block; }
-  .site[aria-pressed] .site__text strong { font-size: 1.45rem; margin-bottom: 4px; }
-}
