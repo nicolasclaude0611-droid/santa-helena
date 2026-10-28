@@ -15,24 +15,26 @@ ElevenLabs o para Claude en cualquier sesión.
 
 ## Lo que ya existe en ElevenLabs
 
-Flujo **"Helenita · animaciones web"**, id `oyyDrMJREPp3iuenJcMs`.
+Flujo **"Helenita · animaciones web"** en la cuenta actual, id `AJAfEJsy6Qq6KRPY6h89`.
 
-| Nodo | id | Estado |
-|---|---|---|
-| Referencia (ilustración oficial) | `uxi5cU66zQXpadqNBh6B` | asset `Ahqyuku72ZYLEIgZ8f8h` |
-| Imagen base · verde (Nano Banana 2) | `KLEaOajD2PMwT7NNPpeH` | generación `m0I35XbaMdMWxOPcfO22` |
-| 01 · Saludar | `M3fHIxJgvpT8dU8gcu3p` | hecho |
-| 02 · Reposo | `46116TVfNyeBW64XLPvg` | hecho |
-| 03 · Hablar | `GFn3M1tbRs1cbSSUJsX1` | hecho |
-| 04 · Señalar | `MTIQ7FWD1oJsfrBPTvTA` | **listo, sin generar** (faltaron créditos) |
-| 05 · Pulgar arriba | `A6ctW0WBc6uURc044RRP` | **listo, sin generar** (faltaron créditos) |
-| 06 · Pensar | `6WOz3s91WiVyvbkpxYXs` | hecho |
+| Nodo | id |
+|---|---|
+| Imagen base · verde (subida desde `helenita/fuentes/helenita-base-verde.png`) | `IOkSMzBv4r5HiNtu8gKG` |
+| 04 · Señalar (Kling 2.5 Turbo) | `SzIPZkfp3TyOXdbDyIdG` |
+| 05 · Pulgar arriba (Kling 2.5 Turbo) | `woGMbA09k0y79ssVUctX` |
 
-Los nodos de video ya tienen conectada la imagen base a `start_frame` y `end_frame`.
-Para generar los pendientes basta con `creative_run_flow_nodes` sobre sus ids.
+Para una animación nueva se reutiliza `IOkSMzBv4r5HiNtu8gKG` como `start_frame` y `end_frame`.
 
-Si el flujo ya no existe, se reconstruye desde cero con los pasos de abajo. La imagen base también
-está en el repo: `helenita/fuentes/helenita-base-verde.png`.
+**Si cambias de cuenta de ElevenLabs** (los flujos no se comparten entre cuentas), no hace falta
+volver a generar la imagen base: se crea un flujo nuevo con `creative_create_flow` y se sube la base
+con `creative_attach_reference_file` usando su URL pública:
+`https://raw.githubusercontent.com/nicolasclaude0611-droid/santa-helena/main/helenita/fuentes/helenita-base-verde.png`
+(mientras no esté en `main`, cambiar `main` por `claude/helenita-motion-graphics-h3pdro`).
+Luego se sigue desde el paso 1, reemplazando `flow_id` y el id del nodo base en los ejemplos.
+
+Historial: las primeras 4 animaciones (saludar, reposo, hablar, pensar) se hicieron en otra cuenta,
+flujo `oyyDrMJREPp3iuenJcMs`; ahí la base se generó con Nano Banana 2 a partir de
+`img/helenita-referencia.jpg`.
 
 ## Costos medidos (octubre 2026)
 
@@ -50,8 +52,9 @@ El plan tiene un tope de 40.000 créditos. Antes de generar, estimar siempre con
 
 ### 0. Reutilizar o crear el flujo
 
-- Reutilizar: usar `flow_id = oyyDrMJREPp3iuenJcMs` y `base_node = KLEaOajD2PMwT7NNPpeH`.
-- Crear de nuevo:
+- Reutilizar: usar `flow_id = AJAfEJsy6Qq6KRPY6h89` y `base_node = IOkSMzBv4r5HiNtu8gKG`.
+- Cuenta nueva: ver arriba (subir la base del repo, sin regenerarla).
+- Crear todo desde cero (solo si se quiere una base distinta):
   1. `creative_create_flow` con nombre "Helenita · animaciones web".
   2. `creative_attach_reference_file` con `flow_id` y la URL pública de la ilustración:
      `https://raw.githubusercontent.com/nicolasclaude0611-droid/santa-helena/main/img/helenita-referencia.jpg`
@@ -69,11 +72,11 @@ El plan tiene un tope de 40.000 créditos. Antes de generar, estimar siempre con
 
 ```json
 {
-  "flow_id": "oyyDrMJREPp3iuenJcMs",
+  "flow_id": "AJAfEJsy6Qq6KRPY6h89",
   "node_type": "video-generation",
   "model_id": "kling-2.5-turbo",
   "label": "07 · <Nombre>",
-  "connect_from": ["KLEaOajD2PMwT7NNPpeH"],
+  "connect_from": ["IOkSMzBv4r5HiNtu8gKG"],
   "model_parameters": {
     "aspect_ratio": "1:1",
     "duration_secs": 5,
@@ -88,8 +91,8 @@ El plan tiene un tope de 40.000 créditos. Antes de generar, estimar siempre con
 
 ```json
 creative_connect_flow_nodes {
-  "flow_id": "oyyDrMJREPp3iuenJcMs",
-  "edges": [{ "source_node_id": "KLEaOajD2PMwT7NNPpeH", "target_node_id": "<nuevo nodo>", "target_port": "end_frame" }]
+  "flow_id": "AJAfEJsy6Qq6KRPY6h89",
+  "edges": [{ "source_node_id": "IOkSMzBv4r5HiNtu8gKG", "target_node_id": "<nuevo nodo>", "target_port": "end_frame" }]
 }
 ```
 
