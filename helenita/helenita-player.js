@@ -9,6 +9,7 @@
  *   data-helenita="nombre"   animación: saludar, reposo, hablar, pensar, senalar, pulgar
  *   data-loop="false"        reproducir una sola vez (por defecto se repite)
  *   data-src="ruta/"         carpeta de los videos (por defecto media/helenita/)
+ *   data-fit="cover"         encuadre del video (por defecto contain); data-pos="50% 0" su posición
  *   data-format="stack"      forzar el modo Safari (solo para pruebas)
  *
  * Cambiar de animación desde JS:  Helenita.play(elemento, 'pulgar')
@@ -73,6 +74,7 @@
 
   function mount(el, name) {
     name = name || el.dataset.helenita;
+    if (el._helenita && el.dataset.helenita === name) return el._helenita; // ya está sonando
     const base = el.dataset.src || scriptBase || 'media/helenita/';
     const loop = el.dataset.loop !== 'false';
     if (el._helenita) { el._helenita.stop && el._helenita.stop(); el.replaceChildren(); }
@@ -86,7 +88,7 @@
       p = { video, media: video };
     }
     p.media.setAttribute('aria-label', el.getAttribute('aria-label') || 'Helenita');
-    p.media.style.width = '100%'; p.media.style.height = '100%'; p.media.style.objectFit = 'contain'; p.media.style.display = 'block';
+    p.media.style.width = '100%'; p.media.style.height = '100%'; p.media.style.objectFit = el.dataset.fit || 'contain'; p.media.style.objectPosition = el.dataset.pos || '50% 50%'; p.media.style.display = 'block';
     p.video.addEventListener('ended', () => el.dispatchEvent(new CustomEvent('helenita:ended', { detail: name })));
     if (!reduceMotion) p.video.play().catch(() => {});
     el._helenita = p; el.dataset.helenita = name;

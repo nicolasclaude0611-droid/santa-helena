@@ -62,22 +62,11 @@
     tick();
   };
   setTimeout(() => { const p = $(".bubble--hero p"); p && typeInto(p, p.dataset.type); }, seen || reduce ? 500 : 1300);
-  // Reduced motion: keep Helenita still. Otherwise play only while on screen.
-  const vids = $$("video");
-  vids.forEach((v) => { v.muted = true; if (reduce) { v.removeAttribute("autoplay"); v.pause(); } });
-  // Breathing Helenita: half speed, with a 0.2 s rest before each repeat.
-  $$("video.slow-loop").forEach((v) => {
-    const slow = () => { v.defaultPlaybackRate = 0.5; v.playbackRate = 0.5; };
-    slow(); v.addEventListener("loadedmetadata", slow); v.addEventListener("play", slow);
-    v.addEventListener("ended", () => setTimeout(() => { v.currentTime = 0; if (v.dataset.onScreen !== "0") v.play().catch(() => {}); }, 200));
-  });
-  if (!reduce && "IntersectionObserver" in window) {
-    const vio = new IntersectionObserver((es) => es.forEach((e) => {
-      e.target.dataset.onScreen = e.isIntersecting ? "1" : "0";
-      e.isIntersecting ? e.target.play().catch(() => {}) : e.target.pause();
-    }));
-    vids.forEach((v) => vio.observe(v));
-  }
+  // Las animaciones sin fondo las maneja helenita/helenita-player.js (pausa fuera de pantalla y respeta "reducir movimiento").
+  // En "Agende su cita" Helenita acompaña cada paso: señala el formulario, piensa, explica y celebra.
+  const guideEl = $('#book-helenita');
+  const act = (name) => { if (guideEl && window.Helenita) window.Helenita.play(guideEl, name); };
+  const STEP_ANIM = ['senalar', 'pensar', 'hablar'];
 
   const say = (text) => {
     const bubble = $('.bubble--guide');
@@ -124,6 +113,7 @@
     labels.forEach((l, i) => { l.classList.toggle('is-current', i + 1 === n); l.classList.toggle('is-done', i + 1 < n); });
     bar.style.transform = `scaleX(${n / 3})`;
     say(GUIDE[n - 1]);
+    act(STEP_ANIM[n - 1]);
     if (n === 3) renderSummary();
     const top = form.getBoundingClientRect().top;
     if (top < 80) form.scrollIntoView({ behavior: reduce ? 'auto' : 'smooth', block: 'start' });
@@ -188,6 +178,7 @@
     lines.push('', 'Autorizo el tratamiento de mis datos personales para la gestión de esta solicitud. Quedo atento(a) a su confirmación.');
     const url = `https://wa.me/${WA_NUMBER}?text=${encodeURIComponent(lines.join('\n'))}`;
     say('Su mensaje está listo en WhatsApp. Solo debe enviarlo.');
+    act('pulgar');
     window.open(url, '_blank', 'noopener');
   });
 
