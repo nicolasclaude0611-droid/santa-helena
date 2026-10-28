@@ -129,6 +129,7 @@
         <!-- Paso: servicio -->
         <fieldset class="panel" data-step="2" hidden>
           <legend class="panel__title">¿Qué servicio necesita?</legend>
+          <p class="panel__note svc-hint" id="svc-hint"></p>
           <div class="field">
             <label for="f-cat">Área de atención</label>
             <select id="f-cat" name="categoria" required></select>
@@ -171,8 +172,9 @@
               <input id="f-cel" name="celular" type="tel" inputmode="tel" autocomplete="tel" required>
             </div>
             <div class="field">
-              <label for="f-eps">EPS</label>
-              <input id="f-eps" name="eps" required>
+              <label for="f-eps">EPS o convenio</label>
+              <select id="f-eps" name="eps" hidden><option value="">Seleccione</option></select>
+              <input id="f-eps-otra" name="eps_otra" aria-label="EPS o convenio" placeholder="Escriba su EPS o «Particular»">
             </div>
             <div class="field">
               <label for="f-jornada">Jornada de preferencia</label>
@@ -300,7 +302,7 @@
         <div class="faq__helenita" data-helenita="pensar" aria-label="Helenita pensando"></div>
       </div>
       <div class="faq__list">
-        <details class="q"><summary>¿Cómo sé si mi EPS tiene convenio con la IPS?</summary><p>Atendemos a los afiliados de las EPS con las cuales tenemos contrato vigente. Al enviar su solicitud de cita indique su EPS y le confirmaremos la cobertura antes de asignar la atención.</p></details>
+        <details class="q"><summary>¿Cómo sé si mi EPS tiene convenio con la IPS?</summary><p>Cada sede atiende convenios distintos. En el formulario de citas, al elegir la sede, verá la lista de EPS y convenios que atendemos allí, incluida la atención particular. Le confirmaremos la cobertura antes de asignar la cita.</p></details>
         <details class="q"><summary>¿Qué documentos debo presentar el día de la cita?</summary><p>Documento de identidad del paciente y, si aplica, la orden médica y los resultados de exámenes anteriores. Para menores de edad, el carné de vacunación y el de crecimiento y desarrollo.</p></details>
         <details class="q"><summary>¿Cuánto tarda la confirmación de mi cita?</summary><p>Nuestro equipo revisa las solicitudes en el horario de atención y responde por WhatsApp con la sede, la fecha y la hora asignadas.</p></details>
         <details class="q"><summary>¿Cómo recibo los resultados de mis exámenes?</summary><p>Los resultados se entregan en formato digital. Al momento de la toma de la muestra le indicaremos el medio y el tiempo estimado de entrega.</p></details>

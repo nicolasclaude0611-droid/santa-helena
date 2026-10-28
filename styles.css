@@ -195,6 +195,8 @@ main { overflow-x: clip; }
 .panel__nav { display: flex; justify-content: space-between; align-items: center; gap: 12px; margin-top: 32px; }
 .panel__error { margin-top: 16px; color: var(--error); font-weight: 600; font-size: var(--step-small); }
 .panel__note { margin-top: 16px; font-size: var(--step-small); color: var(--muted); }
+.svc-hint { margin: -16px 0 20px; }
+.svc-hint:empty { display: none; }
 
 .choice-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; }
 .choice { position: relative; cursor: pointer; display: block; }

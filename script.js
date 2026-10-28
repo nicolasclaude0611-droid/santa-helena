@@ -90,15 +90,55 @@
   ];
   let step = 1;
 
-  catSel.innerHTML = '<option value="">Seleccione un área</option>' + AREAS.map((a) => `<option value="${a.id}">${a.name}</option>`).join('');
+  /* Servicios habilitados (REPS) y convenios por sede. Fuente: registro de habilitación de cada sede. */
+  const BOOK_AREAS = [
+    { id: 'general', name: 'Medicina general y enfermería', items: ['Medicina general', 'Enfermería'] },
+    { id: 'especialidades', name: 'Especialidades médicas', items: ['Ginecobstetricia', 'Pediatría', 'Medicina interna', 'Cardiología', 'Cirugía general', 'Ortopedia y/o traumatología', 'Otorrinolaringología', 'Psiquiatría', 'Reumatología', 'Infectología', 'Medicina física y rehabilitación', 'Medicina física y del deporte', 'Dolor y cuidados paliativos', 'Toxicología', 'Medicina del trabajo y medicina laboral'] },
+    { id: 'apoyo', name: 'Nutrición, psicología y terapias', items: ['Nutrición y dietética', 'Psicología', 'Fisioterapia', 'Terapia respiratoria', 'Terapia ocupacional', 'Fonoaudiología y/o terapia del lenguaje'] },
+    { id: 'oral', name: 'Odontología y optometría', items: ['Odontología general', 'Optometría'] },
+    { id: 'vacunacion', name: 'Vacunación', items: ['Vacunación'] },
+    { id: 'muestras', name: 'Toma de muestras y diagnóstico', items: ['Toma de muestras de laboratorio clínico', 'Toma de muestras de cuello uterino y ginecológicas', 'Diagnóstico vascular'] },
+  ];
+  const SEDES = {
+    'Valledupar': { services: ['Medicina general', 'Enfermería', 'Ginecobstetricia', 'Pediatría', 'Medicina interna', 'Cardiología', 'Cirugía general', 'Ortopedia y/o traumatología', 'Otorrinolaringología', 'Psiquiatría', 'Reumatología', 'Infectología', 'Medicina física y rehabilitación', 'Medicina física y del deporte', 'Dolor y cuidados paliativos', 'Toxicología', 'Medicina del trabajo y medicina laboral', 'Nutrición y dietética', 'Psicología', 'Fisioterapia', 'Terapia respiratoria', 'Terapia ocupacional', 'Fonoaudiología y/o terapia del lenguaje', 'Odontología general', 'Optometría', 'Vacunación', 'Toma de muestras de laboratorio clínico', 'Toma de muestras de cuello uterino y ginecológicas', 'Diagnóstico vascular'],
+      eps: ['EPS Sanitas', 'Salud Total', 'Unisalud', 'Suramericana (SURA)', 'FOMAG', 'Ecopetrol', 'AXA Colpatria', 'Colsanitas', 'Particular'] },
+    // eps: null = aún sin lista confirmada; el campo queda para escribir libremente.
+    'La Jagua de Ibirico': { services: ['Medicina general', 'Enfermería', 'Ginecobstetricia', 'Pediatría', 'Medicina interna', 'Medicina del trabajo y medicina laboral', 'Nutrición y dietética', 'Psicología', 'Fisioterapia', 'Terapia respiratoria', 'Terapia ocupacional', 'Fonoaudiología y/o terapia del lenguaje', 'Odontología general', 'Toma de muestras de laboratorio clínico', 'Toma de muestras de cuello uterino y ginecológicas'], eps: null },
+    'San Juan del Cesar': { services: ['Medicina general', 'Enfermería', 'Ginecobstetricia', 'Pediatría', 'Medicina interna', 'Nutrición y dietética', 'Psicología', 'Vacunación', 'Toma de muestras de laboratorio clínico', 'Toma de muestras de cuello uterino y ginecológicas'], eps: ['EPS Sanitas', 'Particular'] },
+  };
+  // Las pestañas de "Nuestros servicios" llevan al área equivalente del formulario.
+  const TAB_TO_BOOK = { general: 'general', especialidades: 'especialidades', materno: 'especialidades', cronicos: 'general', cancer: 'muestras', vacunacion: 'vacunacion', diagnostico: 'muestras', terapias: 'apoyo', domicilio: 'general', laboral: 'especialidades' };
+
+  const value = (n) => { const el = form.elements[n]; if (!el) return ''; if (el instanceof RadioNodeList) return el.value; return (el.type === 'checkbox' ? el.checked : el.value.trim()); };
+  const areasFor = (sede) => {
+    const ok = SEDES[sede] && SEDES[sede].services;
+    return BOOK_AREAS.map((a) => ({ ...a, items: ok ? a.items.filter((s) => ok.includes(s)) : a.items })).filter((a) => a.items.length);
+  };
+  const fillAreas = (keep) => {
+    const areas = areasFor(value('sede'));
+    catSel.innerHTML = '<option value="">Seleccione un área</option>' + areas.map((a) => `<option value="${a.id}">${a.name}</option>`).join('');
+    catSel.value = areas.some((a) => a.id === keep) ? keep : '';
+    const hint = $('#svc-hint'); if (hint) hint.textContent = value('sede') ? `Servicios habilitados en la sede ${value('sede')}.` : '';
+  };
+  const epsSel = $('#f-eps'), epsTxt = $('#f-eps-otra');
+  const epsField = () => (epsSel.hidden ? 'eps_otra' : 'eps');
+  const fillEps = () => {
+    const list = (SEDES[value('sede')] || {}).eps;
+    const keep = epsSel.value;
+    epsSel.hidden = !list; epsTxt.hidden = !!list;
+    if (list) {
+      epsSel.innerHTML = '<option value="">Seleccione</option>' + list.map((o) => `<option>${o}</option>`).join('');
+      if (list.includes(keep)) epsSel.value = keep;
+    }
+  };
+  fillAreas();
+
   const renderServices = (areaId, keep) => {
-    const area = AREAS.find((a) => a.id === areaId);
+    const area = areasFor(value('sede')).find((a) => a.id === areaId);
     list.innerHTML = area ? area.items.map((s) => `<label class="svc-opt"><input type="radio" name="servicio" value="${s}"${s === keep ? ' checked' : ''}><span>${s}</span></label>`).join('') : '';
     if (!reduce) { list.classList.remove('is-swapping'); void list.offsetWidth; list.classList.add('is-swapping'); }
   };
   catSel.addEventListener('change', () => renderServices(catSel.value));
-
-  const value = (n) => { const el = form.elements[n]; if (!el) return ''; if (el instanceof RadioNodeList) return el.value; return (el.type === 'checkbox' ? el.checked : el.value.trim()); };
 
   const go = (n) => {
     const back = n < step;
@@ -126,7 +166,7 @@
     if (n === 1) { const ok = !!value('sede'); showErr('sede', !ok); return ok; }
     if (n === 2) { const ok = !!value('servicio'); showErr('servicio', !ok); return ok; }
     let ok = true;
-    ['nombre', 'tipo', 'documento', 'nacimiento', 'celular', 'eps'].forEach((n2) => {
+    ['nombre', 'tipo', 'documento', 'nacimiento', 'celular', epsField()].forEach((n2) => {
       const el = form.elements[n2]; const bad = !el.value.trim();
       el.closest('.field').classList.toggle('is-invalid', bad);
       el.setAttribute('aria-invalid', bad ? 'true' : 'false');
@@ -143,7 +183,7 @@
   };
 
   const renderSummary = () => {
-    const area = AREAS.find((a) => a.id === catSel.value);
+    const area = BOOK_AREAS.find((a) => a.id === catSel.value);
     $('#summary').innerHTML = [value('sede') && `Sede ${value('sede')}`, value('servicio'), area && area.name].filter(Boolean).map((t) => `<span>${t}</span>`).join('');
   };
 
@@ -152,7 +192,7 @@
     if (e.target.closest('[data-prev]')) go(step - 1);
   });
   form.addEventListener('change', (e) => {
-    if (e.target.name === 'sede') { showErr('sede', false); say(`Excelente. Sede ${e.target.value} seleccionada. Continúe para elegir el servicio.`); }
+    if (e.target.name === 'sede') { fillAreas(catSel.value); renderServices(catSel.value, value('servicio')); fillEps(); showErr('sede', false); say(`Excelente. Sede ${e.target.value} seleccionada. Continúe para elegir el servicio.`); }
     if (e.target.name === 'servicio') { showErr('servicio', false); say(`${e.target.value}: entendido. Continúe para registrar los datos del paciente.`); }
     const f = e.target.closest('.field, .check'); if (f && f.classList.contains('is-invalid') && (e.target.value || e.target.checked)) f.classList.remove('is-invalid');
   });
@@ -161,7 +201,7 @@
   form.addEventListener('submit', (e) => {
     e.preventDefault();
     if (!validate(3)) return;
-    const area = AREAS.find((a) => a.id === catSel.value);
+    const area = BOOK_AREAS.find((a) => a.id === catSel.value);
     const lines = [
       'Cordial saludo. Deseo solicitar una cita en Santa Helena del Valle IPS.',
       '',
@@ -171,7 +211,7 @@
       `*Documento:* ${value('tipo')} ${value('documento')}`,
       `*Fecha de nacimiento:* ${fmtDate(value('nacimiento'))}`,
       `*Celular:* ${value('celular')}`,
-      `*EPS:* ${value('eps')}`,
+      `*EPS o convenio:* ${value(epsField())}`,
       `*Jornada de preferencia:* ${value('jornada')}`,
     ];
     if (value('observaciones')) lines.push(`*Observaciones:* ${value('observaciones')}`);
@@ -184,7 +224,8 @@
 
   // Preseleccionar un servicio desde la sección de servicios
   const preselect = (areaId, service) => {
-    catSel.value = areaId; renderServices(areaId, service);
+    const bookId = TAB_TO_BOOK[areaId] || areaId;
+    fillAreas(bookId); renderServices(catSel.value, service);
     const book = $('#agendar');
     book.scrollIntoView({ behavior: reduce ? 'auto' : 'smooth', block: 'start' });
     go(value('sede') ? 3 : 1);
