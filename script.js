@@ -76,7 +76,10 @@
   /* ---------- Saludo de Helenita: apenas se toca la pantalla ---------- */
   const GESTURES = ['touchstart', 'pointerdown', 'touchend', 'click', 'keydown'];
   let greeting = false;
-  const stopGreet = () => { GESTURES.forEach((t) => removeEventListener(t, greet, true)); typeof stopHover === 'function' && stopHover(); };
+  const hint = $('#voice-hint');
+  const stopGreet = () => { GESTURES.forEach((t) => removeEventListener(t, greet, true)); typeof stopHover === 'function' && stopHover(); if (hint) hint.hidden = true; };
+  // Computador: si el navegador bloqueó el saludo, muestra el aviso (el clic en él, o en cualquier parte, lo hace sonar)
+  const showHint = () => { if (hint && matchMedia('(hover: hover) and (pointer: fine)').matches && !Object.values(sound.said).some(Boolean)) hint.hidden = false; };
   function greet() {
     if (Object.entries(sound.said).some(([k, v]) => v && k !== 'saludo')) { stopGreet(); return; } // ya habló en otro momento
     if (greeting) return;
@@ -104,7 +107,7 @@
   const startHero = () => {
     hero.classList.add('is-ready');
     // Intenta saludar al abrir; si el navegador lo bloquea, saluda con el primer toque
-    setTimeout(() => { if (!sound.said.saludo) sound.voice('saludo').then((ok) => { if (ok) stopGreet(); else sound.said.saludo = false; }); }, 400);
+    setTimeout(() => { if (!sound.said.saludo) sound.voice('saludo').then((ok) => { if (ok) stopGreet(); else { sound.said.saludo = false; showHint(); } }); }, 400);
   };
   if (intro && !seen && !reduce) {
     intro.classList.add('is-on');

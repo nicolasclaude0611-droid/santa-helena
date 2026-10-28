@@ -596,3 +596,10 @@ main { overflow-x: clip; }
 .guide-fab.is-on .guide-fab__face { pointer-events: auto; -webkit-tap-highlight-color: transparent; }
 .guide-fab__face:active { transform: scale(0.95); }
 
+
+/* Aviso "Haz clic para escucharme" (solo computador, mientras el navegador bloquee el audio) */
+.voice-hint { display: inline-flex; align-items: center; gap: 8px; white-space: nowrap; margin-top: 10px; padding: 7px 14px 7px 10px; border: 0; border-radius: 99px; background: var(--gold); color: var(--ink); font: inherit; font-size: var(--step-small); font-weight: 600; cursor: pointer; animation: hint-in 400ms var(--ease-out) both; }
+.voice-hint[hidden] { display: none; }
+.voice-hint svg { width: 18px; height: 18px; fill: none; stroke: currentColor; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+.voice-hint .spk { fill: currentColor; }
+@keyframes hint-in { from { opacity: 0; transform: translateY(6px); } to { opacity: 1; transform: none; } }
