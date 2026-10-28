@@ -29,7 +29,6 @@ Para una animación nueva se reutiliza `IOkSMzBv4r5HiNtu8gKG` como `start_frame`
 volver a generar la imagen base: se crea un flujo nuevo con `creative_create_flow` y se sube la base
 con `creative_attach_reference_file` usando su URL pública:
 `https://raw.githubusercontent.com/nicolasclaude0611-droid/santa-helena/main/helenita/fuentes/helenita-base-verde.png`
-(mientras no esté en `main`, cambiar `main` por `claude/helenita-motion-graphics-h3pdro`).
 Luego se sigue desde el paso 1, reemplazando `flow_id` y el id del nodo base en los ejemplos.
 
 Historial: las primeras 4 animaciones (saludar, reposo, hablar, pensar) se hicieron en otra cuenta,
@@ -58,7 +57,6 @@ El plan tiene un tope de 40.000 créditos. Antes de generar, estimar siempre con
   1. `creative_create_flow` con nombre "Helenita · animaciones web".
   2. `creative_attach_reference_file` con `flow_id` y la URL pública de la ilustración:
      `https://raw.githubusercontent.com/nicolasclaude0611-droid/santa-helena/main/img/helenita-referencia.jpg`
-     (si aún no está en `main`, usar la rama `claude/helenita-motion-graphics-h3pdro`).
      Para un archivo local, usar `creative_create_asset_upload` → PUT de los bytes →
      `creative_finalize_asset_upload`.
   3. Imagen base: `creative_add_flow_node` tipo `image-generation`, modelo `gemini-3.1-flash-image`,

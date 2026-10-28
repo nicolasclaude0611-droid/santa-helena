@@ -62,4 +62,4 @@ prompts que funcionaron, los costos y el recorte del fondo verde. Puntos clave:
 
 - Sin dependencias ni paso de build: los archivos se sirven tal cual.
 - Para probar videos/reproductor, servir por HTTP: `python3 -m http.server` (no abrir con `file://`).
-- Rama de trabajo de todo el sitio (no solo Helenita): `claude/helenita-motion-graphics-h3pdro`. Hacer commit y push al terminar cada cambio.
+- **Rama oficial: `main`.** Todos los cambios del sitio se hacen, se confirman (commit) y se suben (push) en `main`.
