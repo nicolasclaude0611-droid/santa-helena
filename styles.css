@@ -126,11 +126,13 @@ main { overflow-x: clip; }
 
 /* Hero */
 .hero { position: relative; overflow: hidden; display: grid; grid-template-columns: repeat(12, 1fr); column-gap: var(--gap); align-items: center; min-height: 0; padding: 72px var(--m) 0; margin-bottom: clamp(40px, 4vw, 64px); background: var(--mist); border-radius: 0 0 48px 48px; }
-.hero__copy { grid-column: 1 / 8; position: relative; z-index: 2; padding-bottom: 72px; }
+.hero__copy { grid-column: 1 / 8; position: relative; z-index: 2; padding-bottom: 72px; justify-self: start; width: fit-content; max-width: 100%; }
 .hero__title { font-size: var(--step-display); line-height: 1.02; }
 .line { display: block; overflow: hidden; padding-bottom: 0.08em; }
 .line > span { display: inline-block; }
-.hero__lead { margin-top: 32px; font-size: var(--step-lead); line-height: 1.5; color: var(--muted); max-width: 44ch; }
+/* el párrafo toma el ancho del título (contain) y se justifica */
+.hero__lead { margin-top: 32px; padding-left: 22px; border-left: 4px solid var(--gold); font-size: var(--step-lead); line-height: 1.55; color: var(--muted); contain: inline-size; text-align: justify; text-wrap: pretty; }
+.hero__lead strong { display: block; margin-top: 6px; font-weight: 600; color: var(--ink); }
 .hero__actions { display: flex; flex-wrap: wrap; align-items: center; gap: 18px 32px; margin-top: 44px; }
 .hero__guide { grid-column: 8 / 13; position: relative; z-index: 1; align-self: end; justify-self: end; }
 .portal { position: relative; overflow: hidden; width: clamp(340px, 36vw, 540px); max-height: calc(100svh - 136px); aspect-ratio: 6 / 7; border-radius: 300px 300px 0 0; background: #fff; isolation: isolate; }
@@ -451,7 +453,7 @@ main { overflow-x: clip; }
 
   .hero { grid-template-columns: 1fr; min-height: 0; padding-top: 16px; }
   .hero__copy { grid-column: 1; padding-bottom: 8px; }
-  .hero__lead { margin-top: 22px; }
+  .hero__lead { margin-top: 22px; padding-left: 16px; }
   .hero__actions { margin-top: 28px; }
   .hero__actions .btn { width: 100%; }
   .hero__guide { margin-top: 28px; }
