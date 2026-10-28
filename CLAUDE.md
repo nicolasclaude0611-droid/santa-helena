@@ -18,6 +18,9 @@ baja y mediana complejidad con 20 años en el Cesar y La Guajira (Colombia). Lem
   calidad@santahelenadelvalleips.com. El usuario elige entre escribir la PQRS en el formulario o adjuntar su
   propio documento en el correo (sin servidor el navegador no puede adjuntar archivos; no hay campo de archivo).
 - Sonidos del formulario de citas: sintetizados con Web Audio en `script.js` (`sound(...)`), con botón para silenciarlos.
+- **Voz de Helenita** (`media/voz/*.mp3`, `sound.voice(nombre)` en `script.js`): `saludo` (al abrir; si el navegador
+  bloquea el audio, suena con el primer toque), `paso1`, `paso2`, `paso3` (formulario) y `listo` (al enviar).
+  El mismo botón de parlante del formulario la silencia. Se generó con ElevenLabs (ver `helenita/ELEVENLABS.md`).
 - Todos los enlaces internos (`#seccion`) centran la sección bajo la barra (`scrollToBook` para agendar,
   `scrollToSection` para el resto, en `script.js`). Desde "Nuestros servicios" el formulario siempre pide la sede primero.
 - Contacto: WhatsApp 311 339 8988 (`https://wa.me/573113398988`), línea (605) 588 5690 ext. 201 a 301,
@@ -37,7 +40,7 @@ baja y mediana complejidad con 20 años en el Cesar y La Guajira (Colombia). Lem
 |---|---|
 | `index.html`, `styles.css`, `script.js` | El sitio |
 | `img/` | Logo sin fondo (`logo.png` sin lema, `logo-lema.png` con lema blanco para fondos oscuros), sol de la marca (`sol.png` marca de agua, `sol-solido.png`), imágenes de Helenita. Original vectorial: `img/fuentes/logo.pdf` |
-| `media/` | Videos actuales de Helenita (con fondo) |
+| `media/` | Videos actuales de Helenita (con fondo); `media/voz/` voz de Helenita |
 | `media/helenita/` | **Animaciones de Helenita sin fondo** (WebM transparente, MP4 para Safari, PNG) |
 | `helenita/` | Todo lo de Helenita: reproductor, demo, recortador, versión vectorial |
 | `fotos/` | Fotos de las sedes (ver `fotos/LEEME.txt`) |

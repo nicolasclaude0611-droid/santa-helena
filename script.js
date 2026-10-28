@@ -48,11 +48,24 @@
         });
       } catch (e) {}
     };
+    // Voz de Helenita (ElevenLabs, media/voz/). Solo suena tras un toque o clic: los navegadores lo exigen.
+    let voiceEl = null;
+    play.voiced = false;
+    play.voice = (name) => {
+      play.voiced = true;
+      if (!on) return Promise.resolve(true);
+      try {
+        if (voiceEl) voiceEl.pause();
+        voiceEl = new Audio(`media/voz/${name}.mp3`);
+        return voiceEl.play().then(() => true, () => false);
+      } catch (e) { return Promise.resolve(false); }
+    };
     const btn = document.getElementById('sound-toggle');
     if (btn) {
       btn.setAttribute('aria-pressed', on);
       btn.addEventListener('click', () => {
         on = !on; btn.setAttribute('aria-pressed', on);
+        if (!on && voiceEl) voiceEl.pause();
         try { localStorage.setItem('shv-sound', on ? 'on' : 'off'); } catch (e) {}
         play('tick');
       });
@@ -60,12 +73,21 @@
     return play;
   })();
 
+  /* ---------- Saludo de Helenita ---------- */
+  const greet = () => { if (!sound.voiced && scrollY < innerHeight) sound.voice('saludo'); };
+  const firstTouch = () => { ['click', 'touchend', 'keydown'].forEach((t) => removeEventListener(t, firstTouch, true)); setTimeout(greet, 0); };
+  ['click', 'touchend', 'keydown'].forEach((t) => addEventListener(t, firstTouch, true));
+
   /* ---------- Intro (una vez por sesión) ---------- */
   const intro = $('.intro');
   const hero = $('.hero');
   let seen = false;
   try { seen = sessionStorage.getItem('shv-intro') === '1'; sessionStorage.setItem('shv-intro', '1'); } catch (e) { seen = true; }
-  const startHero = () => hero.classList.add('is-ready');
+  const startHero = () => {
+    hero.classList.add('is-ready');
+    // Intenta saludar al abrir; si el navegador lo bloquea, saluda con el primer toque
+    setTimeout(() => { if (!sound.voiced) sound.voice('saludo').then((ok) => { if (!ok) sound.voiced = false; }); }, 400);
+  };
   if (intro && !seen && !reduce) {
     intro.classList.add('is-on');
     setTimeout(startHero, 2300);
@@ -202,7 +224,7 @@
   };
 
   form.addEventListener('click', (e) => {
-    if (e.target.closest('[data-next]')) { if (validate(step)) { sound('next'); go(step + 1); } else sound('error'); }
+    if (e.target.closest('[data-next]')) { if (validate(step)) { sound('next'); go(step + 1); sound.voice(`paso${step}`); } else sound('error'); }
     if (e.target.closest('[data-prev]')) { sound('back'); go(step - 1); }
   });
   form.addEventListener('change', (e) => {
@@ -216,7 +238,7 @@
   form.addEventListener('submit', (e) => {
     e.preventDefault();
     if (!validate(3)) { sound('error'); return; }
-    sound('done');
+    sound('done'); sound.voice('listo');
     const area = BOOK_AREAS.find((a) => a.id === catSel.value);
     const lines = [
       'Cordial saludo. Deseo solicitar una cita en Santa Helena del Valle IPS.',
@@ -270,6 +292,7 @@
     if (!sec) return;
     e.preventDefault();
     if (history.replaceState) history.replaceState(null, '', '#' + id);
+    if (id === 'agendar' && step === 1 && !value('sede')) sound.voice('paso1');
     requestAnimationFrame(() => (id === 'agendar' ? scrollToBook() : scrollToSection(sec)));
   });
 
@@ -279,6 +302,7 @@
     $$('input[name="sede"]', form).forEach((r) => { r.checked = false; });
     fillAreas(areaId); fillEps(); renderServices(catSel.value, service);
     go(1, true);
+    sound.voice('paso1');
     requestAnimationFrame(scrollToBook);
     const area = BOOK_AREAS.find((a) => a.id === areaId);
     say(`Con gusto le ayudo con ${service ? service.toLowerCase() : area ? area.name.toLowerCase() : 'su cita'}. Primero, seleccione la sede.`);

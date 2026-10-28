@@ -178,3 +178,15 @@ llevarse la mano al corazón (gracias), sostener una tabla de citas.
 - El texto del logo en la imagen base sale algo borroso ("oel Valls IPS"). A tamaño web no se nota.
 - En movimientos rápidos la mano queda difusa en 2 o 3 cuadros (desenfoque de movimiento del modelo).
 - No usar `despill` de ffmpeg: vuelve naranja el sol amarillo del logo. `keyer.py` ya lo resuelve.
+
+
+## Voz de Helenita
+
+- Voz: **Valeria - Friendly Woman** (`JddqVF50ZSIR7SRbJE6u`, colección «santa helena»), modelo `eleven_v4`.
+- `creative_generate_speech` con `generations_count: 1` (una toma por frase). Cuesta ~1 crédito por carácter.
+- Flujo: `zRkRwkVPQEaFglX6gKux`. Las 5 frases actuales costaron 261 créditos.
+- Frases (`media/voz/`): `saludo` «¡Hola! Soy Helenita. Con gusto le ayudo a agendar su cita.» · `paso1` «Para comenzar,
+  elija la sede donde desea ser atendido.» · `paso2` «Muy bien. Ahora, elija el servicio que necesita.» · `paso3`
+  «Por último, escriba los datos del paciente.» · `listo` «¡Listo! Su mensaje ya está en WhatsApp. Solo debe enviarlo.»
+- Procesado (gratis): recortar silencios, normalizar volumen y comprimir:
+  `ffmpeg -i in.mp3 -af "silenceremove=start_periods=1:start_threshold=-45dB,areverse,silenceremove=start_periods=1:start_threshold=-45dB,areverse,apad=pad_dur=0.1,loudnorm=I=-16:TP=-1.5" -ac 1 -ar 44100 -b:a 64k media/voz/nombre.mp3`
