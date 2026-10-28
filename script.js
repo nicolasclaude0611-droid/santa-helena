@@ -77,9 +77,13 @@
   const GESTURES = ['touchstart', 'pointerdown', 'touchend', 'click', 'keydown'];
   let greeting = false;
   const hint = $('#voice-hint');
-  const stopGreet = () => { GESTURES.forEach((t) => removeEventListener(t, greet, true)); typeof stopHover === 'function' && stopHover(); if (hint) hint.hidden = true; };
+  const stopGreet = () => { GESTURES.forEach((t) => removeEventListener(t, greet, true)); typeof stopHover === 'function' && stopHover(); if (hint && !hint.hidden) { hint.hidden = true; const p = $('.bubble--hero p'); p && typeInto(p, p.dataset.type); } };
   // Computador: si el navegador bloqueó el saludo, muestra el aviso (el clic en él, o en cualquier parte, lo hace sonar)
-  const showHint = () => { if (hint && matchMedia('(hover: hover) and (pointer: fine)').matches && !Object.values(sound.said).some(Boolean)) hint.hidden = false; };
+  const showHint = () => { if (hint && matchMedia('(hover: hover) and (pointer: fine)').matches && !Object.values(sound.said).some(Boolean)) {
+    // texto corto para que la burbuja no crezca sobre la cara de Helenita
+    const p = $('.bubble--hero p'); p && typeInto(p, '¡Hola! Soy Helenita.');
+    hint.hidden = false;
+  } };
   function greet() {
     if (Object.entries(sound.said).some(([k, v]) => v && k !== 'saludo')) { stopGreet(); return; } // ya habló en otro momento
     if (greeting) return;
@@ -120,10 +124,11 @@
 
   /* ---------- Helenita (videos) ---------- */
   const typeInto = (p, text) => {
+    const id = p._typing = (p._typing || 0) + 1; // un texto nuevo cancela el anterior
     if (reduce) { p.textContent = text; return; }
     p.textContent = "";
     let i = 0;
-    const tick = () => { p.textContent = text.slice(0, ++i); if (i < text.length) setTimeout(tick, 22); };
+    const tick = () => { if (id !== p._typing) return; p.textContent = text.slice(0, ++i); if (i < text.length) setTimeout(tick, 22); };
     tick();
   };
   setTimeout(() => { const p = $(".bubble--hero p"); p && typeInto(p, p.dataset.type); }, seen || reduce ? 500 : 1300);
