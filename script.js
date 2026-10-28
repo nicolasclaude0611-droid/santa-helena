@@ -76,7 +76,7 @@
   /* ---------- Saludo de Helenita: apenas se toca la pantalla ---------- */
   const GESTURES = ['touchstart', 'pointerdown', 'touchend', 'click', 'keydown'];
   let greeting = false;
-  const stopGreet = () => GESTURES.forEach((t) => removeEventListener(t, greet, true));
+  const stopGreet = () => { GESTURES.forEach((t) => removeEventListener(t, greet, true)); typeof stopHover === 'function' && stopHover(); };
   function greet() {
     if (Object.entries(sound.said).some(([k, v]) => v && k !== 'saludo')) { stopGreet(); return; } // ya habló en otro momento
     if (greeting) return;
@@ -84,6 +84,17 @@
     sound.voice('saludo').then((ok) => { greeting = false; if (ok) stopGreet(); });
   }
   GESTURES.forEach((t) => addEventListener(t, greet, { capture: true, passive: true }));
+  // En computador: intenta saludar al pasar el cursor por el inicio. Solo suena si el navegador ya permite audio
+  // (por ejemplo, Chrome o Edge en un sitio visitado varias veces); si no, suena con el primer clic.
+  let hoverTry = 0;
+  const heroEl = $('.hero');
+  const onHover = () => {
+    if (greeting || Date.now() - hoverTry < 1500) return;
+    hoverTry = Date.now();
+    greet();
+  };
+  heroEl && heroEl.addEventListener('mousemove', onHover, { passive: true });
+  const stopHover = () => heroEl && heroEl.removeEventListener('mousemove', onHover);
 
   /* ---------- Intro (una vez por sesión) ---------- */
   const intro = $('.intro');

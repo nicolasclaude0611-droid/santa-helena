@@ -20,7 +20,8 @@ baja y mediana complejidad con 20 años en el Cesar y La Guajira (Colombia). Lem
 - Sonidos del formulario de citas: sintetizados con Web Audio en `script.js` (`sound(...)`), con botón para silenciarlos.
 - **Voz de Helenita** (`media/voz/*.mp3`, `sound.voice(nombre)` en `script.js`, un solo `Audio` reutilizado para que
   el iPhone lo habilite con el primer toque): `saludo` «¡Hola! Soy Helenita.» (en el mismo toque, sin esperas),
-  `paso1` (al llegar a la sección Agendar), `paso2`, `paso3` (formulario) y `listo` (al enviar).
+  `paso1` (al llegar a la sección Agendar), `paso2`, `paso3` (formulario) y `listo` (al enviar). En PC también se
+  intenta al pasar el cursor por el inicio, pero los navegadores solo lo permiten si ya autorizan audio en el sitio.
   El mismo botón de parlante del formulario la silencia. Se generó con ElevenLabs (ver `helenita/ELEVENLABS.md`).
 - Todos los enlaces internos (`#seccion`) centran la sección bajo la barra (`scrollToBook` para agendar,
   `scrollToSection` para el resto, en `script.js`). Desde "Nuestros servicios" el formulario siempre pide la sede primero.
