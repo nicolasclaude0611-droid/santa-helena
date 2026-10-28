@@ -214,18 +214,11 @@
   const tabsList = $('#tabs-list');
   const tabsPanel = $('#tabs-panel');
   tabsList.innerHTML = AREAS.map((a, i) => `<button type="button" class="tab" role="tab" id="tab-${a.id}" aria-controls="tabs-panel" aria-selected="${i === 0}" tabindex="${i === 0 ? 0 : -1}" data-area="${a.id}">${a.name}</button>`).join('');
-  // Sedes donde se presta un servicio (no se indica si está en las tres).
-  const SHORT = { 'Valledupar': 'Valledupar', 'La Jagua de Ibirico': 'La Jagua', 'San Juan del Cesar': 'San Juan' };
-  const where = (svc) => {
-    const at = Object.keys(SEDES).filter((k) => SEDES[k].services.includes(svc));
-    if (at.length === Object.keys(SEDES).length) return '';
-    return `<small>${at.length === 1 ? 'Solo en ' : 'En '}${at.map((k) => SHORT[k]).join(' y ')}</small>`;
-  };
   const showArea = (id, animate) => {
     const a = AREAS.find((x) => x.id === id);
     $$('.tab', tabsList).forEach((t) => { const on = t.dataset.area === id; t.setAttribute('aria-selected', on); t.tabIndex = on ? 0 : -1; });
     tabsPanel.setAttribute('aria-labelledby', `tab-${id}`);
-    tabsPanel.innerHTML = `<h3>${a.name}</h3><p>${a.text}</p><ul class="tabs__items">${a.items.map((s) => `<li><span>${s}${where(s)}</span></li>`).join('')}</ul><button type="button" class="btn btn--ink" data-book="${a.id}">Agendar en esta área</button>`;
+    tabsPanel.innerHTML = `<h3>${a.name}</h3><p>${a.text}</p><ul class="tabs__items">${a.items.map((s) => `<li>${s}</li>`).join('')}</ul><button type="button" class="btn btn--ink" data-book="${a.id}">Agendar en esta área</button>`;
     if (animate && !reduce) { tabsPanel.classList.remove('is-swapping'); void tabsPanel.offsetWidth; tabsPanel.classList.add('is-swapping'); }
   };
   showArea(AREAS[0].id, false);
