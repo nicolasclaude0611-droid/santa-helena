@@ -48,6 +48,11 @@ Animaciones sin fondo disponibles: `saludar`, `reposo`, `hablar`, `pensar`, `sen
 
 Detalles en `helenita/README.md`.
 
+Uso actual en el sitio: `saludar` en la portada, `pensar` en preguntas frecuentes y, en "Agende su cita",
+`reposo` de base con gestos de una sola vez (`senalar` al llegar, `hablar` con cada mensaje, `pulgar` al
+enviar por WhatsApp). La lógica está en `script.js` (función `act`). Los videos antiguos con fondo
+(`media/helenita-saludando.mp4`, `media/helenita-respirando.mp4`) ya no se usan.
+
 ### Generar nuevas animaciones con ElevenLabs
 
 Seguir **`helenita/ELEVENLABS.md`**: está el flujo de ElevenLabs ya armado (ids de nodos), los

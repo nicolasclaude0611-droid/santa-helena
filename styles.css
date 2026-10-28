@@ -135,7 +135,8 @@ main { overflow-x: clip; }
 .hero__guide { grid-column: 8 / 13; position: relative; z-index: 1; align-self: end; justify-self: end; }
 .portal { position: relative; overflow: hidden; width: clamp(340px, 36vw, 540px); max-height: calc(100svh - 136px); aspect-ratio: 6 / 7; border-radius: 300px 300px 0 0; background: #fff; isolation: isolate; }
 .portal__sun { color: #D9E6EF; width: 92%; aspect-ratio: 972 / 1208; left: 4%; top: 2%; animation: sun-spin 60s linear infinite; }
-.portal__video { position: relative; width: 100%; height: 100%; object-fit: cover; object-position: 37% 0; mix-blend-mode: multiply; }
+.portal__video { position: relative; width: 100%; height: 100%; transform: translateY(6%); }
+.portal__video > video, .portal__video > canvas { object-fit: cover !important; object-position: 50% 0 !important; }
 @keyframes sun-spin { to { transform: rotate(360deg); } }
 .hero__sun { color: var(--gold); opacity: 0.22; width: clamp(160px, 16vw, 260px); aspect-ratio: 972 / 1208; left: calc(var(--m) - 60px); bottom: -70px; z-index: 0; animation: sun-sway 14s cubic-bezier(0.45, 0, 0.55, 1) infinite alternate; }
 @keyframes sun-sway { from { transform: rotate(-5deg); } to { transform: rotate(5deg); } }
@@ -172,8 +173,12 @@ main { overflow-x: clip; }
 .book__aside { grid-column: 1 / 5; position: sticky; top: 128px; }
 .book__lead { margin-top: 24px; color: var(--muted); max-width: 40ch; }
 .book__guide { position: relative; margin-top: 40px; display: grid; grid-template-columns: minmax(150px, 44%) minmax(0, 1fr); align-items: start; gap: 18px; }
-.book__helenita { overflow: hidden; width: 100%; aspect-ratio: 11 / 20; border-radius: 120px 120px var(--radius) var(--radius); background: #fff; }
-.book__helenita video { display: block; width: 100%; height: 100%; object-fit: cover; object-position: 48.5% 0; mix-blend-mode: multiply; }
+/* Helenita stands in front of a white arch; the square clip is wider than the arch so her arms can reach out of it. */
+.book__helenita, .faq__helenita { position: relative; width: 100%; aspect-ratio: 11 / 20; }
+.book__helenita::before, .faq__helenita::before { content: ""; position: absolute; inset: 0; border-radius: 999px 999px var(--radius) var(--radius); background: #fff; }
+.book__helenita .hl, .faq__helenita .hl { position: absolute; bottom: 0; left: 50%; width: 181.8%; aspect-ratio: 1; transform: translateX(-50%); pointer-events: none; transition: opacity 280ms var(--ease-out); }
+.book__helenita .hl.is-next { opacity: 0; }
+.book__guide .bubble { z-index: 2; }
 .bubble--guide { margin-top: 22%; }
 .bubble--guide::after { left: -8px; top: 22px; }
 .bubble.is-new p { animation: bubble-in 360ms var(--ease-out); }
@@ -310,6 +315,8 @@ main { overflow-x: clip; }
 .faq__contact li { display: grid; gap: 2px; }
 .faq__contact span { font-size: var(--step-small); color: var(--muted); }
 .faq__contact a { font-weight: 600; text-decoration: none; }
+.faq__helenita { width: 170px; margin-top: 40px; }
+.faq__helenita::before { background: var(--mist); }
 .faq__list { grid-column: 6 / 13; display: grid; gap: 8px; align-content: start; }
 .q { border-radius: 16px; background: var(--mist); transition: background-color 240ms ease; }
 .q[open] { background: var(--mist-2); }

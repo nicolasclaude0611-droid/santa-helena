@@ -63,14 +63,8 @@
   };
   setTimeout(() => { const p = $(".bubble--hero p"); p && typeInto(p, p.dataset.type); }, seen || reduce ? 500 : 1300);
   // Reduced motion: keep Helenita still. Otherwise play only while on screen.
-  const vids = $$("video");
+  const vids = $$("video").filter((v) => !v.closest("[data-helenita]"));
   vids.forEach((v) => { v.muted = true; if (reduce) { v.removeAttribute("autoplay"); v.pause(); } });
-  // Breathing Helenita: half speed, with a 0.2 s rest before each repeat.
-  $$("video.slow-loop").forEach((v) => {
-    const slow = () => { v.defaultPlaybackRate = 0.5; v.playbackRate = 0.5; };
-    slow(); v.addEventListener("loadedmetadata", slow); v.addEventListener("play", slow);
-    v.addEventListener("ended", () => setTimeout(() => { v.currentTime = 0; if (v.dataset.onScreen !== "0") v.play().catch(() => {}); }, 200));
-  });
   if (!reduce && "IntersectionObserver" in window) {
     const vio = new IntersectionObserver((es) => es.forEach((e) => {
       e.target.dataset.onScreen = e.isIntersecting ? "1" : "0";
@@ -79,10 +73,53 @@
     vids.forEach((v) => vio.observe(v));
   }
 
-  const say = (text) => {
+  /* ---------- Helenita en el formulario ----------
+     Todas las animaciones empiezan y terminan en la misma pose, así que un gesto
+     ("senalar", "hablar", "pulgar") se reproduce una vez y vuelve a "reposo" sin salto.
+     Si llega un gesto nuevo a mitad de otro, se cruzan con un fundido corto. */
+  const guideStage = $('.book__helenita');
+  let guideNow = guideStage && $('.hl', guideStage);
+  let guideNext = null;
+  let guideOnScreen = true;
+  const act = (name) => {
+    if (!guideStage || !window.Helenita || reduce) return;
+    if (guideNext) { guideNext.remove(); guideNext = null; }
+    if (guideNow.dataset.helenita === name && name === 'reposo') return;
+    const el = document.createElement('div');
+    el.className = 'hl is-next';
+    el.setAttribute('aria-label', guideNow.getAttribute('aria-label'));
+    if (name !== 'reposo') el.dataset.loop = 'false';
+    guideStage.append(el);
+    guideNext = el;
+    const p = Helenita.play(el, name);
+    if (!guideOnScreen) p.video.pause();
+    el.addEventListener('helenita:ended', () => { if (el === guideNow) act('reposo'); });
+    const swap = () => {
+      if (el !== guideNext) return;
+      el.classList.remove('is-next');
+      const old = guideNow; guideNow = el; guideNext = null;
+      setTimeout(() => old.remove(), 300);
+    };
+    p.video.readyState >= 3 ? requestAnimationFrame(swap) : p.video.addEventListener('playing', swap, { once: true });
+  };
+  if (guideStage && 'IntersectionObserver' in window) {
+    let greeted = false;
+    new IntersectionObserver(([e]) => {
+      guideOnScreen = e.isIntersecting;
+      const v = guideNow && $('video', guideNow);
+      if (!e.isIntersecting) { v && v.pause(); return; }
+      if (!greeted && e.intersectionRatio > 0.5) { greeted = true; act(wide() ? 'senalar' : 'hablar'); }
+      else if (v && !reduce) v.play().catch(() => {});
+    }, { threshold: [0, 0.6] }).observe(guideStage);
+  }
+  // On wide screens the form sits to the right, where "senalar" points.
+  const wide = () => matchMedia('(min-width: 1081px)').matches;
+
+  const say = (text, gesture = 'hablar') => {
     const bubble = $('.bubble--guide');
     const p = $('#guide-text');
     if (!p || p.textContent === text) return;
+    act(gesture);
     p.textContent = text;
     bubble.classList.remove('is-new'); void bubble.offsetWidth; bubble.classList.add('is-new');
   };
@@ -187,7 +224,7 @@
     if (value('observaciones')) lines.push(`*Observaciones:* ${value('observaciones')}`);
     lines.push('', 'Autorizo el tratamiento de mis datos personales para la gestión de esta solicitud. Quedo atento(a) a su confirmación.');
     const url = `https://wa.me/${WA_NUMBER}?text=${encodeURIComponent(lines.join('\n'))}`;
-    say('Su mensaje está listo en WhatsApp. Solo debe enviarlo.');
+    say('Su mensaje está listo en WhatsApp. Solo debe enviarlo.', 'pulgar');
     window.open(url, '_blank', 'noopener');
   });
 
