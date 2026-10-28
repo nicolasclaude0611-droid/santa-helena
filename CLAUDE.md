@@ -71,6 +71,10 @@ Animaciones sin fondo disponibles: `saludar`, `reposo`, `hablar`, `pensar`, `sen
 
 Detalles en `helenita/README.md`.
 
+**Gorro de Navidad (prueba, no publicado):** `python3 helenita/tools/gorro.py <animación>` pega `helenita/navidad/gorro.png`
+siguiendo la cabeza cuadro a cuadro y escribe en `media/helenita/navidad/`. Hecho solo para `saludar`; el usuario avisará
+cuándo aplicarlo (a las 6 animaciones, y que aparezca en diciembre).
+
 ### Generar nuevas animaciones con ElevenLabs
 
 Seguir **`helenita/ELEVENLABS.md`**: está el flujo de ElevenLabs ya armado (ids de nodos), los
