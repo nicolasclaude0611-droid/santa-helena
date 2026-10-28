@@ -15,8 +15,8 @@ baja y mediana complejidad con 20 años en el Cesar y La Guajira (Colombia). Lem
 - **Noticias**: tarjetas `.post` en `index.html` (sección `#noticias`). Las actuales son **ejemplos**; reemplazar
   por noticias reales (la portada puede ser una foto `<img>` dentro de `.post__cover`).
 - **PQRS** (`#pqrs`): formulario que abre el correo (`mailto:`) a siau@santahelenadelvalleips.com con copia a
-  calidad@santahelenadelvalleips.com. Sin servidor, el navegador no puede adjuntar el archivo: se le pide al
-  usuario adjuntarlo antes de enviar. Para adjuntos automáticos haría falta un servicio de formularios o un backend.
+  calidad@santahelenadelvalleips.com. El usuario elige entre escribir la PQRS en el formulario o adjuntar su
+  propio documento en el correo (sin servidor el navegador no puede adjuntar archivos; no hay campo de archivo).
 - Sonidos del formulario de citas: sintetizados con Web Audio en `script.js` (`sound(...)`), con botón para silenciarlos.
 - Los enlaces a `#agendar` centran la sección en pantalla (`scrollToBook` en `script.js`).
 - Contacto: WhatsApp 311 339 8988 (`https://wa.me/573113398988`), línea (605) 588 5690 ext. 201 a 301,

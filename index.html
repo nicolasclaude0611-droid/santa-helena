@@ -427,12 +427,15 @@
             </select>
           </div>
           <div class="field"><label for="p-asunto">Motivo o asunto</label><input id="p-asunto" name="asunto" required maxlength="120"></div>
-          <div class="field field--wide"><label for="p-msg">Descripción</label><textarea id="p-msg" name="mensaje" rows="5" required maxlength="1500" placeholder="Cuéntenos qué ocurrió o qué desea solicitar: fecha, sede, servicio y personas involucradas."></textarea></div>
-          <div class="field field--wide">
-            <label for="p-file">Archivo de soporte (opcional)</label>
-            <input id="p-file" name="archivo" type="file" accept=".pdf,.jpg,.jpeg,.png,.doc,.docx">
-            <span class="field__hint">PDF, imagen o Word. Lo adjuntará en el correo antes de enviarlo.</span>
-          </div>
+          <fieldset class="pqrs__types field--wide">
+            <legend>¿Cómo desea presentar su PQRS?</legend>
+            <div class="pills">
+              <label class="pill"><input type="radio" name="modo" value="escribir" checked><span>Escribirla aquí</span></label>
+              <label class="pill"><input type="radio" name="modo" value="adjuntar"><span>Ya la tengo y la adjuntaré al correo</span></label>
+            </div>
+          </fieldset>
+          <div class="field field--wide" id="p-msg-field"><label for="p-msg">Descripción</label><textarea id="p-msg" name="mensaje" rows="5" required maxlength="1500" placeholder="Cuéntenos qué ocurrió o qué desea solicitar: fecha, sede, servicio y personas involucradas."></textarea></div>
+          <p class="field--wide pqrs__attach" id="p-attach-note" hidden>Al presionar «Preparar correo» se abrirá su correo con sus datos. Adjunte allí su documento de PQRS (PDF, Word o foto) antes de enviarlo.</p>
           <label class="check field--wide">
             <input type="checkbox" name="consentimiento" required>
             <span>Autorizo el tratamiento de mis datos personales para la gestión de esta solicitud, de acuerdo con la Ley 1581 de 2012.</span>

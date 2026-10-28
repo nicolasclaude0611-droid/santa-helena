@@ -424,11 +424,21 @@
       return ok;
     };
     pq.addEventListener('input', (e) => { const f = e.target.closest('.field, .check'); if (f) f.classList.remove('is-invalid'); });
-    pq.addEventListener('change', (e) => { if (e.target.name === 'tipo_pqrs') $('[data-perr="tipo_pqrs"]', pq).hidden = true; });
+    const msg = $('#p-msg');
+    const syncModo = () => {
+      const adj = pv('modo') === 'adjuntar';
+      $('#p-msg-field').hidden = adj; msg.required = !adj; $('#p-attach-note').hidden = !adj;
+      if (adj) $('#p-msg-field').classList.remove('is-invalid');
+    };
+    pq.addEventListener('change', (e) => {
+      if (e.target.name === 'tipo_pqrs') $('[data-perr="tipo_pqrs"]', pq).hidden = true;
+      if (e.target.name === 'modo') syncModo();
+    });
+    syncModo();
     pq.addEventListener('submit', (e) => {
       e.preventDefault();
       if (!checkPq()) return;
-      const file = pq.elements.archivo.files[0];
+      const adj = pv('modo') === 'adjuntar';
       const tipo = pv('tipo_pqrs');
       const subject = `PQRS · ${tipo} · ${pv('asunto')}`;
       const body = [
@@ -440,13 +450,12 @@
         `Correo: ${pv('correo')}`,
         `Sede: ${pv('sede')}`,
         `Asunto: ${pv('asunto')}`, '',
-        'Descripción:', pv('mensaje'), '',
-        file ? `Archivo de soporte adjunto: ${file.name}` : 'Sin archivos adjuntos.', '',
+        ...(adj ? ['Adjunto a este correo el documento con mi PQRS.'] : ['Descripción:', pv('mensaje')]), '',
         'Autorizo el tratamiento de mis datos personales para la gestión de esta solicitud (Ley 1581 de 2012).',
       ].join('\n');
       const url = `mailto:${SIAU}?cc=${CALIDAD}&subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
       done.innerHTML = `<strong>Su correo está listo.</strong>Revise el mensaje en su aplicación de correo y presione enviar.`
-        + (file ? ` <b>Antes de enviar, adjunte el archivo «${file.name.replace(/[<>&"]/g, '')}»</b>: por seguridad, los navegadores no permiten adjuntarlo automáticamente.` : '')
+        + (adj ? ' <b>Antes de enviar, adjunte el documento con su PQRS.</b>' : '')
         + `<br>Si no se abrió su correo, escriba a <a href="mailto:${SIAU}">${SIAU}</a> con copia a <a href="mailto:${CALIDAD}">${CALIDAD}</a>. <br><button type="button" class="btn btn--ghost" id="pqrs-copy">Copiar el mensaje</button>`;
       done.hidden = false;
       $('#pqrs-copy').addEventListener('click', (ev) => {
