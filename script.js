@@ -306,7 +306,7 @@
     go2.textContent = `Cómo llegar a la sede ${s.name}`;
   };
   frame.addEventListener("load", () => mapEl.classList.remove("is-loading"));
-  siteBtns.forEach((b, i) => b.addEventListener("click", () => selectSite(i)));
+  siteBtns.forEach((b, i) => b.addEventListener("click", () => { sound("tick"); selectSite(i); }));
 
   /* ---------- Contadores ---------- */
   const fmt = new Intl.NumberFormat('es-CO');
