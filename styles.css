@@ -495,7 +495,7 @@ main { overflow-x: clip; }
 .news__btn svg { width: 22px; height: 22px; fill: none; stroke: currentColor; stroke-width: 2.4; stroke-linecap: round; stroke-linejoin: round; }
 .news__btn:disabled { opacity: 0.25; cursor: default; }
 .news__btn:not(:disabled):active { transform: scale(0.94); }
-.news__track { display: grid; grid-auto-flow: column; grid-auto-columns: calc((100% - 2 * var(--gap)) / 3); gap: var(--gap); margin-top: clamp(32px, 4vw, 56px); overflow-x: auto; scroll-snap-type: x mandatory; scroll-behavior: smooth; overscroll-behavior-x: contain; scrollbar-width: none; padding-bottom: 4px; }
+.news__track { display: grid; grid-auto-flow: column; grid-auto-columns: calc((100% - 2 * var(--gap)) / 3); gap: var(--gap); margin-top: clamp(32px, 4vw, 56px); overflow-x: auto; overflow-y: hidden; touch-action: pan-x pan-y; scroll-snap-type: x mandatory; scroll-behavior: smooth; overscroll-behavior-x: contain; overscroll-behavior-y: auto; scrollbar-width: none; padding-bottom: 4px; }
 .news__track::-webkit-scrollbar { display: none; }
 .post { scroll-snap-align: start; display: grid; grid-template-rows: auto 1fr; overflow: hidden; border-radius: var(--radius); background: var(--mist); }
 .post__cover { position: relative; overflow: hidden; aspect-ratio: 16 / 10; }
