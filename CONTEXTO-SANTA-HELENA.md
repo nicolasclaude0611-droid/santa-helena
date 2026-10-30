@@ -253,10 +253,10 @@ lista del REPS que nos dieron: confirmar si está habilitada antes de publicarla
 | Variable | Hex | Uso |
 |---|---|---|
 | `--navy` / `--ink` | `#0A2233` | Color principal: texto, botones principales («Agendar cita»), fondos oscuros (atención territorial, pie, pantalla de carga), color de tema del navegador |
-| `--navy-2` | `#0F2F47` | Fondo de «Para EPS, aseguradoras y empresas», botón oscuro al pasar el cursor, sol del pie |
+| `--navy-2` | `#0F2F47` | Fondo de «Para EPS, aseguradoras y empresas», botón oscuro al pasar el cursor, flor del pie |
 | `--blue` | `#0596C8` | Azul de marca: viñetas, foco de campos, anillos de enfoque, detalles |
 | `--blue-deep` | `#06709A` | Azul profundo: tercera tarjeta de cifras, portada de noticia de vacunación |
-| `--gold` | `#FFE81A` | Amarillo del sol: botón «Pedir esta cita», borde del botón flotante de Helenita, línea junto al texto del inicio, barra de progreso, selección de texto, aviso de voz |
+| `--gold` | `#FFE81A` | Amarillo de la flor: botón «Pedir esta cita», borde del botón flotante de Helenita, línea junto al texto del inicio, barra de progreso, selección de texto, aviso de voz |
 | `--gold-press` | `#F2D900` | Amarillo al presionar |
 | `--mist` | `#EFF4F7` | Neblina: fondo del inicio, de Agendar y de PQRS; tarjetas |
 | `--mist-2` | `#E1EAF0` | Neblina al pasar el cursor |
@@ -291,12 +291,12 @@ oficial). El manual de marca oficial está POR DEFINIR.
 | `img/fuentes/logo.pdf` | **Original vectorial** que envió el responsable (CorelDRAW 2024; según los metadatos, el autor es «BluedigitalCore Publicidad»). Viene sobre fondo azul. | Fuente para generar cualquier versión |
 | `img/logo.png` | Color, sin fondo, **sin lema**, 840×476 | Barra superior y favicon |
 | `img/logo-lema.png` | Color, sin fondo, **con el lema en blanco**, 1000×566 | Fondos oscuros: pantalla de carga y pie |
-| `img/sol.png` | Sol de la marca, silueta muy transparente (marca de agua) | Decoración con `mask` en CSS |
-| `img/sol-solido.png` | Sol de la marca, silueta sólida | Portadas de las noticias |
+| `img/sol.png` | Flor de la marca, silueta muy transparente (marca de agua) | Decoración con `mask` en CSS |
+| `img/sol-solido.png` | Flor de la marca, silueta sólida | Portadas de las noticias |
 
-- Descripción: sol amarillo con la «S» azul, «Santa Helena» y «del Valle» en azules e «IPS» en amarillo, todo
+- Descripción: flor amarilla con la «S» azul (qué flor exactamente: POR DEFINIR), «Santa Helena» y «del Valle» en azules e «IPS» en amarillo, todo
   con contorno blanco; lema «¡La Salud, nuestro compromiso!» en blanco.
-- No hay versión **blanca monocromática** ni **ícono solo** (sol con la S): POR DEFINIR. Se intentó recortar un
+- No hay versión **blanca monocromática** ni **ícono solo** (flor con la S): POR DEFINIR. Se intentó recortar un
   ícono, pero el texto quedaba encima; el favicon usa el logo completo.
 - La versión con lema **no sirve sobre fondo claro**, porque el lema es blanco.
 
@@ -315,7 +315,7 @@ oficial). El manual de marca oficial está POR DEFINIR.
   movimiento».
 - **Íconos:** casi no se usan. Hay un ícono de WhatsApp (SVG), flechas «→» en los enlaces y un parlante en los
   botones de sonido.
-- **Imágenes:** fotos reales de las fachadas de las sedes; Helenita animada sin fondo; el sol de la marca como
+- **Imágenes:** fotos reales de las fachadas de las sedes; Helenita animada sin fondo; la flor de la marca como
   marca de agua. No se usan fotos de banco.
 - **Accesibilidad:** enlace «Saltar al contenido», etiquetas en los campos, foco visible y textos alternativos.
 
@@ -695,7 +695,7 @@ círculo es tocable.
 | `media/helenita/*` | Animaciones generadas con ElevenLabs (imagen base con Nano Banana 2, video con Kling 2.5 Turbo) sobre verde, recortadas con `helenita/tools/keyer.py` |
 | `fotos/sede-valledupar.jpg`, `fotos/sede-la-jagua.jpg`, `fotos/sede-san-juan.jpg` | Fotos de las fachadas enviadas por el responsable (reducidas a 640 px) |
 | `media/voz/*.mp3` | Voz generada con ElevenLabs |
-| Portadas de noticias | Colores de marca con el sol, o Helenita (`pensar.png`, `hablar.png`) |
+| Portadas de noticias | Colores de marca con la flor, o Helenita (`pensar.png`, `hablar.png`) |
 | `media/helenita-*.mp4`, `img/helenita-*-poster.jpg` | Videos antiguos de Helenita con fondo, de la versión inicial. **La página ya no los usa.** |
 | `helenita/renders/`, `helenita/helenita.js`, `motions.js` | Versión vectorial animada de Helenita, el primer intento. No se usa en la página. |
 
@@ -766,7 +766,7 @@ círculo es tocable.
 - Quitar el agrandamiento de las sedes en celular: se probó y se revirtió.
 - Respaldo antes del gorro: GitHub rechazó crear otras ramas o etiquetas desde la sesión (error 403). La versión
   previa al gorro es el commit `04a7bad` de `main`, y la etiqueta `respaldo-antes-gorro` quedó solo en local.
-- Ícono del logo recortado (sol con la S): el texto se superponía, así que se descartó.
+- Ícono del logo recortado (flor con la S): el texto se superponía, así que se descartó.
 
 ### 5.4 Problemas conocidos
 

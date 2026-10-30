@@ -42,7 +42,7 @@ baja y mediana complejidad con 20 años en el Cesar y La Guajira (Colombia). Lem
 | Ruta | Contenido |
 |---|---|
 | `index.html`, `styles.css`, `script.js` | El sitio |
-| `img/` | Logo sin fondo (`logo.png` sin lema, `logo-lema.png` con lema blanco para fondos oscuros), sol de la marca (`sol.png` marca de agua, `sol-solido.png`), imágenes de Helenita. Original vectorial: `img/fuentes/logo.pdf` |
+| `img/` | Logo sin fondo (`logo.png` sin lema, `logo-lema.png` con lema blanco para fondos oscuros), flor de la marca (`sol.png` marca de agua, `sol-solido.png`; los archivos conservan el nombre "sol"), imágenes de Helenita. Original vectorial: `img/fuentes/logo.pdf` |
 | `media/` | Videos actuales de Helenita (con fondo); `media/voz/` voz de Helenita |
 | `media/helenita/` | **Animaciones de Helenita sin fondo** (WebM transparente, MP4 para Safari, PNG) |
 | `helenita/` | Todo lo de Helenita: reproductor, demo, recortador, versión vectorial |
@@ -53,7 +53,7 @@ baja y mediana complejidad con 20 años en el Cesar y La Guajira (Colombia). Lem
 - Colores (`styles.css`): tinta/navy `#0A2233`, azul `#0596C8`, azul profundo `#06709A`,
   amarillo `#FFE81A`, neblina `#EFF4F7`.
 - Tipografías: Bricolage Grotesque (títulos) y Figtree (texto).
-- Logo: sol amarillo con la "S" azul, "Santa Helena del Valle" en azul e "IPS" en amarillo.
+- Logo: flor amarilla con la "S" azul, "Santa Helena del Valle" en azul e "IPS" en amarillo.
 
 ## Helenita (la guía virtual)
 
