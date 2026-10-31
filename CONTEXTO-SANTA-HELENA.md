@@ -70,9 +70,7 @@ continúe el trabajo. Corte: 30 de octubre de 2026 (versión del sitio en la ram
 
 | Sede | Horario |
 |---|---|
-| Valledupar | Lun. a vie. 7:00 a. m. a 7:00 p. m. · sáb. 7:30 a. m. a 1:00 p. m. |
-| La Jagua de Ibirico | POR DEFINIR |
-| San Juan del Cesar | POR DEFINIR |
+| Valledupar, La Jagua de Ibirico y San Juan del Cesar | Lun. a vie. 6:30 a. m. a 12:30 p. m. y 1:30 p. m. a 6:30 p. m. (confirmado por el dueño, 31 oct 2026; reemplaza el anterior de Valledupar con sábado) |
 | Domingos y festivos | POR DEFINIR |
 
 ### 1.5 Contacto y agendamiento
@@ -530,7 +528,7 @@ Psicología · Fisioterapia · Fonoaudiología · Vacunación.
 - Título: «Nuestras sedes». Párrafo: «Tres sedes ubicadas estratégicamente para facilitar el acceso a la atención
   en el Cesar y La Guajira.»
 - Mapa de Google con botón «Cómo llegar a la sede {sede}», que abre la ruta en Google Maps.
-- Tarjetas: Valledupar (sede principal, dirección y horario), La Jagua de Ibirico y San Juan del Cesar (dirección).
+- Tarjetas: Valledupar (sede principal), La Jagua de Ibirico y San Juan del Cesar, cada una con dirección y horario.
   La tarjeta tocada se agranda con foto y datos; las otras se hacen compactas.
 
 **Nosotros**: «Veinte años de trayectoria» (textos completos en 1.3). Filas: «Visión 2028», «Política de
@@ -711,7 +709,7 @@ círculo es tocable.
   personales y la IPS confirma por su canal habitual.
 - **Solo servicios habilitados en el REPS**, filtrados por sede en el formulario. Se quitaron las etiquetas
   «Solo en…» de la lista de servicios por pedido del responsable.
-- **EPS por sede**: lista desplegable en Valledupar y San Juan; texto libre en La Jagua hasta tener la lista.
+- **EPS por sede**: lista desplegable en las tres sedes (La Jagua: Nueva EPS y Particular, desde el 31 oct 2026).
 - **Logo** recortado del PDF vectorial original, en dos versiones (con y sin lema), porque el lema blanco
   desaparece sobre fondos claros.
 - **Pantalla de carga** con el logo palpitando lento, una vez por sesión, para no molestar en cada recarga.
@@ -737,9 +735,7 @@ círculo es tocable.
 
 ### 5.2 Pendientes
 
-- **EPS de La Jagua de Ibirico**: el responsable las enviará. Luego actualizar `SEDES` en `script.js` y quitar la
-  nota en `CLAUDE.md`.
-- **Horarios** de La Jagua y San Juan; domingos y festivos.
+- **Horarios** de domingos y festivos.
 - **Noticias reales** para reemplazar los 6 ejemplos, idealmente con fotos.
 - **Política de privacidad / tratamiento de datos**: falta el documento para enlazarlo.
 - **Redes sociales**: enlaces oficiales.

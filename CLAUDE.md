@@ -35,7 +35,7 @@ baja y mediana complejidad con 20 años en el Cesar y La Guajira (Colombia). Lem
   y `SEDES` (servicios habilitados en el REPS y EPS/convenios de cada sede). Solo se publican servicios
   habilitados; la franja de especialidades de `index.html` debe coincidir con ellos.
 - Habilitados: Valledupar 29, La Jagua de Ibirico 15, San Juan del Cesar 10.
-- **Pendiente:** EPS de La Jagua de Ibirico (`eps: null` → el campo queda de texto libre).
+- Horario de las 3 sedes: lun. a vie. 6:30 a. m. a 12:30 p. m. y 1:30 p. m. a 6:30 p. m. (tarjetas de `#sedes`). Domingos y festivos: por definir.
 
 ## Archivos
 
