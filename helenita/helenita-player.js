@@ -11,6 +11,7 @@
  *   data-src="ruta/"         carpeta de los videos (por defecto media/helenita/)
  *   data-fit="cover"         encuadre del video (por defecto contain); data-pos="50% 0" su posición
  *   data-format="stack"      forzar el modo Safari (solo para pruebas)
+ *   data-eager               cargar enseguida (por defecto carga al acercarse a la pantalla)
  *
  * Cambiar de animación desde JS:  Helenita.play(elemento, 'pulgar')
  *
@@ -83,14 +84,15 @@
     if (isApple || el.dataset.format === 'stack') p = stackedPlayer(el, `${base}${name}-stack.mp4`, loop);
     if (!p) {
       const video = makeVideo(`${base}${name}.webm`, loop);
-      video.poster = `${base}${name}.png`;
+      video.poster = `${base}${name}.webp`;
       el.append(video);
       p = { video, media: video };
     }
     p.media.setAttribute('aria-label', el.getAttribute('aria-label') || 'Helenita');
     p.media.style.width = '100%'; p.media.style.height = '100%'; p.media.style.objectFit = el.dataset.fit || 'contain'; p.media.style.objectPosition = el.dataset.pos || '50% 50%'; p.media.style.display = 'block';
     p.video.addEventListener('ended', () => el.dispatchEvent(new CustomEvent('helenita:ended', { detail: name })));
-    if (!reduceMotion) p.video.play().catch(() => {});
+    if (el._onScreen === false) p.video.autoplay = false; // aún fuera de pantalla: espera a verse
+    else if (!reduceMotion) p.video.play().catch(() => {});
     el._helenita = p; el.dataset.helenita = name;
     return p;
   }
@@ -117,8 +119,21 @@
   window.addEventListener('pageshow', resume);
   window.addEventListener('focus', resume);
 
+  // Carga cada animación solo cuando se acerca a la pantalla (la página abre más liviana).
+  const lazy = 'IntersectionObserver' in window ? new IntersectionObserver(entries => {
+    entries.forEach(e => {
+      if (!e.isIntersecting) return;
+      lazy.unobserve(e.target);
+      if (!e.target._helenita) mount(e.target);
+    });
+  }, { rootMargin: '400px 0px' }) : null;
+
   function init() {
-    document.querySelectorAll('[data-helenita]').forEach(el => { mount(el); io && io.observe(el); });
+    document.querySelectorAll('[data-helenita]').forEach(el => {
+      if (el._helenita) return;
+      if (lazy && !('eager' in el.dataset)) lazy.observe(el); else mount(el);
+      io && io.observe(el);
+    });
   }
   window.Helenita = Object.assign(window.Helenita || {}, { play: mount, init });
   document.readyState === 'loading' ? document.addEventListener('DOMContentLoaded', init) : init();

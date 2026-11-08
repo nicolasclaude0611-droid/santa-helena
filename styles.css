@@ -342,7 +342,10 @@ main { overflow-x: clip; }
 .foot__cols h3 { color: var(--on-navy); font-size: var(--step-body); margin-bottom: 10px; }
 .foot__cols p { font-size: var(--step-small); line-height: 1.8; }
 .foot__cols a { color: var(--on-navy); }
-.foot__legal { position: relative; margin-top: 56px; font-size: var(--step-small); }
+.foot__links { position: relative; display: flex; flex-wrap: wrap; gap: 8px 24px; margin-top: 48px; font-size: var(--step-small); }
+.foot__links a { color: inherit; text-decoration: underline; text-underline-offset: 3px; }
+.check a { color: var(--blue-deep); text-decoration: underline; text-underline-offset: 2px; }
+.foot__legal { position: relative; margin-top: 20px; font-size: var(--step-small); }
 
 /* Guide button */
 .guide-fab { position: fixed; right: 22px; bottom: 22px; z-index: 40; display: flex; align-items: center; gap: 12px; text-decoration: none; opacity: 0; transform: translateY(14px) scale(0.95); pointer-events: none; transition: opacity 260ms var(--ease-out), transform 260ms var(--ease-out); }

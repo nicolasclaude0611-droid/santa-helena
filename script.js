@@ -394,7 +394,13 @@
     go2.href = `https://www.google.com/maps/dir/?api=1&destination=${encodeURIComponent(s.dest)}`;
     go2.textContent = `Cómo llegar a la sede ${s.name}`;
   };
-  frame.addEventListener("load", () => mapEl.classList.remove("is-loading"));
+  frame.addEventListener("load", () => { if (frame.src) mapEl.classList.remove("is-loading"); });
+  // El mapa de Google se carga solo cuando la persona llega a la sección de sedes.
+  const loadMap = () => { if (!frame.src && frame.dataset.src) frame.src = frame.dataset.src; };
+  if ("IntersectionObserver" in window) {
+    const mapIo = new IntersectionObserver((es) => { if (es.some((e) => e.isIntersecting)) { mapIo.disconnect(); loadMap(); } }, { rootMargin: "300px 0px" });
+    mapIo.observe(mapEl);
+  } else loadMap();
   siteBtns.forEach((b, i) => b.addEventListener("click", () => { sound("tick"); selectSite(i); }));
 
   /* ---------- Contadores ---------- */

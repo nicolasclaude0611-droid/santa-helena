@@ -87,6 +87,17 @@ prompts que funcionaron, los costos y el recorte del fondo verde. Puntos clave:
 
 ## Convenciones
 
+- **Qué se publica:** GitHub Pages publica todo el repositorio menos lo listado en `exclude` de `_config.yml`
+  (notas internas como este archivo, `CONTEXTO-SANTA-HELENA.md`, y las carpetas de trabajo de Helenita, fuentes y
+  pruebas). Si agregas notas o carpetas de trabajo, súmalas ahí.
+- **Peso de Helenita:** las animaciones cargan solo al acercarse a la pantalla (`helenita-player.js`; la del inicio
+  lleva `data-eager` para cargar enseguida). La imagen de espera es `.webp` (los `.png` quedan para el equipo, no se
+  publican). Videos recomprimidos: WebM VP9 con transparencia `-crf 42`, MP4 apilado H.264 `-crf 26`.
+- **Mapa de Google:** el iframe trae `data-src` y se carga al llegar a la sección de sedes (`script.js`).
+- **Páginas legales:** `politica-de-datos.html` (con sección `#cookies`) y `terminos.html`, con estilo `legal.css`,
+  enlazadas en el pie y en las casillas de autorización de citas y PQRS. Tienen `noindex` y textos pendientes hasta
+  que llegue la versión aprobada del Agente Textos Web y SEO.
+
 - Sin dependencias ni paso de build: los archivos se sirven tal cual.
 - **Caché:** `index.html` carga `styles.css`, `script.js` y el reproductor con `?v=AAAAMMDDx`. Al cambiar
   cualquiera de ellos, subir esa versión en los tres (si no, los celulares siguen mostrando la versión vieja).

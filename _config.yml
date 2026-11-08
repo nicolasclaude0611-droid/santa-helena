@@ -1,0 +1,32 @@
+# Configuración de GitHub Pages.
+# Lo que está en "exclude" sigue en el repositorio (para el equipo) pero NO se publica en la web.
+# Si se agrega una carpeta o nota de trabajo nueva, súmala aquí.
+exclude:
+  - CLAUDE.md
+  - CONTEXTO-SANTA-HELENA.md
+  - _config.yml
+  - fotos/LEEME.txt
+  - img/fuentes
+  - img/helenita-referencia.jpg
+  - img/helenita-respirando-poster.jpg
+  - img/helenita-saludando-poster.jpg
+  - media/helenita-respirando.mp4
+  - media/helenita-saludando.mp4
+  - media/helenita/navidad
+  - media/helenita/saludar.png
+  - media/helenita/reposo.png
+  - media/helenita/hablar.png
+  - media/helenita/pensar.png
+  - media/helenita/senalar.png
+  - media/helenita/pulgar.png
+  - helenita/ELEVENLABS.md
+  - helenita/README.md
+  - helenita/demo.html
+  - helenita/index.html
+  - helenita/helenita.js
+  - helenita/motions.js
+  - helenita/render.js
+  - helenita/fuentes
+  - helenita/renders
+  - helenita/navidad
+  - helenita/tools

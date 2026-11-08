@@ -11,7 +11,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500..700&family=Figtree:wght@400;500;600;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="styles.css?v=20261031a">
+  <link rel="stylesheet" href="styles.css?v=20261108a">
   <script>document.documentElement.classList.add('js')</script>
 </head>
 <body>
@@ -59,7 +59,7 @@
       <div class="hero__guide">
         <div class="portal">
           <span class="sun-mark portal__sun" aria-hidden="true"></span>
-          <div class="portal__helenita" data-helenita="saludar" data-fit="cover" data-pos="50% 0" aria-label="Helenita, la guía de Santa Helena del Valle IPS, saludando"></div>
+          <div class="portal__helenita" data-helenita="saludar" data-eager data-fit="cover" data-pos="50% 0" aria-label="Helenita, la guía de Santa Helena del Valle IPS, saludando"></div>
         </div>
         <div class="bubble bubble--hero" role="status">
           <p data-type="Hola, soy Helenita. Con gusto le acompaño a agendar su cita.">Hola, soy Helenita. Con gusto le acompaño a agendar su cita.</p>
@@ -193,7 +193,7 @@
             </div>
             <label class="check field--wide">
               <input type="checkbox" name="consentimiento" required>
-              <span>Autorizo a Santa Helena del Valle IPS SAS el tratamiento de mis datos personales para la gestión de esta solicitud, de acuerdo con la Ley 1581 de 2012.</span>
+              <span>Autorizo a Santa Helena del Valle IPS SAS el tratamiento de mis datos personales para la gestión de esta solicitud, de acuerdo con la Ley 1581 de 2012. Consulte la <a href="politica-de-datos.html" target="_blank" rel="noopener">política de tratamiento de datos</a>.</span>
             </label>
           </div>
           <div class="summary" id="summary" aria-live="polite"></div>
@@ -246,7 +246,7 @@
           </div>
         </article>
         <article class="post">
-          <div class="post__cover post__cover--mist" aria-hidden="true"><img src="media/helenita/pensar.png" alt="" width="720" height="720" loading="lazy"></div>
+          <div class="post__cover post__cover--mist" aria-hidden="true"><img src="media/helenita/pensar.webp" alt="" width="720" height="720" loading="lazy"></div>
           <div class="post__body">
             <p class="post__meta"><span class="post__tag">Consejos de Helenita</span><time datetime="2026-10-08">8 oct 2026</time></p>
             <h3>Cómo prepararse para la toma de muestras</h3>
@@ -273,7 +273,7 @@
           </div>
         </article>
         <article class="post">
-          <div class="post__cover post__cover--sky" aria-hidden="true"><img src="media/helenita/hablar.png" alt="" width="720" height="720" loading="lazy"></div>
+          <div class="post__cover post__cover--sky" aria-hidden="true"><img src="media/helenita/hablar.webp" alt="" width="720" height="720" loading="lazy"></div>
           <div class="post__body">
             <p class="post__meta"><span class="post__tag">Consejos de Helenita</span><time datetime="2026-09-05">5 sep 2026</time></p>
             <h3>Qué llevar el día de su cita</h3>
@@ -325,8 +325,8 @@
         <p>Tres sedes ubicadas estratégicamente para facilitar el acceso a la atención en el Cesar y La Guajira.</p>
       </div>
       <div class="sites__body">
-        <div class="sites__map" id="map">
-          <iframe id="map-frame" title="Mapa de Google con la sede seleccionada" src="https://maps.google.com/maps?q=Santa%20Helena%20del%20Valle%20IPS%2C%20Cra.%2011%20%2314-34%2C%20Valledupar%2C%20Cesar&z=16&hl=es&output=embed" loading="lazy" referrerpolicy="no-referrer-when-downgrade" allowfullscreen></iframe>
+        <div class="sites__map is-loading" id="map">
+          <iframe id="map-frame" title="Mapa de Google con la sede seleccionada" data-src="https://maps.google.com/maps?q=Santa%20Helena%20del%20Valle%20IPS%2C%20Cra.%2011%20%2314-34%2C%20Valledupar%2C%20Cesar&z=16&hl=es&output=embed" loading="lazy" referrerpolicy="no-referrer-when-downgrade" allowfullscreen></iframe>
           <a class="map-go btn btn--ink" id="map-go" href="https://www.google.com/maps/dir/?api=1&destination=10.4756282,-73.2495789" target="_blank" rel="noopener">Cómo llegar a la sede Valledupar</a>
         </div>
         <ul class="sites__list plain" id="site-list">
@@ -439,7 +439,7 @@
           <p class="field--wide pqrs__attach" id="p-attach-note" hidden>Al presionar «Preparar correo» se abrirá su correo con sus datos. Adjunte allí su documento de PQRS (PDF, Word o foto) antes de enviarlo.</p>
           <label class="check field--wide">
             <input type="checkbox" name="consentimiento" required>
-            <span>Autorizo el tratamiento de mis datos personales para la gestión de esta solicitud, de acuerdo con la Ley 1581 de 2012.</span>
+            <span>Autorizo el tratamiento de mis datos personales para la gestión de esta solicitud, de acuerdo con la Ley 1581 de 2012. Consulte la <a href="politica-de-datos.html" target="_blank" rel="noopener">política de tratamiento de datos</a>.</span>
           </label>
         </div>
         <p class="panel__error" data-perr="form" hidden>Revise los campos marcados.</p>
@@ -487,6 +487,7 @@
         <p><a href="mailto:gerencia@santahelenadelvalleips.com">gerencia@santahelenadelvalleips.com</a><br><a href="mailto:calidadrh@santahelenadelvalleips.com">calidadrh@santahelenadelvalleips.com</a></p>
       </div>
     </div>
+    <nav class="foot__links" aria-label="Información legal"><a href="politica-de-datos.html">Política de tratamiento de datos y cookies</a><a href="terminos.html">Términos y condiciones</a></nav>
     <p class="foot__legal">Santa Helena del Valle IPS SAS · NIT 900.085.612-7 · Vigilado Superintendencia Nacional de Salud · © 2026</p>
   </footer>
 
@@ -499,7 +500,7 @@
     <symbol id="i-wa" viewBox="0 0 24 24"><path fill="currentColor" d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.75.46 3.45 1.32 4.95L2.05 22l5.25-1.38a9.9 9.9 0 0 0 4.74 1.21h.01c5.46 0 9.91-4.45 9.91-9.91 0-2.65-1.03-5.14-2.9-7.01A9.82 9.82 0 0 0 12.04 2Zm0 18.15h-.01a8.2 8.2 0 0 1-4.19-1.15l-.3-.18-3.12.82.83-3.04-.2-.31a8.23 8.23 0 0 1-1.26-4.38c0-4.54 3.7-8.24 8.25-8.24 2.2 0 4.27.86 5.83 2.42a8.18 8.18 0 0 1 2.41 5.83c0 4.54-3.7 8.23-8.24 8.23Zm4.52-6.16c-.25-.12-1.47-.72-1.69-.81-.23-.08-.39-.12-.56.13-.16.25-.64.81-.79.97-.14.17-.29.19-.54.06-.25-.12-1.05-.39-1.99-1.23-.74-.66-1.23-1.47-1.38-1.72-.14-.25-.02-.38.11-.51.11-.11.25-.29.37-.43.13-.15.17-.25.25-.42.08-.17.04-.31-.02-.43-.06-.13-.56-1.34-.76-1.84-.2-.48-.41-.42-.56-.43h-.48c-.17 0-.43.06-.66.31-.22.25-.86.85-.86 2.07s.89 2.4 1.01 2.56c.12.17 1.75 2.67 4.23 3.74.59.26 1.05.41 1.41.52.59.19 1.13.16 1.56.1.48-.07 1.47-.6 1.67-1.18.21-.58.21-1.07.14-1.18-.06-.1-.22-.16-.47-.28Z"/></symbol>
   </svg>
 
-  <script src="helenita/helenita-player.js?v=20261031a" defer></script>
-  <script src="script.js?v=20261031a" defer></script>
+  <script src="helenita/helenita-player.js?v=20261108a" defer></script>
+  <script src="script.js?v=20261108a" defer></script>
 </body>
 </html>
