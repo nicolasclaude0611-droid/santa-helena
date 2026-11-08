@@ -1,5 +1,9 @@
 (() => {
   const WA_NUMBER = '573113398988';
+  // Dirección de la web para el mensaje de WhatsApp (en vistas previas usa la dirección publicada).
+  const SITE_URL = /(^|\.)santahelenadelvalleips\.com$|github\.io$/.test(location.hostname)
+    ? location.origin + location.pathname.replace(/[^/]*$/, '')
+    : 'https://nicolasclaude0611-droid.github.io/santa-helena/';
   const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   const $ = (s, r = document) => r.querySelector(s);
   const $$ = (s, r = document) => [...r.querySelectorAll(s)];
@@ -223,12 +227,24 @@
     first && first.focus({ preventScroll: true });
   };
 
+  // Paciente menor de edad (tarjeta de identidad, registro civil o menos de 18 años): se piden los datos del responsable.
+  const isMinor = () => {
+    if (/Tarjeta de identidad|Registro civil/.test(value('tipo'))) return true;
+    const nac = value('nacimiento'); if (!nac) return false;
+    const d = new Date(nac + 'T00:00:00'), now = new Date();
+    let age = now.getFullYear() - d.getFullYear();
+    if (now.getMonth() < d.getMonth() || (now.getMonth() === d.getMonth() && now.getDate() < d.getDate())) age--;
+    return age < 18;
+  };
+  const syncMinor = () => { const on = isMinor(); form.querySelectorAll('[data-menor]').forEach((el) => { el.hidden = !on; }); };
+  ['tipo', 'nacimiento'].forEach((n) => { form.elements[n].addEventListener('change', syncMinor); form.elements[n].addEventListener('input', syncMinor); });
+
   const showErr = (key, on) => { const e = $(`[data-error="${key}"]`, form); if (e) e.hidden = !on; };
   const validate = (n) => {
     if (n === 1) { const ok = !!value('sede'); showErr('sede', !ok); return ok; }
     if (n === 2) { const ok = !!value('servicio'); showErr('servicio', !ok); return ok; }
     let ok = true;
-    ['nombre', 'tipo', 'documento', 'nacimiento', 'celular', epsField()].forEach((n2) => {
+    ['nombre', 'tipo', 'documento', 'nacimiento', 'celular', epsField()].concat(isMinor() ? ['responsable', 'responsable_doc'] : []).forEach((n2) => {
       const el = form.elements[n2]; const bad = !el.value.trim();
       el.closest('.field').classList.toggle('is-invalid', bad);
       el.setAttribute('aria-invalid', bad ? 'true' : 'false');
@@ -274,12 +290,13 @@
       `*Paciente:* ${value('nombre')}`,
       `*Documento:* ${value('tipo')} ${value('documento')}`,
       `*Fecha de nacimiento:* ${fmtDate(value('nacimiento'))}`,
+      ...(isMinor() ? [`*Responsable (paciente menor de edad):* ${value('responsable')} · C.C. ${value('responsable_doc')}`] : []),
       `*Celular:* ${value('celular')}`,
       `*EPS o convenio:* ${value(epsField())}`,
       `*Jornada de preferencia:* ${value('jornada')}`,
     ];
     if (value('observaciones')) lines.push(`*Observaciones:* ${value('observaciones')}`);
-    lines.push('', 'Autorizo el tratamiento de mis datos personales, incluidos los datos sensibles, para gestionar esta solicitud, según la política de tratamiento de datos de Santa Helena del Valle IPS SAS (Ley 1581 de 2012). Quedo atento(a) a su confirmación.');
+    lines.push('', 'Autorizo el tratamiento de mis datos personales, incluidos los datos sensibles, para gestionar esta solicitud, según la política de tratamiento de datos de Santa Helena del Valle IPS SAS (Ley 1581 de 2012). Quedo atento(a) a su confirmación.', '', `Al enviar este mensaje acepto la política de tratamiento de datos personales y los términos y condiciones de Santa Helena del Valle IPS SAS, publicados en ${SITE_URL}`);
     const url = `https://wa.me/${WA_NUMBER}?text=${encodeURIComponent(lines.join('\n'))}`;
     say('Su mensaje está listo en WhatsApp. Solo debe enviarlo.');
     act('pulgar');

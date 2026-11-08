@@ -618,3 +618,7 @@ main { overflow-x: clip; }
 .cookie-note__actions { display: flex; align-items: center; gap: 16px; margin-left: auto; }
 .cookie-note__link { color: inherit; text-decoration: underline; text-underline-offset: 3px; white-space: nowrap; }
 .cookie-note__ok { padding: 9px 18px; border: 0; border-radius: 999px; background: var(--gold); color: var(--ink); font: inherit; font-weight: 600; cursor: pointer; }
+
+/* Datos del responsable cuando el paciente es menor de edad */
+.form-grid [data-menor][hidden] { display: none; }
+.minor-note { margin: 0; padding: 12px 14px; border-left: 4px solid var(--gold); background: var(--mist); border-radius: 0 10px 10px 0; font-size: var(--step-small); }

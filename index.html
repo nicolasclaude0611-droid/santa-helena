@@ -11,7 +11,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500..700&family=Figtree:wght@400;500;600;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="styles.css?v=20261108a">
+  <link rel="stylesheet" href="styles.css?v=20261108b">
   <script>document.documentElement.classList.add('js')</script>
 </head>
 <body>
@@ -169,6 +169,15 @@
             <div class="field">
               <label for="f-nac">Fecha de nacimiento</label>
               <input id="f-nac" name="nacimiento" type="date" required>
+            </div>
+            <p class="field--wide minor-note" data-menor hidden>El paciente es menor de edad. Escriba los datos de la madre, el padre o el representante legal que solicita la cita.</p>
+            <div class="field" data-menor hidden>
+              <label for="f-resp">Nombre del responsable</label>
+              <input id="f-resp" name="responsable" autocomplete="name">
+            </div>
+            <div class="field" data-menor hidden>
+              <label for="f-resp-doc">Cédula del responsable</label>
+              <input id="f-resp-doc" name="responsable_doc" inputmode="numeric">
             </div>
             <div class="field">
               <label for="f-cel">Celular de contacto</label>
@@ -506,7 +515,7 @@
     <p>Esta página no usa cookies propias. El mapa y las fuentes de Google pueden usar las suyas.</p>
     <div class="cookie-note__actions"><a class="cookie-note__link" href="politica-de-datos.html#cookies">Ver política</a><button type="button" class="cookie-note__ok" id="cookie-ok">Entendido</button></div>
   </div>
-  <script src="helenita/helenita-player.js?v=20261108a" defer></script>
-  <script src="script.js?v=20261108a" defer></script>
+  <script src="helenita/helenita-player.js?v=20261108b" defer></script>
+  <script src="script.js?v=20261108b" defer></script>
 </body>
 </html>
