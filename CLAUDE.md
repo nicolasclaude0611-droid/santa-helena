@@ -94,9 +94,13 @@ prompts que funcionaron, los costos y el recorte del fondo verde. Puntos clave:
   lleva `data-eager` para cargar enseguida). La imagen de espera es `.webp` (los `.png` quedan para el equipo, no se
   publican). Videos recomprimidos: WebM VP9 con transparencia `-crf 42`, MP4 apilado H.264 `-crf 26`.
 - **Mapa de Google:** el iframe trae `data-src` y se carga al llegar a la sección de sedes (`script.js`).
-- **Páginas legales:** `politica-de-datos.html` (con sección `#cookies`) y `terminos.html`, con estilo `legal.css`,
-  enlazadas en el pie y en las casillas de autorización de citas y PQRS. Tienen `noindex` y textos pendientes hasta
-  que llegue la versión aprobada del Agente Textos Web y SEO.
+- **Páginas legales:** `politica-de-datos.html` (cookies en `#cookies`) y `terminos.html`, con estilo `legal.css`,
+  enlazadas en el pie y en las casillas de autorización de citas y PQRS. Textos aprobados por Nicolas el 8 nov 2026
+  (Agente Textos Web y SEO, `entregas/textos-seo/2026-11-08-textos-legales-web.md` en la oficina), aún sin revisión
+  del abogado: si cambia algo, actualizar las páginas. Las notas «[REVISIÓN DEL ABOGADO]» nunca van en la web.
+- **Aviso de cookies** (`#cookie-note`): franja inferior con «Ver política» y «Entendido»; se recuerda en
+  `localStorage` (`shv-cookies`). Si la página empieza a guardar algo nuevo en el navegador, añadirlo a la tabla de
+  la sección 1.13 de la política. La nota «Información general de salud…» va solo en las noticias «Consejos de Helenita».
 
 - Sin dependencias ni paso de build: los archivos se sirven tal cual.
 - **Caché:** `index.html` carga `styles.css`, `script.js` y el reproductor con `?v=AAAAMMDDx`. Al cambiar

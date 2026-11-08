@@ -279,7 +279,7 @@
       `*Jornada de preferencia:* ${value('jornada')}`,
     ];
     if (value('observaciones')) lines.push(`*Observaciones:* ${value('observaciones')}`);
-    lines.push('', 'Autorizo el tratamiento de mis datos personales para la gestión de esta solicitud. Quedo atento(a) a su confirmación.');
+    lines.push('', 'Autorizo el tratamiento de mis datos personales, incluidos los datos sensibles, para gestionar esta solicitud, según la política de tratamiento de datos de Santa Helena del Valle IPS SAS (Ley 1581 de 2012). Quedo atento(a) a su confirmación.');
     const url = `https://wa.me/${WA_NUMBER}?text=${encodeURIComponent(lines.join('\n'))}`;
     say('Su mensaje está listo en WhatsApp. Solo debe enviarlo.');
     act('pulgar');
@@ -556,7 +556,7 @@
         '',
         ...(adj ? ['Adjunto a este correo el documento con el detalle de mi solicitud.'] : ['DESCRIPCIÓN', pv('mensaje')]),
         '',
-        'Autorizo el tratamiento de mis datos personales para la gestión de esta solicitud, de acuerdo con la Ley 1581 de 2012.',
+        'Autorizo el tratamiento de mis datos personales, incluidos los datos sensibles, para gestionar esta solicitud, según la política de tratamiento de datos de Santa Helena del Valle IPS SAS (Ley 1581 de 2012).',
         '',
         'Quedo atento(a) a su respuesta.',
         '',
@@ -573,6 +573,19 @@
         (navigator.clipboard ? navigator.clipboard.writeText(t) : Promise.reject()).then(() => { ev.target.textContent = 'Mensaje copiado'; }, () => { ev.target.textContent = 'No se pudo copiar'; });
       });
       location.href = url;
+    });
+  }
+
+  /* ---------- Aviso corto de cookies ---------- */
+  // Se muestra hasta que la persona presiona «Entendido»; eso se recuerda solo en su navegador.
+  const cookieNote = document.getElementById('cookie-note');
+  if (cookieNote) {
+    let seenCookies = false;
+    try { seenCookies = localStorage.getItem('shv-cookies') === 'ok'; } catch (e) {}
+    if (!seenCookies) setTimeout(() => { cookieNote.hidden = false; }, 1200);
+    document.getElementById('cookie-ok').addEventListener('click', () => {
+      cookieNote.hidden = true;
+      try { localStorage.setItem('shv-cookies', 'ok'); } catch (e) {}
     });
   }
 })();
