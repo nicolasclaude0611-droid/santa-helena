@@ -102,6 +102,10 @@ prompts que funcionaron, los costos y el recorte del fondo verde. Puntos clave:
   `localStorage` (`shv-cookies`). Si la página empieza a guardar algo nuevo en el navegador, añadirlo a la tabla de
   la sección 1.13 de la política. La nota «Información general de salud…» va solo en las noticias «Consejos de Helenita».
 
+- **Hostinger (santahelenadelvalleips.com):** se publica con un ZIP de solo lo publicable (lo que deja `_config.yml`)
+  más `.htaccess` (https, sin www, cabeceras de seguridad con CSP para Google Maps/Fonts, caché, página `404.html` y
+  redirecciones 301 de las direcciones del WordPress viejo). Canonical, metadatos para redes (`img/compartir.jpg`),
+  `robots.txt`, `sitemap.xml` y el mensaje de WhatsApp apuntan a https://santahelenadelvalleips.com/.
 - Sin dependencias ni paso de build: los archivos se sirven tal cual.
 - **Caché:** `index.html` carga `styles.css`, `script.js` y el reproductor con `?v=AAAAMMDDx`. Al cambiar
   cualquiera de ellos, subir esa versión en los tres (si no, los celulares siguen mostrando la versión vieja).
