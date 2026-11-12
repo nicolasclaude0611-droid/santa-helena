@@ -338,7 +338,7 @@ main { overflow-x: clip; }
 .foot__logo { height: 84px; width: auto; }
 .foot__up { color: var(--on-navy); font-weight: 600; }
 .foot__slogan { position: relative; margin: clamp(56px, 8vw, 120px) 0; font-family: var(--font-display); font-size: clamp(2.6rem, 0.8rem + 6.8vw, 7.5rem); line-height: 1; color: var(--on-navy); max-width: 14ch; }
-.foot__cols { position: relative; display: grid; grid-template-columns: repeat(3, 1fr); gap: var(--gap); }
+.foot__cols { position: relative; display: grid; grid-template-columns: 1.2fr 1.2fr 1fr 1.3fr; gap: var(--gap); }
 .foot__cols h3 { color: var(--on-navy); font-size: var(--step-body); margin-bottom: 10px; }
 .foot__cols p { font-size: var(--step-small); line-height: 1.8; }
 .foot__cols a { color: var(--on-navy); }
@@ -674,3 +674,9 @@ html.modal-open { overflow: hidden; }
   .gallery__btn { display: none; }
 }
 @media (prefers-reduced-motion: reduce) { .post-modal[open] { animation: none; } .gallery__track { scroll-behavior: auto; } .post[data-post] { transition: none; } }
+
+/* Enlace a Instagram */
+.ig-link { display: inline-flex; align-items: center; gap: 8px; font-weight: 600; overflow-wrap: anywhere; }
+.ig-icon { flex: none; width: 22px; height: 22px; fill: none; stroke: currentColor; stroke-width: 2; }
+.ig-icon .ig-dot { fill: currentColor; stroke: none; }
+@media (min-width: 761px) and (max-width: 1080px) { .foot__cols { grid-template-columns: 1fr 1fr; } }
