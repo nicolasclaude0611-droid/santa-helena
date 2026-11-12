@@ -8,8 +8,9 @@ set -euo pipefail
 cd "$(git rev-parse --show-toplevel)"
 ORIGEN="${1:-main}"; CONFIRMAR="${2:-}"
 [ "$ORIGEN" = "--confirmar" ] && { ORIGEN=main; CONFIRMAR=--confirmar; }
-git fetch -q origin "$ORIGEN" produccion 2>/dev/null || git fetch -q origin "$ORIGEN"
-REF=$(git rev-parse "origin/$ORIGEN" 2>/dev/null || git rev-parse "$ORIGEN")
+git fetch -q origin "+refs/heads/$ORIGEN:refs/remotes/origin/$ORIGEN"
+git fetch -q origin "+refs/heads/produccion:refs/remotes/origin/produccion" 2>/dev/null || true
+REF=$(git rev-parse -q --verify "origin/$ORIGEN^{commit}")
 TMP=$(mktemp -d); trap 'rm -rf "$TMP"' EXIT
 mkdir -p "$TMP/src"; git archive "$REF" | tar -x -C "$TMP/src"
 mkdir -p "$TMP/out"
