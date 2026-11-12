@@ -23,7 +23,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500..700&family=Figtree:wght@400;500;600;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="styles.css?v=20261111a">
+  <link rel="stylesheet" href="styles.css?v=20261112a">
   <script>document.documentElement.classList.add('js')</script>
 </head>
 <body>
@@ -241,70 +241,124 @@
     <section class="news" id="noticias" aria-labelledby="news-title">
       <div class="news__head">
         <h2 class="h2" id="news-title">Noticias</h2>
-        <p>Jornadas, campañas y consejos de salud para usted y su familia.</p>
+        <p>Campañas, novedades y guías para usted y su familia.</p>
         <div class="news__nav">
           <button class="news__btn" type="button" data-dir="-1" aria-label="Noticia anterior" aria-controls="news-track"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M15 5l-7 7 7 7"/></svg></button>
           <button class="news__btn" type="button" data-dir="1" aria-label="Noticia siguiente" aria-controls="news-track"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 5l7 7-7 7"/></svg></button>
         </div>
       </div>
       <div class="news__track" id="news-track" tabindex="0" role="region" aria-label="Noticias recientes">
-        <article class="post">
-          <div class="post__cover post__cover--blue" aria-hidden="true"><span class="sun-mark"></span></div>
+        <article class="post" data-post="noviembre-azul">
+          <div class="post__cover post__cover--photo" aria-hidden="true"><img src="media/noticias/noviembre-azul/portada.webp" alt="" width="720" height="720" loading="lazy"></div>
           <div class="post__body">
-            <p class="post__meta"><span class="post__tag">Vacunación</span><time datetime="2026-10-24">24 oct 2026</time></p>
-            <h3>Jornada de vacunación en San Juan del Cesar</h3>
-            <p>Acérquese con el carné de vacunación de toda la familia. Aplicamos las vacunas del esquema nacional para niños, adultos y gestantes.</p>
-            <a class="link-arrow" href="#agendar">Agendar vacunación</a>
+            <p class="post__meta"><span class="post__tag">Campaña</span><time datetime="2026-11">Noviembre 2026</time></p>
+            <h3>Noviembre Azul: cuidarse también es de hombres</h3>
+            <p>Este mes hablamos sin pena de la salud del hombre y de la prevención del cáncer de próstata.</p>
+            <button class="link-arrow post__open" type="button" aria-haspopup="dialog">Ver publicación</button>
           </div>
         </article>
-        <article class="post">
-          <div class="post__cover post__cover--rose" aria-hidden="true"><span class="sun-mark"></span></div>
+        <article class="post" data-post="nueva-web">
+          <div class="post__cover post__cover--blue" aria-hidden="true"><img src="media/helenita/saludar.webp" alt="" width="720" height="720" loading="lazy"></div>
           <div class="post__body">
-            <p class="post__meta"><span class="post__tag">Prevención</span><time datetime="2026-10-15">15 oct 2026</time></p>
-            <h3>Octubre, mes de la prevención del cáncer de mama</h3>
-            <p>La detección temprana salva vidas. Conozca cómo hacer el autoexamen y solicite su valoración en ginecobstetricia.</p>
-            <a class="link-arrow" href="#servicios">Ver servicios</a>
+            <p class="post__meta"><span class="post__tag">Novedades</span><time datetime="2026-11-11">11 nov 2026</time></p>
+            <h3>Estrenamos nuestra nueva página web</h3>
+            <p>Ahora puede pedir su cita, radicar sus PQRS y conocer nuestras sedes y servicios desde su celular.</p>
+            <button class="link-arrow post__open" type="button" aria-haspopup="dialog">Leer noticia</button>
           </div>
         </article>
-        <article class="post">
-          <div class="post__cover post__cover--mist" aria-hidden="true"><img src="media/helenita/pensar.webp" alt="" width="720" height="720" loading="lazy"></div>
+        <article class="post" data-post="guia-cita">
+          <div class="post__cover post__cover--sky" aria-hidden="true"><img src="media/helenita/senalar.webp" alt="" width="720" height="720" loading="lazy"></div>
           <div class="post__body">
-            <p class="post__meta"><span class="post__tag">Consejos de Helenita</span><time datetime="2026-10-08">8 oct 2026</time></p>
-            <h3>Cómo prepararse para la toma de muestras</h3>
-            <p>Para la mayoría de exámenes de sangre debe estar en ayunas de 8 a 12 horas. Traiga la orden médica y su documento de identidad.</p>
-            <p class="post__note">Información general de salud. No reemplaza la consulta con su médico.</p>
-            <a class="link-arrow" href="#preguntas">Preguntas frecuentes</a>
+            <p class="post__meta"><span class="post__tag">Guía paso a paso</span><time datetime="2026-11-12">12 nov 2026</time></p>
+            <h3>Cómo pedir su cita en la página web</h3>
+            <p>Solo necesita WhatsApp y los datos del paciente. Le explicamos cada paso para hacerlo en pocos minutos.</p>
+            <button class="link-arrow post__open" type="button" aria-haspopup="dialog">Ver los pasos</button>
           </div>
         </article>
-        <article class="post">
-          <div class="post__cover post__cover--navy" aria-hidden="true"><span class="sun-mark"></span></div>
+        <article class="post" data-post="guia-pqrs">
+          <div class="post__cover post__cover--mist" aria-hidden="true"><img src="media/helenita/hablar.webp" alt="" width="720" height="720" loading="lazy"></div>
           <div class="post__body">
-            <p class="post__meta"><span class="post__tag">Atención territorial</span><time datetime="2026-09-29">29 sep 2026</time></p>
-            <h3>Nuestros equipos llegan a las veredas de La Jagua</h3>
-            <p>Los Equipos de Salud Territorial visitan los hogares para caracterizar a las familias y programar sus controles.</p>
-            <a class="link-arrow" href="#sedes">Conocer las sedes</a>
-          </div>
-        </article>
-        <article class="post">
-          <div class="post__cover post__cover--gold" aria-hidden="true"><span class="sun-mark"></span></div>
-          <div class="post__body">
-            <p class="post__meta"><span class="post__tag">Salud oral</span><time datetime="2026-09-18">18 sep 2026</time></p>
-            <h3>Semana de la salud oral en Valledupar</h3>
-            <p>Valoración y educación en higiene oral para niños y adultos. Agende su consulta de odontología general.</p>
-            <a class="link-arrow" href="#agendar">Agendar odontología</a>
-          </div>
-        </article>
-        <article class="post">
-          <div class="post__cover post__cover--sky" aria-hidden="true"><img src="media/helenita/hablar.webp" alt="" width="720" height="720" loading="lazy"></div>
-          <div class="post__body">
-            <p class="post__meta"><span class="post__tag">Consejos de Helenita</span><time datetime="2026-09-05">5 sep 2026</time></p>
-            <h3>Qué llevar el día de su cita</h3>
-            <p>Su documento de identidad, la orden médica si la tiene y los resultados de exámenes anteriores. Llegue 15 minutos antes.</p>
-            <p class="post__note">Información general de salud. No reemplaza la consulta con su médico.</p>
-            <a class="link-arrow" href="#agendar">Agendar cita</a>
+            <p class="post__meta"><span class="post__tag">Guía paso a paso</span><time datetime="2026-11-12">12 nov 2026</time></p>
+            <h3>Cómo radicar una PQRS en la página web</h3>
+            <p>Peticiones, quejas, reclamos, sugerencias y felicitaciones: así nos la hace llegar por correo electrónico.</p>
+            <button class="link-arrow post__open" type="button" aria-haspopup="dialog">Ver los pasos</button>
           </div>
         </article>
       </div>
+      <!-- Contenido completo de cada noticia (se muestra en la ventana flotante) -->
+      <template id="post-noviembre-azul">
+        <div class="gallery" data-gallery>
+          <div class="gallery__track" tabindex="0" aria-label="Láminas de la publicación">
+          <figure class="gallery__slide"><img src="media/noticias/noviembre-azul/lamina-1.webp" alt="Noviembre Azul: cuidarse también es de hombres. Helenita saluda y cuenta cómo cuidar la salud del hombre." width="1080" height="1080" loading="lazy" decoding="async"></figure>
+          <figure class="gallery__slide"><img src="media/noticias/noviembre-azul/lamina-2.webp" alt="¿Qué es Noviembre Azul? Durante este mes hablamos de la salud del hombre; el listón azul invita a prevenir el cáncer de próstata, sin pena." width="1080" height="1080" loading="lazy" decoding="async"></figure>
+          <figure class="gallery__slide"><img src="media/noticias/noviembre-azul/lamina-3.webp" alt="¿Por qué no esperar a sentir algo? En sus primeras etapas suele no dar síntomas: conviene consultar desde los 50 años, o antes si hay antecedentes familiares." width="1080" height="1080" loading="lazy" decoding="async"></figure>
+          <figure class="gallery__slide"><img src="media/noticias/noviembre-azul/lamina-4.webp" alt="Señales para consultar a su médico: orinar muy seguido de noche, chorro débil, dificultad para orinar, sangre en orina o semen. Pueden tener otras causas: su médico lo evalúa." width="1080" height="1080" loading="lazy" decoding="async"></figure>
+          <figure class="gallery__slide"><img src="media/noticias/noviembre-azul/lamina-5.webp" alt="Aquí lo acompañamos en cada paso: medicina general, medicina interna y toma de muestras de laboratorio, en cualquiera de nuestras 3 sedes." width="1080" height="1080" loading="lazy" decoding="async"></figure>
+          <figure class="gallery__slide"><img src="media/noticias/noviembre-azul/lamina-6.webp" alt="Agende hoy su cita por WhatsApp al 311 339 8988." width="1080" height="1080" loading="lazy" decoding="async"></figure>
+          </div>
+          <button class="gallery__btn gallery__btn--prev" type="button" data-gdir="-1" aria-label="Lámina anterior"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M15 5l-7 7 7 7"/></svg></button>
+          <button class="gallery__btn gallery__btn--next" type="button" data-gdir="1" aria-label="Lámina siguiente"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 5l7 7-7 7"/></svg></button>
+          <div class="gallery__dots" aria-hidden="true"></div>
+        </div>
+        <div class="post-modal__text">
+<p>Noviembre Azul: cuidarse también es de hombres 💙</p>
+<p>Este mes le invitamos a hablar sin pena de la salud masculina y de la prevención del cáncer de próstata. En sus primeras etapas suele no dar señales, por eso un chequeo a tiempo es una forma de cuidarse.</p>
+<p>Si nota cambios al orinar o tiene dudas, consulte a su médico. En Santa Helena del Valle IPS le atendemos con medicina general, medicina interna y toma de muestras de laboratorio, en Valledupar, La Jagua de Ibirico y San Juan del Cesar.</p>
+<p>📲 Agende su cita por WhatsApp: 311 339 8988<br>💬 Comparta este post con los hombres que usted quiere: su papá, su esposo, sus hermanos, sus amigos.</p>
+<p>¡La salud, nuestro compromiso!</p>
+<p class="post-modal__tags">#NoviembreAzul #SaludDelHombre #PrevenciónDelCáncerDePróstata #ChequeoATiempo #SantaHelenaDelValleIPS #Valledupar #LaJaguaDeIbirico #SanJuanDelCesar #Cesar #LaGuajira</p>
+          <a class="btn btn--ink" href="#agendar" data-close>Agendar cita</a>
+        </div>
+      </template>
+      <template id="post-nueva-web">
+        <div class="post-modal__text">
+          <p>Santa Helena del Valle IPS estrena página web en <strong>santahelenadelvalleips.com</strong>. La hicimos pensando en usted, para que encuentre todo más fácil desde su celular o su computador.</p>
+          <h4>Qué puede hacer en ella</h4>
+          <ul>
+            <li><strong>Pedir su cita en 3 pasos:</strong> elige la sede, el servicio y escribe los datos del paciente. El mensaje queda listo para enviarlo por WhatsApp.</li>
+            <li><strong>Radicar sus PQRS</strong> (peticiones, quejas, reclamos, sugerencias y felicitaciones) por correo electrónico.</li>
+            <li><strong>Ver los servicios habilitados en cada sede</strong> (Valledupar, La Jagua de Ibirico y San Juan del Cesar), con su dirección, horario y cómo llegar.</li>
+            <li><strong>Conocer a Helenita</strong>, nuestra guía virtual, que le acompaña mientras pide su cita.</li>
+          </ul>
+          <p>La página no guarda sus datos: su solicitud solo nos llega cuando usted envía el mensaje.</p>
+          <p>Si lo prefiere, también puede llamarnos a la línea (605) 588 5690, ext. 201 a 301, o escribirnos al WhatsApp 311 339 8988.</p>
+          <a class="btn btn--ink" href="#agendar" data-close>Agendar cita</a>
+        </div>
+      </template>
+      <template id="post-guia-cita">
+        <div class="post-modal__text">
+          <p>Para pedir su cita solo necesita un celular o computador con WhatsApp y los datos del paciente.</p>
+          <ol class="steps-list">
+            <li>Presione <strong>«Agendar cita»</strong>, en la parte de arriba de la página.</li>
+            <li>Elija la <strong>sede</strong> donde desea ser atendido: Valledupar, La Jagua de Ibirico o San Juan del Cesar. Presione «Continuar».</li>
+            <li>Elija el <strong>área y el servicio</strong>. Solo aparecen los servicios habilitados en esa sede. Presione «Continuar».</li>
+            <li>Escriba los <strong>datos del paciente</strong>: nombres y apellidos, tipo y número de documento, fecha de nacimiento, celular, EPS o convenio y la jornada que prefiere (mañana o tarde).</li>
+            <li>Si el paciente es <strong>menor de edad</strong>, escriba también el nombre y la cédula de la madre, el padre o el representante legal.</li>
+            <li>Lea y marque la <strong>autorización de tratamiento de datos</strong>.</li>
+            <li>Presione <strong>«Pedir esta cita»</strong>. Se abre WhatsApp con el mensaje listo: revíselo y envíelo.</li>
+            <li>Nuestro equipo le responde por WhatsApp con la <strong>sede, la fecha y la hora</strong> asignadas. Su cita queda confirmada cuando reciba esa respuesta.</li>
+          </ol>
+          <p class="post-modal__note">Este canal no atiende urgencias. Si tiene una urgencia, acuda al servicio de urgencias más cercano o llame a la línea 123.</p>
+          <a class="btn btn--ink" href="#agendar" data-close>Pedir mi cita ahora</a>
+        </div>
+      </template>
+      <template id="post-guia-pqrs">
+        <div class="post-modal__text">
+          <p>Por la página puede presentar peticiones, quejas, reclamos, sugerencias y felicitaciones. Su opinión nos ayuda a mejorar la atención.</p>
+          <ol class="steps-list">
+            <li>Vaya a la sección <strong>«PQRS»</strong>, en el menú de la página.</li>
+            <li>Elija el <strong>tipo de solicitud</strong>: petición, queja, reclamo, sugerencia o felicitación.</li>
+            <li>Escriba <strong>sus datos</strong>: nombres y apellidos, tipo y número de documento, celular, correo electrónico y la sede (o «No aplica»).</li>
+            <li>Escriba el <strong>motivo o asunto</strong>.</li>
+            <li>Elija cómo presentarla: <strong>escribirla en el formulario</strong>, o <strong>adjuntar su propio documento</strong> (PDF, Word o foto) en el correo.</li>
+            <li>Marque la <strong>autorización de tratamiento de datos</strong> y presione <strong>«Preparar correo»</strong>.</li>
+            <li>Se abre su correo con el mensaje listo para el Sistema de Información y Atención al Usuario (SIAU), con copia al área de Calidad. Si eligió adjuntar, agregue su documento. Luego <strong>envíelo</strong>.</li>
+            <li>Le respondemos dentro de los términos de ley: <strong>hasta 15 días hábiles</strong>.</li>
+          </ol>
+          <p>También puede radicar su PQRS por escrito en cualquiera de nuestras sedes.</p>
+          <a class="btn btn--ink" href="#pqrs" data-close>Ir a PQRS</a>
+        </div>
+      </template>
     </section>
 
     <!-- Comunidad -->
@@ -523,11 +577,21 @@
     <symbol id="i-wa" viewBox="0 0 24 24"><path fill="currentColor" d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.75.46 3.45 1.32 4.95L2.05 22l5.25-1.38a9.9 9.9 0 0 0 4.74 1.21h.01c5.46 0 9.91-4.45 9.91-9.91 0-2.65-1.03-5.14-2.9-7.01A9.82 9.82 0 0 0 12.04 2Zm0 18.15h-.01a8.2 8.2 0 0 1-4.19-1.15l-.3-.18-3.12.82.83-3.04-.2-.31a8.23 8.23 0 0 1-1.26-4.38c0-4.54 3.7-8.24 8.25-8.24 2.2 0 4.27.86 5.83 2.42a8.18 8.18 0 0 1 2.41 5.83c0 4.54-3.7 8.23-8.24 8.23Zm4.52-6.16c-.25-.12-1.47-.72-1.69-.81-.23-.08-.39-.12-.56.13-.16.25-.64.81-.79.97-.14.17-.29.19-.54.06-.25-.12-1.05-.39-1.99-1.23-.74-.66-1.23-1.47-1.38-1.72-.14-.25-.02-.38.11-.51.11-.11.25-.29.37-.43.13-.15.17-.25.25-.42.08-.17.04-.31-.02-.43-.06-.13-.56-1.34-.76-1.84-.2-.48-.41-.42-.56-.43h-.48c-.17 0-.43.06-.66.31-.22.25-.86.85-.86 2.07s.89 2.4 1.01 2.56c.12.17 1.75 2.67 4.23 3.74.59.26 1.05.41 1.41.52.59.19 1.13.16 1.56.1.48-.07 1.47-.6 1.67-1.18.21-.58.21-1.07.14-1.18-.06-.1-.22-.16-.47-.28Z"/></symbol>
   </svg>
 
+  <dialog class="post-modal" id="post-modal" aria-labelledby="post-modal-title">
+    <div class="post-modal__box">
+      <header class="post-modal__head">
+        <p class="post__meta" id="post-modal-meta"></p>
+        <h2 class="post-modal__title" id="post-modal-title"></h2>
+        <button class="post-modal__close" type="button" data-close aria-label="Cerrar"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg></button>
+      </header>
+      <div class="post-modal__content" id="post-modal-content"></div>
+    </div>
+  </dialog>
   <div class="cookie-note" id="cookie-note" role="region" aria-label="Aviso de cookies" hidden>
     <p>Esta página no usa cookies propias. El mapa y las fuentes de Google pueden usar las suyas.</p>
     <div class="cookie-note__actions"><a class="cookie-note__link" href="politica-de-datos.html#cookies">Ver política</a><button type="button" class="cookie-note__ok" id="cookie-ok">Entendido</button></div>
   </div>
-  <script src="helenita/helenita-player.js?v=20261111a" defer></script>
-  <script src="script.js?v=20261111a" defer></script>
+  <script src="helenita/helenita-player.js?v=20261112a" defer></script>
+  <script src="script.js?v=20261112a" defer></script>
 </body>
 </html>

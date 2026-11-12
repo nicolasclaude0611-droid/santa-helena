@@ -514,6 +514,70 @@
     addEventListener('resize', sync); sync();
   }
 
+  /* ---------- Noticias: ventana flotante con el contenido completo ---------- */
+  const modal = document.getElementById('post-modal');
+  if (modal && typeof modal.showModal === 'function') {
+    const mTitle = document.getElementById('post-modal-title');
+    const mMeta = document.getElementById('post-modal-meta');
+    const mBody = document.getElementById('post-modal-content');
+    let opener = null;
+    const setupGallery = (g) => {
+      const t = g.querySelector('.gallery__track');
+      const slides = [...t.children];
+      const dots = g.querySelector('.gallery__dots');
+      dots.innerHTML = slides.map(() => '<span></span>').join('');
+      const prev = g.querySelector('[data-gdir="-1"]'), next = g.querySelector('[data-gdir="1"]');
+      const idx = () => Math.round(t.scrollLeft / t.clientWidth);
+      const sync = () => {
+        const i = idx();
+        [...dots.children].forEach((d, k) => d.classList.toggle('is-on', k === i));
+        prev.disabled = i <= 0; next.disabled = i >= slides.length - 1;
+      };
+      g.querySelectorAll('[data-gdir]').forEach((b) => b.addEventListener('click', () => {
+        t.scrollTo({ left: (idx() + Number(b.dataset.gdir)) * t.clientWidth, behavior: reduce ? 'auto' : 'smooth' });
+      }));
+      t.addEventListener('keydown', (e) => {
+        if (e.key === 'ArrowRight' || e.key === 'ArrowLeft') { e.preventDefault(); (e.key === 'ArrowRight' ? next : prev).click(); }
+      });
+      t.addEventListener('scroll', () => requestAnimationFrame(sync), { passive: true });
+      sync();
+    };
+    const openPost = (card) => {
+      const tpl = document.getElementById(`post-${card.dataset.post}`);
+      if (!tpl) return;
+      opener = card.querySelector('.post__open');
+      mTitle.textContent = card.querySelector('h3').textContent;
+      mMeta.innerHTML = card.querySelector('.post__meta').innerHTML;
+      mBody.replaceChildren(tpl.content.cloneNode(true));
+      mBody.scrollTop = 0;
+      document.documentElement.classList.add('modal-open');
+      modal.showModal();
+      const g = mBody.querySelector('[data-gallery]');
+      if (g) setupGallery(g);
+    };
+    const closeModal = () => { document.documentElement.classList.remove('modal-open'); if (modal.open) modal.close(); };
+    modal.addEventListener('close', () => {
+      document.documentElement.classList.remove('modal-open');
+      mBody.replaceChildren();
+      if (opener) opener.focus({ preventScroll: true });
+    });
+    // Clic fuera del recuadro: cerrar
+    modal.addEventListener('click', (e) => { if (e.target === modal) closeModal(); });
+    // Botón cerrar y enlaces internos (p. ej. «Agendar cita»): cierran la ventana y siguen su camino
+    modal.addEventListener('click', (e) => {
+      const c = e.target.closest('[data-close]');
+      if (!c) return;
+      if (c.tagName !== 'A') { closeModal(); return; }
+      opener = null; closeModal();
+    });
+    $$('.post[data-post]').forEach((card) => {
+      card.addEventListener('click', (e) => {
+        if (e.target.closest('a')) return;
+        openPost(card);
+      });
+    });
+  }
+
   /* ---------- PQRS: abre el correo con el mensaje listo ---------- */
   const pq = $('#pqrs-form');
   if (pq) {

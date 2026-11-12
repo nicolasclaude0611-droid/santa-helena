@@ -22,3 +22,4 @@ media/helenita/*.webm
 media/helenita/*.webp
 media/helenita/*-stack.mp4
 media/voz/*.mp3
+media/noticias/*/*.webp
