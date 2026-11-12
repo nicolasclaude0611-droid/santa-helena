@@ -13,10 +13,10 @@
       items: ['Medicina general', 'Enfermería'] },
     { id: 'especialidades', name: 'Especialidades médicas',
       text: 'Consulta externa especializada que garantiza la continuidad y la integralidad de su atención.',
-      items: ['Ginecobstetricia', 'Pediatría', 'Medicina interna', 'Cardiología', 'Cirugía general', 'Ortopedia y/o traumatología', 'Otorrinolaringología', 'Psiquiatría', 'Reumatología', 'Infectología', 'Medicina física y rehabilitación', 'Medicina física y del deporte', 'Dolor y cuidados paliativos', 'Toxicología', 'Medicina del trabajo y medicina laboral'] },
+      items: ['Ginecobstetricia', 'Pediatría', 'Medicina interna', 'Cardiología', 'Cirugía general', 'Ortopedia y traumatología', 'Otorrinolaringología', 'Psiquiatría', 'Reumatología', 'Infectología', 'Medicina física y rehabilitación', 'Medicina física y del deporte', 'Dolor y cuidados paliativos', 'Toxicología', 'Medicina del trabajo y medicina laboral'] },
     { id: 'apoyo', name: 'Nutrición, psicología y terapias',
       text: 'Nutrición, psicología y una unidad de terapia integral para la recuperación funcional de niños y adultos.',
-      items: ['Nutrición y dietética', 'Psicología', 'Fisioterapia', 'Terapia respiratoria', 'Terapia ocupacional', 'Fonoaudiología y/o terapia del lenguaje'] },
+      items: ['Nutrición y dietética', 'Psicología', 'Fisioterapia', 'Terapia respiratoria', 'Terapia ocupacional', 'Fonoaudiología o terapia del lenguaje'] },
     { id: 'oral', name: 'Odontología y optometría',
       text: 'Consulta de odontología general y de optometría para el cuidado de la salud oral y visual.',
       items: ['Odontología general', 'Optometría'] },
@@ -165,10 +165,10 @@
   /* Servicios habilitados (REPS) y convenios por sede. Fuente: registro de habilitación de cada sede. */
   const BOOK_AREAS = AREAS; // una sola lista para la sección de servicios y el formulario
   const SEDES = {
-    'Valledupar': { services: ['Medicina general', 'Enfermería', 'Ginecobstetricia', 'Pediatría', 'Medicina interna', 'Cardiología', 'Cirugía general', 'Ortopedia y/o traumatología', 'Otorrinolaringología', 'Psiquiatría', 'Reumatología', 'Infectología', 'Medicina física y rehabilitación', 'Medicina física y del deporte', 'Dolor y cuidados paliativos', 'Toxicología', 'Medicina del trabajo y medicina laboral', 'Nutrición y dietética', 'Psicología', 'Fisioterapia', 'Terapia respiratoria', 'Terapia ocupacional', 'Fonoaudiología y/o terapia del lenguaje', 'Odontología general', 'Optometría', 'Vacunación', 'Toma de muestras de laboratorio clínico', 'Toma de muestras de cuello uterino y ginecológicas', 'Diagnóstico vascular'],
+    'Valledupar': { services: ['Medicina general', 'Enfermería', 'Ginecobstetricia', 'Pediatría', 'Medicina interna', 'Cardiología', 'Cirugía general', 'Ortopedia y traumatología', 'Otorrinolaringología', 'Psiquiatría', 'Reumatología', 'Infectología', 'Medicina física y rehabilitación', 'Medicina física y del deporte', 'Dolor y cuidados paliativos', 'Toxicología', 'Medicina del trabajo y medicina laboral', 'Nutrición y dietética', 'Psicología', 'Fisioterapia', 'Terapia respiratoria', 'Terapia ocupacional', 'Fonoaudiología o terapia del lenguaje', 'Odontología general', 'Optometría', 'Vacunación', 'Toma de muestras de laboratorio clínico', 'Toma de muestras de cuello uterino y ginecológicas', 'Diagnóstico vascular'],
       eps: ['EPS Sanitas', 'Salud Total', 'Unisalud', 'Suramericana (SURA)', 'FOMAG', 'Ecopetrol', 'AXA Colpatria', 'Colsanitas', 'Particular'] },
     // Si una sede tiene eps: null (sin lista confirmada), el campo queda para escribir libremente.
-    'La Jagua de Ibirico': { services: ['Medicina general', 'Enfermería', 'Ginecobstetricia', 'Pediatría', 'Medicina interna', 'Medicina del trabajo y medicina laboral', 'Nutrición y dietética', 'Psicología', 'Fisioterapia', 'Terapia respiratoria', 'Terapia ocupacional', 'Fonoaudiología y/o terapia del lenguaje', 'Odontología general', 'Toma de muestras de laboratorio clínico', 'Toma de muestras de cuello uterino y ginecológicas'], eps: ['Nueva EPS', 'Particular'] },
+    'La Jagua de Ibirico': { services: ['Medicina general', 'Enfermería', 'Ginecobstetricia', 'Pediatría', 'Medicina interna', 'Medicina del trabajo y medicina laboral', 'Nutrición y dietética', 'Psicología', 'Fisioterapia', 'Terapia respiratoria', 'Terapia ocupacional', 'Fonoaudiología o terapia del lenguaje', 'Odontología general', 'Toma de muestras de laboratorio clínico', 'Toma de muestras de cuello uterino y ginecológicas'], eps: ['Nueva EPS', 'Particular'] },
     'San Juan del Cesar': { services: ['Medicina general', 'Enfermería', 'Ginecobstetricia', 'Pediatría', 'Medicina interna', 'Nutrición y dietética', 'Psicología', 'Vacunación', 'Toma de muestras de laboratorio clínico', 'Toma de muestras de cuello uterino y ginecológicas'], eps: ['EPS Sanitas', 'Particular'] },
   };
 
