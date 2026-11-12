@@ -1,0 +1,31 @@
+/* Páginas legales (política de datos y términos). Colores y letras de la marca. */
+:root { --ink: #0A2233; --blue: #0596C8; --blue-deep: #06709A; --gold: #FFE81A; --mist: #EFF4F7; --muted: #4A5D6B; }
+* { box-sizing: border-box; }
+body { margin: 0; background: #fff; color: var(--ink); font-family: "Figtree", system-ui, sans-serif; font-size: 1.0625rem; line-height: 1.65; -webkit-font-smoothing: antialiased; }
+a { color: var(--blue-deep); text-underline-offset: 3px; }
+:focus-visible { outline: 3px solid var(--blue); outline-offset: 3px; border-radius: 6px; }
+.lg-head { display: flex; align-items: center; justify-content: space-between; gap: 16px; padding: 16px clamp(16px, 5vw, 48px); border-bottom: 1px solid #E1EAF0; }
+.lg-head img { display: block; width: 140px; height: auto; }
+.lg-back { font-weight: 600; text-decoration: none; white-space: nowrap; }
+.lg { max-width: 760px; margin: 0 auto; padding: 48px clamp(16px, 5vw, 32px) 72px; }
+.lg-kicker { margin: 0 0 8px; color: var(--blue-deep); font-weight: 600; font-size: 0.9rem; text-transform: uppercase; letter-spacing: 0.08em; }
+h1 { margin: 0 0 12px; font-family: "Bricolage Grotesque", "Figtree", sans-serif; font-weight: 600; letter-spacing: -0.03em; line-height: 1.05; font-size: clamp(2rem, 1.5rem + 2vw, 3rem); text-wrap: balance; }
+.lg-meta { margin: 0 0 40px; color: var(--muted); font-size: 0.95rem; }
+h2 { margin: 44px 0 12px; font-family: "Bricolage Grotesque", "Figtree", sans-serif; font-weight: 600; letter-spacing: -0.02em; font-size: 1.4rem; line-height: 1.2; }
+section { scroll-margin-top: 24px; }
+.lg p, .lg li { max-width: 68ch; }
+.lg ul, .lg ol { padding-left: 1.3em; }
+.lg li { margin: 6px 0; }
+.lg li::marker { color: var(--blue-deep); font-weight: 600; }
+.lg strong { font-weight: 600; }
+.lg a { overflow-wrap: anywhere; }
+.lg-table { margin: 16px 0; overflow-x: auto; border: 1px solid #E1EAF0; border-radius: 12px; }
+.lg table { width: 100%; border-collapse: collapse; font-size: 0.95rem; }
+.lg th, .lg td { padding: 12px 14px; text-align: left; vertical-align: top; border-bottom: 1px solid #E1EAF0; }
+.lg tr:last-child td { border-bottom: 0; }
+.lg th { background: var(--mist); font-weight: 600; }
+.lg td:first-child { font-weight: 600; min-width: 9em; }
+.lg-foot { padding: 32px clamp(16px, 5vw, 48px); background: var(--ink); color: #B9C7D2; font-size: 0.9rem; }
+.lg-foot nav { display: flex; flex-wrap: wrap; gap: 8px 24px; margin-bottom: 12px; }
+.lg-foot a { color: #fff; }
+.lg-foot p { margin: 0; }
