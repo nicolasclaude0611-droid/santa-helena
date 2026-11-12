@@ -629,6 +629,8 @@ main { overflow-x: clip; }
 .post__open { padding: 0; border: 0; background: none; font: inherit; font-weight: 600; cursor: pointer; justify-self: start; }
 .post__open:hover::after { transform: translateX(4px); }
 .post__cover--photo { background: var(--navy); }
+.post__cover--shot { background: var(--mist); }
+.post__cover--shot img { object-position: 50% 0; }
 .post__cover--photo img { inset: 0; left: 0; bottom: auto; width: 100%; height: 100%; object-fit: cover; object-position: 50% 42%; transform: none; }
 
 .post-modal { width: min(640px, calc(100vw - 24px), calc(100dvh - 150px)); max-width: none; max-height: calc(100dvh - 24px); margin: auto; padding: 0; border: 0; border-radius: var(--radius); background: var(--paper); color: var(--ink); box-shadow: 0 30px 80px rgba(10, 34, 51, 0.35); overflow: hidden; }
