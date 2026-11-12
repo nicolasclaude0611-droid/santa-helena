@@ -1,0 +1,24 @@
+# Lo único que se publica en Hostinger (rama «produccion» = public_html).
+# Un patrón por línea, relativo a la raíz del repositorio. Si la página usa un archivo nuevo, agrégalo aquí.
+.htaccess
+index.html
+404.html
+politica-de-datos.html
+terminos.html
+styles.css
+script.js
+legal.css
+robots.txt
+sitemap.xml
+helenita/helenita-player.js
+img/compartir.jpg
+img/helenita-closeup.jpg
+img/logo.png
+img/logo-lema.png
+img/sol.png
+img/sol-solido.png
+fotos/*.jpg
+media/helenita/*.webm
+media/helenita/*.webp
+media/helenita/*-stack.mp4
+media/voz/*.mp3
