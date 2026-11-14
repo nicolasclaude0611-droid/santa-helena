@@ -23,7 +23,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500..700&family=Figtree:wght@400;500;600;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="styles.css?v=20261112f">
+  <link rel="stylesheet" href="styles.css?v=20261114b">
   <script>document.documentElement.classList.add('js')</script>
 </head>
 <body>
@@ -248,6 +248,15 @@
         </div>
       </div>
       <div class="news__track" id="news-track" tabindex="0" role="region" aria-label="Noticias recientes">
+        <article class="post" data-post="tamizaje-cuello-uterino">
+          <div class="post__cover post__cover--photo" aria-hidden="true"><img src="media/noticias/tamizaje/portada.webp" alt="" width="720" height="720" loading="lazy"></div>
+          <div class="post__body">
+            <p class="post__meta"><span class="post__tag">Prevención</span><time datetime="2026-11-14">14 nov 2026</time></p>
+            <h3>Tamizaje de cáncer de cuello uterino para afiliadas a EPS Sanitas</h3>
+            <p>Si tiene entre 30 y 65 años y está afiliada a EPS Sanitas, agende sin costo su citología y prueba de VPH. Un examen sencillo que ayuda a detectar cambios a tiempo.</p>
+            <button class="link-arrow post__open" type="button" aria-haspopup="dialog">Ver detalles</button>
+          </div>
+        </article>
         <article class="post" data-post="noviembre-azul">
           <div class="post__cover post__cover--photo" aria-hidden="true"><img src="media/noticias/noviembre-azul/portada.webp" alt="" width="720" height="720" loading="lazy"></div>
           <div class="post__body">
@@ -286,6 +295,37 @@
         </article>
       </div>
       <!-- Contenido completo de cada noticia (se muestra en la ventana flotante) -->
+      <template id="post-tamizaje-cuello-uterino">
+        <figure class="post-modal__cover"><img src="media/noticias/tamizaje/portada-grande.webp" alt="Tamizaje sin costo con EPS Sanitas: citología y prueba de VPH en Valledupar y San Juan del Cesar. Helenita hace un corazón con las manos." width="1080" height="1080" loading="lazy" decoding="async"></figure>
+        <div class="post-modal__text">
+          <p>Santa Helena del Valle IPS tiene convenio con <strong>EPS Sanitas</strong> para realizar el <strong>tamizaje de cáncer de cuello uterino</strong> a sus afiliadas del régimen contributivo y del subsidiado. <strong>El examen no tiene ningún costo.</strong></p>
+          <h4>¿Quiénes pueden tomarlo?</h4>
+          <ul>
+            <li>Mujeres afiliadas a EPS Sanitas, del régimen contributivo o subsidiado.</li>
+            <li>Que tengan <strong>entre 30 y 65 años</strong>.</li>
+            <li>Que <strong>no</strong> tengan histerectomía (cirugía en la que se retira el útero).</li>
+          </ul>
+          <h4>¿Qué es el tamizaje?</h4>
+          <p>Es un examen que se hace a mujeres que se sienten bien, para buscar cambios en el cuello uterino antes de que causen molestias. Incluye la <strong>citología</strong> y la <strong>prueba de VPH</strong> (virus del papiloma humano). Se toma una muestra pequeña del cuello uterino; es un procedimiento rápido que puede causar una molestia leve.</p>
+          <h4>¿Por qué es importante?</h4>
+          <p>El cáncer de cuello uterino puede no dar síntomas al principio. El tamizaje <strong>ayuda a detectar a tiempo</strong> los cambios en el cuello uterino, cuando hay más opciones de tratamiento. Si el resultado muestra algo para revisar, su médico le indicará los pasos a seguir.</p>
+          <h4>Antes del examen</h4>
+          <p>Para que la muestra salga bien, en los días previos se recomienda no tener relaciones sexuales, no usar óvulos ni cremas vaginales y no hacerse duchas vaginales. Lo ideal es no estar en el período menstrual.</p>
+          <h4>¿Dónde?</h4>
+          <ul>
+            <li><strong>Valledupar:</strong> Carrera 11 # 14-34, local 2.</li>
+            <li><strong>San Juan del Cesar:</strong> Calle 7 # 9-73, para afiliadas a Sanitas de <strong>San Juan del Cesar, El Molino, Urumita y Villanueva</strong>.</li>
+          </ul>
+          <h4>Agende su cita</h4>
+          <ul>
+            <li>Por <strong>WhatsApp al 311 339 8988</strong>.</li>
+            <li>Por la <strong>línea de atención (605) 588 5690</strong>, ext. 201 a 301.</li>
+            <li>Con el <strong>formulario de citas</strong> de esta página: elija la sede y el servicio, y escriba sus datos.</li>
+          </ul>
+          <p>Lleve su documento de identidad el día del examen.</p>
+          <a class="btn btn--ink" href="#agendar" data-close>Agendar cita</a>
+        </div>
+      </template>
       <template id="post-noviembre-azul">
         <div class="gallery" data-gallery>
           <div class="gallery__track" tabindex="0" aria-label="Láminas de la publicación">
@@ -596,7 +636,7 @@
     <p>Esta página no usa cookies propias. El mapa y las fuentes de Google pueden usar las suyas.</p>
     <div class="cookie-note__actions"><a class="cookie-note__link" href="politica-de-datos.html#cookies">Ver política</a><button type="button" class="cookie-note__ok" id="cookie-ok">Entendido</button></div>
   </div>
-  <script src="helenita/helenita-player.js?v=20261112f" defer></script>
-  <script src="script.js?v=20261112f" defer></script>
+  <script src="helenita/helenita-player.js?v=20261114b" defer></script>
+  <script src="script.js?v=20261114b" defer></script>
 </body>
 </html>
