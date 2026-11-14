@@ -680,3 +680,5 @@ html.modal-open { overflow: hidden; }
 .ig-icon { flex: none; width: 22px; height: 22px; fill: none; stroke: currentColor; stroke-width: 2; }
 .ig-icon .ig-dot { fill: currentColor; stroke: none; }
 @media (min-width: 761px) and (max-width: 1080px) { .foot__cols { grid-template-columns: 1fr 1fr; } }
+.post-modal__cover { margin: 0; background: var(--navy); }
+.post-modal__cover img { display: block; width: 100%; height: auto; aspect-ratio: 1; }
