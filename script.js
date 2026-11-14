@@ -1,7 +1,7 @@
 (() => {
   const WA_NUMBER = '573113398988';
-  // Dirección oficial de la web (se cita en el mensaje de WhatsApp).
-  const SITE_URL = 'https://santahelenadelvalleips.com/';
+  // Dirección de la web tal como se muestra a las personas (con www, por decisión de Nicolas).
+  const SITE_URL = 'www.santahelenadelvalleips.com';
   const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   const $ = (s, r = document) => r.querySelector(s);
   const $$ = (s, r = document) => [...r.querySelectorAll(s)];
