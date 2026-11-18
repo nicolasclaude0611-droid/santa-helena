@@ -8,14 +8,14 @@
   --line: #CAD7E0;
   --ink: #0A2233;
   --muted: #4A6171;
-  --navy: #0A2233;
-  --navy-2: #0F2F47;
+  --navy: #004BAD;
+  --navy-2: #003E8F;
   --on-navy: #FFFFFF;
-  --on-navy-muted: #B9CBD8;
-  --blue: #0596C8;
-  --blue-deep: #06709A;
-  --gold: #FFE81A;
-  --gold-press: #F2D900;
+  --on-navy-muted: #D3E6F6;
+  --blue: #1894D1;
+  --blue-deep: #004BAD;
+  --gold: #FFF212;
+  --gold-press: #FFCC29;
   --error: #B42318;
 
   --font-display: "Bricolage Grotesque", "Figtree", system-ui, sans-serif;
@@ -220,7 +220,7 @@ main { overflow-x: clip; }
   transition: border-color 200ms ease, box-shadow 200ms ease;
 }
 .field textarea { resize: vertical; }
-.field input:focus, .field select:focus, .field textarea:focus { outline: none; border-color: var(--blue); box-shadow: 0 0 0 3px rgb(5 150 200 / 0.18); /* taste-skill-ignore: focus ring */ }
+.field input:focus, .field select:focus, .field textarea:focus { outline: none; border-color: var(--blue); box-shadow: 0 0 0 3px rgb(24 148 209 / 0.2); /* taste-skill-ignore: focus ring */ }
 .field.is-invalid input, .field.is-invalid select { border-color: var(--error); }
 .service-list { display: grid; grid-template-columns: repeat(2, 1fr); gap: 10px; margin-top: 24px; }
 .service-list.is-swapping { animation: bubble-in 300ms var(--ease-out); }
@@ -505,7 +505,6 @@ main { overflow-x: clip; }
 .post__cover .sun-mark { -webkit-mask-image: url(img/sol-solido.png); mask-image: url(img/sol-solido.png); opacity: 0.9; width: 52%; aspect-ratio: 972 / 1208; right: 8%; top: 50%; transform: translateY(-50%) rotate(-8deg); }
 .post__cover img { position: absolute; left: 50%; bottom: -38%; width: 92%; height: auto; transform: translateX(-50%); }
 .post__cover--blue { background: var(--blue-deep); color: var(--gold); }
-.post__cover--rose { background: #E9739B; color: #fff; }
 .post__cover--navy { background: var(--navy); color: var(--blue); }
 .post__cover--gold { background: var(--gold); color: var(--blue); }
 .post__cover--mist { background: #D9E6EF; }
@@ -682,3 +681,7 @@ html.modal-open { overflow: hidden; }
 @media (min-width: 761px) and (max-width: 1080px) { .foot__cols { grid-template-columns: 1fr 1fr; } }
 .post-modal__cover { margin: 0; background: var(--navy); }
 .post-modal__cover img { display: block; width: 100%; height: auto; aspect-ratio: 1; }
+
+/* Manual de identidad 2026: superficies grandes en azul institucional en degradado */
+.intro, .community, .foot { background: linear-gradient(135deg, #004BAD 0%, #1679C6 100%); }
+.trust__item:nth-child(1) { background: linear-gradient(135deg, #004BAD 0%, #1679C6 100%); }
