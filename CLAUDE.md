@@ -2,7 +2,7 @@
 
 Sitio estático (HTML + CSS + JS, sin build) de **Santa Helena del Valle IPS**, institución de salud de
 baja y mediana complejidad con 20 años en el Cesar y La Guajira (Colombia). Lema:
-**"¡La salud, nuestro compromiso!"**. Todo el contenido y la comunicación con el usuario van en español.
+**"¡La Salud, nuestro compromiso!"**. Todo el contenido y la comunicación con el usuario van en español.
 
 ## Qué hace la página
 
@@ -11,7 +11,7 @@ baja y mediana complejidad con 20 años en el Cesar y La Guajira (Colombia). Lem
 - Sedes: **Valledupar**, **La Jagua de Ibirico** y **San Juan del Cesar**.
 - Secciones: inicio (hero), respaldo institucional, agendar, servicios, noticias (carrusel),
   atención primaria, servicios de apoyo, sedes, nosotros, preguntas frecuentes, PQRS, para EPS y empresas.
-- Pantalla de carga (una vez por sesión): logo con lema sobre fondo navy (`.intro`).
+- Pantalla de carga (una vez por sesión): logo con lema sobre el degradado azul institucional (`.intro`).
 - **Noticias**: tarjetas `.post` en `index.html` (sección `#noticias`). Las actuales son **ejemplos**; reemplazar
   por noticias reales (la portada puede ser una foto `<img>` dentro de `.post__cover`).
 - **PQRS** (`#pqrs`): formulario que abre el correo (`mailto:`) a siau@santahelenadelvalleips.com con copia a
@@ -52,10 +52,17 @@ baja y mediana complejidad con 20 años en el Cesar y La Guajira (Colombia). Lem
 
 ## Marca
 
-- Colores (`styles.css`): tinta/navy `#0A2233`, azul `#0596C8`, azul profundo `#06709A`,
-  amarillo `#FFE81A`, neblina `#EFF4F7`.
-- Tipografías: Bricolage Grotesque (títulos) y Figtree (texto).
-- Logo: flor amarilla con la "S" azul, "Santa Helena del Valle" en azul e "IPS" en amarillo.
+Manda el **manual de identidad corporativa 2026** (en la oficina: `marca/manual/manual-identidad-corporativa-2026.pdf`).
+Aplicado a la web el 18 nov 2026:
+- Colores (`styles.css`): azul claro `#1894D1` (`--blue`), amarillo claro `#FFF212` (`--gold`), amarillo ocre
+  `#FFCC29` (`--gold-press`), azul institucional `#004BAD` (`--navy`/`--blue-deep`, fondos y botones) y degradado
+  `#004BAD → #1679C6` en superficies grandes (pantalla de carga, cifras, territorial, pie, legales). Texto en azul oscuro
+  `#0A2233` (`--ink`) y gris claro `#EFF4F7`. No introducir otros tonos.
+- Eslogan oficial: **«¡La Salud, nuestro compromiso!»** (con «Salud» en mayúscula).
+- Logos oficiales (`img/logo.png`, `img/logo-lema.png` con contorno blanco para fondos oscuros). Favicon `img/icono.png`
+  (margarita con S). La margarita **nunca va sola**: la marca de agua es `img/margarita-s.png` (silueta con la S calada).
+- Tipografías: Bricolage Grotesque y Figtree **hasta tener licencia web de Eras ITC** (decisión de Nicolas, 18 nov 2026:
+  los archivos de Eras que hay son de Office y no permiten publicarlos en la web).
 
 ## Helenita (la guía virtual)
 

@@ -15,8 +15,6 @@ img/compartir.jpg
 img/helenita-closeup.jpg
 img/logo.png
 img/logo-lema.png
-img/sol.png
-img/sol-solido.png
 fotos/*.jpg
 media/helenita/*.webm
 media/helenita/*.webp
@@ -25,3 +23,4 @@ media/voz/*.mp3
 media/noticias/*/*.webp
 img/icono.png
 img/apple-touch-icon.png
+img/margarita-s.png
