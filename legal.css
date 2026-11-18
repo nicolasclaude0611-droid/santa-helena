@@ -1,5 +1,5 @@
 /* Páginas legales (política de datos y términos). Colores y letras de la marca. */
-:root { --ink: #0A2233; --blue: #0596C8; --blue-deep: #06709A; --gold: #FFE81A; --mist: #EFF4F7; --muted: #4A5D6B; }
+:root { --ink: #0A2233; --blue: #1894D1; --blue-deep: #004BAD; --gold: #FFF212; --mist: #EFF4F7; --muted: #4A5D6B; }
 * { box-sizing: border-box; }
 body { margin: 0; background: #fff; color: var(--ink); font-family: "Figtree", system-ui, sans-serif; font-size: 1.0625rem; line-height: 1.65; -webkit-font-smoothing: antialiased; }
 a { color: var(--blue-deep); text-underline-offset: 3px; }
@@ -25,7 +25,7 @@ section { scroll-margin-top: 24px; }
 .lg tr:last-child td { border-bottom: 0; }
 .lg th { background: var(--mist); font-weight: 600; }
 .lg td:first-child { font-weight: 600; min-width: 9em; }
-.lg-foot { padding: 32px clamp(16px, 5vw, 48px); background: var(--ink); color: #B9C7D2; font-size: 0.9rem; }
+.lg-foot { padding: 32px clamp(16px, 5vw, 48px); background: linear-gradient(135deg, #004BAD 0%, #1679C6 100%); color: #D3E6F6; font-size: 0.9rem; }
 .lg-foot nav { display: flex; flex-wrap: wrap; gap: 8px 24px; margin-bottom: 12px; }
 .lg-foot a { color: #fff; }
 .lg-foot p { margin: 0; }
