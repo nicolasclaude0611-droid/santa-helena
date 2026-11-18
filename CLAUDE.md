@@ -60,7 +60,8 @@ Aplicado a la web el 18 nov 2026:
   `#0A2233` (`--ink`) y gris claro `#EFF4F7`. No introducir otros tonos.
 - Eslogan oficial: **«¡La Salud, nuestro compromiso!»** (con «Salud» en mayúscula).
 - Logos oficiales (`img/logo.png`, `img/logo-lema.png` con contorno blanco para fondos oscuros). Favicon `img/icono.png`
-  (margarita con S). La margarita **nunca va sola**: la marca de agua es `img/margarita-s.png` (silueta con la S calada).
+  (margarita con S). La margarita **nunca va sola**. Sin marcas de agua decorativas (Nicolas las quitó el 18 nov 2026); `img/margarita-s.png`
+  (silueta con la S calada) queda solo en los separadores de la franja de especialidades.
 - Tipografías: Bricolage Grotesque y Figtree **hasta tener licencia web de Eras ITC** (decisión de Nicolas, 18 nov 2026:
   los archivos de Eras que hay son de Office y no permiten publicarlos en la web).
 
