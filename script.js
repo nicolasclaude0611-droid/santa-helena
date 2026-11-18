@@ -27,6 +27,10 @@
       text: 'Toma de muestras de laboratorio clínico, procesadas por el Laboratorio Cristiam Gram mediante contrato de interdependencia; toma de muestras de cuello uterino y ginecológicas, y diagnóstico vascular.',
       items: ['Toma de muestras de laboratorio clínico', 'Toma de muestras de cuello uterino y ginecológicas', 'Diagnóstico vascular'] },
   ];
+  // Servicios habilitados que todavía no se prestan: no se muestran en la página ni en el formulario.
+  // Para activarlos, quitarlos de esta lista (siguen en AREAS y SEDES). Pedido de Nicolas, 18 nov 2026.
+  const OCULTOS = ['Terapia respiratoria'];
+  AREAS.forEach((a) => { a.items = a.items.filter((s) => !OCULTOS.includes(s)); });
 
   /* ---------- Sonidos del formulario (sintetizados, sin archivos) ---------- */
   const sound = (() => {
