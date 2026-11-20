@@ -40,7 +40,7 @@ continúe el trabajo. Corte: 30 de octubre de 2026 (versión del sitio en la ram
 
 | Sede | Departamento | Dirección | Coordenadas usadas en el mapa | Notas |
 |---|---|---|---|---|
-| **Valledupar** | Cesar | Carrera 11 # 14-34, local 2 | 10.4756282, -73.2495789 | Sede principal. En la fachada se lee «CAPS · Centro de Atención Primaria en Salud», «L-2» y «14-34». |
+| **Valledupar** | Cesar | Carrera 11 # 14-34 | 10.4756282, -73.2495789 | Sede principal. En la fachada se lee «CAPS · Centro de Atención Primaria en Salud», «L-2» y «14-34». |
 | **La Jagua de Ibirico** | Cesar | Carrera 3A # 8-17 | 9.561919694521654, -73.33216731853685 | La fachada tiene rampa de acceso para sillas de ruedas. |
 | **San Juan del Cesar** | La Guajira | Calle 7 # 9-73 | 10.7741577, -73.0027359 | En la fachada hay una placa de «Laboratorio clínico». La foto no muestra el nombre de la ciudad: la asignación a esta sede fue nuestra y está **pendiente de confirmar**. |
 
@@ -449,7 +449,7 @@ Psicología · Fisioterapia · Fonoaudiología · Vacunación.
   Nuestro equipo le confirmará la fecha y la hora de atención.»
 - Pasos: «Sede» · «Servicio» · «Datos del paciente».
 - Paso 1: «¿En qué sede desea ser atendido?», con tres tarjetas:
-  - «Valledupar · Sede principal · Cesar · Carrera 11 # 14-34, local 2»
+  - «Valledupar · Sede principal · Cesar · Carrera 11 # 14-34»
   - «La Jagua de Ibirico · Cesar · Carrera 3A # 8-17»
   - «San Juan del Cesar · La Guajira · Calle 7 # 9-73»
 
@@ -590,7 +590,7 @@ Salud.»
 - Logo con lema · «Volver al inicio» · lema «¡La salud, nuestro compromiso!»
 - «Atención al usuario»: WhatsApp 311 339 8988 · Línea de atención (605) 588 5690, ext. 201 a 301 · Móviles 314 535
   6846 · 318 768 9174.
-- «Sedes»: Valledupar: Carrera 11 # 14-34, local 2 · La Jagua de Ibirico: Carrera 3A # 8-17 · San Juan del Cesar:
+- «Sedes»: Valledupar: Carrera 11 # 14-34 · La Jagua de Ibirico: Carrera 3A # 8-17 · San Juan del Cesar:
   Calle 7 # 9-73.
 - «Correo»: gerencia@santahelenadelvalleips.com · calidadrh@santahelenadelvalleips.com
 - Legal: «Santa Helena del Valle IPS SAS · NIT 900.085.612-7 · Vigilado Superintendencia Nacional de Salud · © 2026»
